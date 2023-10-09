@@ -7,4 +7,18 @@ Install django :
 python -m pip install Django
 
 Install venv (Virtual environnement for Python) :
+sudo apt-get install python3-venv
+
+Create a virtual environnement :
 python3 -m venv env
+(Check if a folder nammed 'env' appear)
+
+Launch virtual environnement :
+source env/bin/activate
+
+Exit the virtual environnement :
+deactivate
+
+
+
+
