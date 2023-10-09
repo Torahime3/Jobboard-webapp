@@ -1,0 +1,43 @@
+Step 1:
+Install the GUI Client (it is not the database ! it is just a visual interface for a better use of the database)
+https://www.pgadmin.org/download/
+
+Step 2:
+Install PostgreSQL, the extensions and additions:
+apt install postgresql postgresql-contrib
+
+Step 3:
+Check if PostgreSQL is installed and of the daemon is active
+service postgresql status
+
+Step 4:
+Start PostgreSQL using command line tool
+sudo -u postgres psql
+
+And check the details of the connection by typing '\conninfo' 
+into the interpreter.
+
+If there's "You are connected to database 'postgres' as user 'postgres'
+via socket in "/var/run/postgresql" at port '5432'." That's good.
+
+Don't forget to change the password of postgres
+\password postgres
+i've put "jobboard"
+
+Step 5:
+Now go on your GUI client pgAdmin 4
+Then press Add New Server button and enter information of
+the remote server
+
+the name -> Jobboard-BD
+and in connection parameters, 
+Host name/adress -> 127.0.0.1
+Port -> 5432
+Maintenance database -> postgres
+Username -> postgres
+Password -> jobboard
+
+Click save
+
+
+
