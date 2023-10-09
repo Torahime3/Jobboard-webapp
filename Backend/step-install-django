@@ -13,13 +13,13 @@ python3 -m venv env
 Launch virtual environnement :
 source env/bin/activate
 
-Install psycopg2 :
-pip install psycopg2
-
-Install django in venv:
+Install django in venv :
 python -m pip install Django
 
-To check if the back-end works :
+Install psycopg2 :
+pip install psycopg2-binary
+
+Go in JobBoard folder then, check if the back-end works :
 python manage.py runserver 127.0.0.1:8000
 
 Exit the virtual environnement :
