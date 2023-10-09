@@ -3,9 +3,6 @@ Link: https://docs.djangoproject.com/en/4.2/topics/install/
 
 If pip not found : sudo apt install python3-pip
 
-Install django :
-python -m pip install Django
-
 Install venv (Virtual environnement for Python) :
 sudo apt-get install python3-venv
 
@@ -16,8 +13,18 @@ python3 -m venv env
 Launch virtual environnement :
 source env/bin/activate
 
+Install psycopg2 :
+pip install psycopg2
+
+Install django in venv:
+python -m pip install Django
+
+To check if the back-end works :
+python manage.py runserver 127.0.0.1:8000
+
 Exit the virtual environnement :
 deactivate
+
 
 
 
