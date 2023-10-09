@@ -1,5 +1,10 @@
+
 Link: https://docs.djangoproject.com/en/4.2/topics/install/
 
 If pip not found : sudo apt install python3-pip
 
+Install django :
 python -m pip install Django
+
+Install venv (Virtual environnement for Python) :
+python3 -m venv env
