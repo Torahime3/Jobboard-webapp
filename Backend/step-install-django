@@ -32,3 +32,5 @@ pip install markdown       # Markdown support for the browsable API.
 pip install django-filter  # Filtering support
 
 
+###### To add to requirements.txt #####
+pip install django-cors-headers
