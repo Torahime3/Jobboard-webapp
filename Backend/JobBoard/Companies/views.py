@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import JsonResponse
 
 def index(request):
     data_list = [
@@ -12,3 +11,4 @@ def index(request):
     ]
 
     return JsonResponse(data_list)
+

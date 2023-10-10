@@ -1,2 +1,4 @@
 /.idea/
 /Backend/env/
+__pycache__/
+.bak
