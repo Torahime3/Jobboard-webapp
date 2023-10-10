@@ -37,7 +37,7 @@ def get_peoples(request):
     return JsonResponse({'peoples': peoples_data})
 
 def get_people_by_id(request, people_id):
-    person = get_object_or_404(Peoples, id=people_id)
+    person = Peoples.objects.get(pk=people_id)
 
     # Créez un dictionnaire pour stocker les données de la personne
     person_data = {
