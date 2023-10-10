@@ -3,22 +3,26 @@
 
     async function fetchJobs(){
 
-        const response = await fetch("localhost:8000/companies")
-        const result = response.json();
-        console.log(result);
+        const response = await fetch("http://127.0.0.1:8000/companies/");
+        return await response.json();
 
     }
 
 </script>
 
 <main>
+<!--    <h1>Offres d'emploi</h1>-->
+<!--    <JobAdvertisement number="42"/>-->
+<!--&lt;!&ndash;    <JobAdvertisement />&ndash;&gt;-->
+<!--&lt;!&ndash;    <JobAdvertisement />&ndash;&gt;-->
 
-    <h1>Offres d'emploi</h1>
-    <JobAdvertisement number="42"/>
-    <JobAdvertisement />
-    <JobAdvertisement />
-
-    <button on:click=>Charger les offres</button>
+    {#await fetchJobs()}
+        <p> ... waiting </p>
+    {:then data}
+        <p>{data.name}</p>
+    {:catch error}
+        <p> {error.message} </p>
+    {/await}
 
 </main>
 
