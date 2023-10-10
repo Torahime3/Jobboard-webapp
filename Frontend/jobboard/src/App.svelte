@@ -1,9 +1,14 @@
 <script>
     import JobAdvertisement from './components/JobAdvertisements.svelte';
 
-	function bonjour() {
-        alert('bonjour');
+    async function fetchJobs(){
+
+        const response = await fetch("localhost:8000/companies")
+        const result = response.json();
+        console.log(result);
+
     }
+
 </script>
 
 <main>
@@ -13,7 +18,7 @@
     <JobAdvertisement />
     <JobAdvertisement />
 
-    <button on:click={bonjour}>Charger les offres</button>
+    <button on:click=>Charger les offres</button>
 
 </main>
 
