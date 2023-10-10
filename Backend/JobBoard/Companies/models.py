@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class Companies(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
@@ -11,7 +10,7 @@ class Companies(models.Model):
     url_website = models.CharField(max_length=255)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
     class Meta:
         verbose_name_plural = 'Companies'
