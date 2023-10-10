@@ -10,4 +10,5 @@ class JobApplications(models.Model):
     id_advertisement = models.ForeignKey(JobAdvertisements, on_delete=models.CASCADE)
     date_of_application = models.DateField()
 
-
+    class Meta:
+        verbose_name_plural = 'JobApplications'

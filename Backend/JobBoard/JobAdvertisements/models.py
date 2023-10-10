@@ -15,3 +15,6 @@ class JobAdvertisements(models.Model):
     duration_week = models.CharField(max_length=50)
     id_company = models.ForeignKey(Companies, on_delete=models.CASCADE)
     id_people = models.ForeignKey(Peoples, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'JobAdvertisements'
