@@ -19,7 +19,7 @@
         <h1>
             Jobboard
         </h1>
-        <button>Connexion</button>
+        <button>Connection/Register</button>
     </header>
 
 
