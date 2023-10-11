@@ -14,3 +14,4 @@ def get_JobAdvertisementsById(request, id):
     person = JobAdvertisements.objects.get(pk=id)
     serializer = DataSerializer(person, many=False)
     return Response(serializer.data)
+
