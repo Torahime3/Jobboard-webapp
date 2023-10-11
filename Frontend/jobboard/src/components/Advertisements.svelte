@@ -14,7 +14,7 @@
 <main>
 
     <div class="container">
-        <h3>{job.id} - {job.title} </h3>
+        <h3>{job.contract_type} - {job.title} </h3>
         <span>Entreprise : {job.id_company}</span><br>
         <span>Location : {job.location}</span><br><br>
         <div>
