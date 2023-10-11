@@ -11,6 +11,7 @@ Companies.objects.create(name="Google", description="Google est une entreprise a
 Companies.objects.create(name="Microsoft", description="Microsoft Corporation est une multinationale informatique et micro-informatique américaine.", address="70 avenue du Général Leclerc", city="Toulouse", zipcode="31000", url_website="https://www.microsoft.com/fr-fr") #id = 4
 Companies.objects.create(name="Apple", description="Apple est une entreprise multinationale américaine qui conçoit et commercialise des produits électroniques grand public.", address="1 rue de la République", city="Lyon", zipcode="69000", url_website="https://www.apple.com/fr/") #id = 5
 Companies.objects.create(name="Amazon", description="Amazon est une entreprise de commerce électronique américaine basée à Seattle.", address="2 rue de la Liberté", city="Marseille", zipcode="13000", url_website="https://www.amazon.fr/") #id = 6
+print("Success creating new objects in Companies !")
 
 #Insert new rows in the table Peoples
 from Peoples.models import Peoples
@@ -25,6 +26,7 @@ Peoples.objects.create(firstname="Julie", lastname="Leroy", date_of_birth="1995-
 Peoples.objects.create(firstname="Sophie", lastname="Moreau", date_of_birth="1994-06-05", phone_number="0605145432", url_profile_picture="img/pic_sophie.jpg", email="sophie.moreau@toulouse.com", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=4)) #id = 12
 Peoples.objects.create(firstname="Lucie", lastname="Roux", date_of_birth="1993-07-10", phone_number="0605145432", url_profile_picture="img/pic_lucie.jpg", email="lucie.roux@mail.com", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=5)) #id = 13
 Peoples.objects.create(firstname="Emma", lastname="André", date_of_birth="1992-08-15", phone_number="0605145432", url_profile_picture="img/pic_emma.jpg", email="emma.and@mail.fr", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=6)) #id = 14
+print("Success creating new objects in Peoples !")
 
 #New rows for JobAdvertisements :
 from JobAdvertisements.models import JobAdvertisements
@@ -32,3 +34,4 @@ JobAdvertisements.objects.create(title="Développeur Web", job_domain="Informati
 JobAdvertisements.objects.create(title="Développeur Mobile", job_domain="Informatique", description="Développeur Mobile", date_of_jobadvertisements="2023-09-20", location="Toulouse", contract_type="CDI", duration_week="50", id_company=Companies.objects.get(pk=4), id_people=Peoples.objects.get(pk=12))
 JobAdvertisements.objects.create(title="Développeur Web", job_domain="Informatique", description="Développeur Web", date_of_jobadvertisements="2023-10-15", location="Lyon", contract_type="CDI", duration_week="35", id_company=Companies.objects.get(pk=5), id_people=Peoples.objects.get(pk=13))
 JobAdvertisements.objects.create(title="Développeur Web", job_domain="Informatique", description="Développeur Web", date_of_jobadvertisements="2023-11-25", location="Marseille", contract_type="CDI", duration_week="35", id_company=Companies.objects.get(pk=6), id_people=Peoples.objects.get(pk=14))
+print("Success creating new objects in JobAdvertisements !")
