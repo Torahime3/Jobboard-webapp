@@ -5,12 +5,9 @@
 
         const response = await fetch("http://127.0.0.1:8000/companies/");
         const result = await response.json();
-
-        console.log(result)
-
+        console.log(result);
     }
-
-    fetchJobs();
+fetchJobs();
 
 </script>
 
@@ -20,13 +17,13 @@
 <!--&lt;!&ndash;    <JobAdvertisement />&ndash;&gt;-->
 <!--&lt;!&ndash;    <JobAdvertisement />&ndash;&gt;-->
 
-    {#await fetchJobs()}
-        <p> ... waiting </p>
-    {:then data}
-        <p>{data.name}</p>
-    {:catch error}
-        <p> {error.message} </p>
-    {/await}
+    <!--{#await fetchJobs()}-->
+    <!--    <p> ... waiting </p>-->
+    <!--{:then data}-->
+    <!--    <p>{data.name}</p>-->
+    <!--{:catch error}-->
+    <!--    <p> {error.message} </p>-->
+    <!--{/await}-->
 
 </main>
 
