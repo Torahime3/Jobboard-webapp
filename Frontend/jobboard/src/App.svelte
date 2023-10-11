@@ -3,7 +3,7 @@
 
     let promise = getJobs();
     async function getJobs(){
-        const response = await fetch('http://127.0.0.1:8000/companies/')
+        const response = await fetch('http://127.0.0.1:8000/jobadvertisements/')
         return await response.json();
     }
 
@@ -27,7 +27,7 @@
     <div class="box">
         <h2>Offres d'emploi</h2>
         {#await promise}
-            <p>Chargement des companies...</p>
+            <p>Chargement des offres d'emploi...</p>
         {:then jobs}
             {#each jobs as job}
                 <Companies {job} />
@@ -53,6 +53,7 @@
         padding: 10px;
         margin: 15px;
         border: 3px solid black;
+        border-radius: 5px;
     }
 
     button{
