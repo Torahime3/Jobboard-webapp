@@ -19,9 +19,21 @@ except subprocess.CalledProcessError as e:
     print(f"Erreur lors de l'exécution de la commande : {e}")
 
 
+#########################
+# Populate the database #
+#########################
 os.environ['DJANGO_SETTINGS_MODULE'] = 'JobBoard.settings'
 
 django.setup()
+
+from django.contrib.auth.models import User
+# Créez un super utilisateur
+User.objects.create_superuser(
+    username='admin',
+    email='admin@localhost',
+    password='Jobboard2023'
+)
+print("Superuser created !")
 
 #Insert new rows in the table Companies
 from Companies.models import Companies
