@@ -10,7 +10,6 @@
     function refresh(){
         promise = getJobs();
     }
-
 </script>
 
 <main>
