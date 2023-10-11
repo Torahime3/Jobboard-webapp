@@ -1,11 +1,15 @@
 <script>
     export let job;
 
+    // let promise = getJob();
+    // async function getJob(){
+    //     const response = await fetch('http://127.0.0.1:8000/jobadvertisements/')
+    //     return await response.json();
+    // }
 
-    function alertTest(){
+    function testAlert(){
         alert("test")
     }
-
 </script>
 
 <main>
@@ -15,8 +19,8 @@
         <span>Entreprise : {job.id_company}</span><br>
         <span>Location : {job.location}</span><br><br>
         <div>
-            <details>
-                <summary on:keydown={alertTest}>Plus d'informations</summary>
+            <details on:toggle|once={testAlert}>
+                <summary>Plus d'informations</summary>
                 <div class="details container">
                 <p>{job.description}</p>
                 </div>

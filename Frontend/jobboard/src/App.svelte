@@ -1,5 +1,5 @@
 <script>
-    import Companies from "./components/Companies.svelte";
+    import Advertisements from "./components/Advertisements.svelte";
 
     let promise = getJobs();
     async function getJobs(){
@@ -29,7 +29,7 @@
             <p>Chargement des offres d'emploi...</p>
         {:then jobs}
             {#each jobs as job}
-                <Companies {job} />
+                <Advertisements {job} />
             {/each}
         {:catch error}
             <p>Impossible de charger les offres d'emploi</p>
