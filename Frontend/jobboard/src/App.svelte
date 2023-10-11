@@ -1,33 +1,59 @@
 <script>
-    import JobAdvertisement from './components/JobAdvertisements.svelte';
+    import Companies from "./components/Companies.svelte";
 
-    async function fetchJobs(){
-
-        const response = await fetch("http://127.0.0.1:8000/companies/");
-        const result = await response.json();
-        console.log(result);
+    let promise = getJobs();
+    async function getJobs(){
+        const response = await fetch('http://127.0.0.1:8000/companies/')
+        return await response.json();
     }
-fetchJobs();
+
+    function refresh(){
+        promise = getJobs();
+    }
 
 </script>
 
 <main>
-<!--    <h1>Offres d'emploi</h1>-->
-<!--    <JobAdvertisement number="42"/>-->
-<!--&lt;!&ndash;    <JobAdvertisement />&ndash;&gt;-->
-<!--&lt;!&ndash;    <JobAdvertisement />&ndash;&gt;-->
 
-    <!--{#await fetchJobs()}-->
-    <!--    <p> ... waiting </p>-->
-    <!--{:then data}-->
-    <!--    <p>{data.name}</p>-->
-    <!--{:catch error}-->
-    <!--    <p> {error.message} </p>-->
-    <!--{/await}-->
+    <header class="box">
+        <h1>
+            Jobboard
+        </h1>
+        <button>Connexion</button>
+    </header>
+
+
+
+    <div class="box">
+        <h2>Offres d'emploi</h2>
+        {#await promise}
+            <p>Chargement des companies...</p>
+        {:then jobs}
+            {#each jobs as job}
+                <Companies {job} />
+            {/each}
+        {:catch error}
+            <p>Impossible de charger les offres d'emploi</p>
+        {/await}
+
+        <button on:click={refresh}>Rafraichir</button>
+    </div>
 
 </main>
 
 <style>
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .box{
+        padding: 10px;
+        margin: 15px;
+        border: 3px solid black;
+    }
 
     button{
         padding: 5px 15px;
