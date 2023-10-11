@@ -1,7 +1,7 @@
 from django.db import models
 class Companies(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=65535)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=5)

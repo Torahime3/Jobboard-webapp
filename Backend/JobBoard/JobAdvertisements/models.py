@@ -8,7 +8,7 @@ class JobAdvertisements(models.Model):
 
     title = models.CharField(max_length=255)
     job_domain = models.CharField(max_length=100)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=65535)
     date_of_jobadvertisements = models.DateField()
     location = models.CharField(max_length=255)
     contract_type = models.CharField(blank=True,choices=types.choices,max_length=10)
