@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Peoples',
     'JobAdvertisements',
     'JobApplications',
+    'Login',
 ]
 
 MIDDLEWARE = [
