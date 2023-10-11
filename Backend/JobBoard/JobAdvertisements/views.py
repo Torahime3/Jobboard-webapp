@@ -8,3 +8,9 @@ def getAllDatas(request):
     advertisements = JobAdvertisements.objects.filter()
     serializer = DataSerializer(advertisements, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def get_JobAdvertisementsById(request, id):
+    person = JobAdvertisements.objects.get(pk=id)
+    serializer = DataSerializer(person, many=False)
+    return Response(serializer.data)
