@@ -2,6 +2,7 @@
     import { Router, Route, Link } from "svelte-routing";
     import Home from "../routes/Home.svelte";
     import Login from "../routes/Login.svelte";
+    import Profil from "../routes/Profil.svelte";
 
     export let url = "";
 
@@ -22,6 +23,7 @@
             <div>
                 <Route path="/"> <Home /> </Route>
                 <Route path="login"> <Login /> </Route>
+                <Route path="profil"> <Profil /> </Route>
             </div>
     </Router>
 

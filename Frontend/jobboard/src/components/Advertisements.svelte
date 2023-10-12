@@ -3,7 +3,7 @@
 
     let result;
 
-    async function getJob(){
+    async function getJobAdvertisement(){
         const response = await fetch('http://127.0.0.1:8000/jobadvertisements/'+job.id)
         result = await response.json()
         console.log(result)
@@ -19,7 +19,7 @@
         <span>Entreprise : {job.id_company}</span><br>
         <span>Location : {job.location}</span><br><br>
         <div>
-            <details on:toggle|once={getJob}>
+            <details on:toggle|once={getJobAdvertisement}>
                 <summary>Plus d'informations</summary>
 
                 <div class="details container">
