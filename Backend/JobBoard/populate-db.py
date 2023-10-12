@@ -1,4 +1,5 @@
 import os, django, subprocess
+from django.contrib.auth.hashers import make_password
 
 command = "python manage.py flush"
 user_input = "yes"
@@ -68,9 +69,13 @@ JobAdvertisements.objects.create(title="Développeur Web", job_domain="Informati
 print("Success creating new objects in JobAdvertisements !")
 
 from Login.models import Login
-Login.objects.create(username="tristan", password="tristan123", email="tristan.malo@gmail.com")
-Login.objects.create(username="jean", password="jean123", email="jean.dupont@gmail.com")
-Login.objects.create(username="emma", password="emma123", email="emma.and@mail.fr")
-Login.objects.create(username="sophie", password="sophie123", email="sophie.moreau@toulouse.com")
-print("Success creating new objects in Login !")
 
+m = make_password("tristan123")
+Login.objects.create(username="tristan", password=m, email="tristan.malo@gmail.com")
+m = make_password("jean123")
+Login.objects.create(username="jean", password=m, email="jean.dupont@gmail.com")
+m = make_password("emma123")
+Login.objects.create(username="emma", password=m, email="emma.and@mail.fr")
+m = make_password("sophie123")
+Login.objects.create(username="sophie", password=m, email="sophie.moreau@toulouse.com")
+print("Success creating new objects in Login !")
