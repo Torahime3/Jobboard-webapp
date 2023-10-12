@@ -1,22 +1,25 @@
 <script>
-    //  import { Router, Link } from 'svelte-routing';
-    import App from '../App.svelte';
+    import { Router, Route, Link } from "svelte-routing";
+    import Index from "../routes/Home.svelte";
+    import Login from "../routes/Login.svelte";
+
+    export let url = "";
+
 </script>
 
-<main>
-    
-    <header class="box">
-        <h2>
-            Jobboard
-        </h2>
-        <nav>
-            <!-- <Link to="/">Accueil</Link> -->
-        </nav>
-    </header>
 
-    <!-- <Router>
-        <Route path="/" component={App} />
-    </Router> -->
+<main>
+
+    <Router url="{url}">
+        <nav>
+            <Link to="/accueil">Home</Link>
+            <Link to="login">Login</Link>
+        </nav>
+        <div>
+            <Route path="/accueil"> <Index /> </Route>
+            <Route path="login"> <Login /> </Route>
+        </div>
+    </Router>
 
 </main>
 
