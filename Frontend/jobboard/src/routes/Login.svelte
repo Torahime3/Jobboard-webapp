@@ -1,40 +1,22 @@
 <script>
 
-    let register = false;
+    import { checkValidity } from "../stores/checkValidity";
 
+    let register = false;
     function inverse(){
         register = !register;
     }
 
-    // Form connexion
+    let infoMessage;
+    let promise;
     let email = "";
     let password = "";
 
-    let infoMessage;
-
-    async function checkValidity(){
-        event.preventDefault();
-
-        if(email == "" || password == ""){
-            infoMessage = "Veuillez remplir tous les champs"
-            return;
-        }
-
-        const response = await fetch("http://localhost:8000/login/checkValidity", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "email": email,
-                "password": password
-            })
-        });
-
-        const result = await response.json();
-        infoMessage = result.message === "success" ? "Vous êtes connectés" : "Email ou mot de passe incorrect";
-
+    async function submit(){
+        promise = await checkValidity(email, password);
+        console.log(promise);
     }
+
 
 </script>
 
@@ -58,7 +40,7 @@
                 </div>
 
                 <div class="connexion_input">
-                    <input type="submit" on:click={checkValidity}>
+                    <input type="submit" on:click={submit}>
                 </div>
 
                 <p class="changeOption" on:click={inverse}>Didn't have an account?</p>

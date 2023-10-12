@@ -1,6 +1,6 @@
 <script>
-import Advertisements from "../components/Advertisements.svelte";
-import { getJobsAdvertisements } from "../stores/jobAdvertisements.js";
+import Advertisements from "../components/JobAdvertisements.svelte";
+import { getJobsAdvertisements } from "../stores/jobAdvertisements";
 
 let promise = getJobsAdvertisements();
 

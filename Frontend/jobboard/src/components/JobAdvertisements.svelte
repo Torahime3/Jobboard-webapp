@@ -1,12 +1,12 @@
 <script>
+    import { getJobsAdvertisements } from "../stores/jobAdvertisements";
+
     export let job;
 
-    let result;
+    let promise;
 
     async function getJobAdvertisement(){
-        const response = await fetch('http://127.0.0.1:8000/jobadvertisements/'+job.id)
-        result = await response.json()
-        console.log(result)
+        promise = await getJobsAdvertisements(job.id);
     }
 
 </script>
@@ -24,8 +24,8 @@
 
                 <div class="details container">
 
-                    {#if result}    
-                        <p>{result.description}</p>
+                    {#if promise}    
+                        <p>{promise.description}</p>
                     {:else}
                         <p>Loading</p>
                     {/if}
