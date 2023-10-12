@@ -1,6 +1,6 @@
 <script>
     import { Router, Route, Link } from "svelte-routing";
-    import Index from "../routes/Home.svelte";
+    import Home from "../routes/Home.svelte";
     import Login from "../routes/Login.svelte";
 
     export let url = "";
@@ -10,15 +10,19 @@
 
 <main>
 
+    
     <Router url="{url}">
-        <nav>
-            <Link to="/accueil">Home</Link>
-            <Link to="login">Login</Link>
-        </nav>
-        <div>
-            <Route path="/accueil"> <Index /> </Route>
-            <Route path="login"> <Login /> </Route>
-        </div>
+        <header class="box">
+            <h2>Jobboard</h2>
+            <nav>
+                <button><Link to="/">Home</Link></button>
+                <button><Link to="login">Login</Link></button>
+            </nav>
+        </header>
+            <div>
+                <Route path="/"> <Home /> </Route>
+                <Route path="login"> <Login /> </Route>
+            </div>
     </Router>
 
 </main>
@@ -27,8 +31,9 @@
 
     header{
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
+
     }
 
     .box{
@@ -40,7 +45,7 @@
 
     button{
         padding: 5px 15px;
-        margin: 15px;
+        margin: 5px;
     }
 
 </style>
