@@ -1,5 +1,6 @@
 <script>
-    // import { Router, Link } from 'svelte-routing'
+    //  import { Router, Link } from 'svelte-routing';
+    import App from '../App.svelte';
 </script>
 
 <main>
@@ -9,9 +10,13 @@
             Jobboard
         </h2>
         <nav>
-            
+            <!-- <Link to="/">Accueil</Link> -->
         </nav>
     </header>
+
+    <!-- <Router>
+        <Route path="/" component={App} />
+    </Router> -->
 
 </main>
 
