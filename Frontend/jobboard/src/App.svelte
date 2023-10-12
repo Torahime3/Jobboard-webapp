@@ -1,5 +1,6 @@
 <script>
     import Advertisements from "./components/Advertisements.svelte";
+    import Header from "./components/Header.svelte"
 
     let promise = getJobs();
     async function getJobs(){
@@ -14,14 +15,7 @@
 
 <main>
 
-    <header class="box">
-        <h1>
-            Jobboard
-        </h1>
-        <button>Connection/Register</button>
-    </header>
-
-
+    <Header/>
 
     <div class="box">
         <h2>Offres d'emploi</h2>
@@ -41,12 +35,6 @@
 </main>
 
 <style>
-
-    header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 
     .box{
         padding: 10px;

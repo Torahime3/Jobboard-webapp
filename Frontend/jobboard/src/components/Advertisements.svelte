@@ -13,6 +13,7 @@
 
 <main>
 
+
     <div class="container">
         <h3>{job.contract_type} - {job.title} </h3>
         <span>Entreprise : {job.id_company}</span><br>
