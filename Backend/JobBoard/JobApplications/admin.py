@@ -4,6 +4,6 @@ from .models import JobApplications
 
 
 class JobApplicationsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date_of_application', 'id_advertisement_id', 'id_people_id')
+    list_display = ('id', 'id_advertisement_id', 'id_people_id', 'date_of_application')
 
 admin.site.register(JobApplications, JobApplicationsAdmin)
