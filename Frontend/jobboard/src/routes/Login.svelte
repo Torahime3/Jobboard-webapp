@@ -14,7 +14,7 @@
 
     async function submit(){
         promise = await checkValidity(email, password);
-        console.log(promise);
+        infoMessage = promise.message === "success" ? "Connexion success" : "Connexion failed";
     }
 
 
