@@ -8,10 +8,32 @@
 
     // Form connexion
     let email = "";
+    let password = "";
 
-    function sendConnexion(){
+    let infoMessage;
+
+    async function checkValidity(){
         event.preventDefault();
-        console.log(email);
+
+        if(email == "" || password == ""){
+            infoMessage = "Veuillez remplir tous les champs"
+            return;
+        }
+
+        const response = await fetch("http://localhost:8000/login/checkValidity", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "email": email,
+                "password": password
+            })
+        });
+
+        const result = await response.json();
+        infoMessage = result.message === "success" ? "Vous êtes connectés" : "Email ou mot de passe incorrect";
+
     }
 
 </script>
@@ -32,14 +54,14 @@
 
                 <div class="connexion_input">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="password" bind:value={password} name="password" id="password" placeholder="Password" required>
                 </div>
 
                 <div class="connexion_input">
-                    <input type="submit" on:click={sendConnexion}>
+                    <input type="submit" on:click={checkValidity}>
                 </div>
 
-                <p on:click={inverse}>Create account</p>
+                <p class="changeOption" on:click={inverse}>Didn't have an account?</p>
             </div>
 
         </form>
@@ -95,11 +117,15 @@
                         <input type="submit">
                     </div>
                     
-                     <p on:click={inverse}>Already have an account ?</p>
+                     <p class="changeOption" on:click={inverse}>Already have an account ?</p>
             
             </div>
     
         </form>
+        {/if}
+
+        {#if infoMessage && !register}
+            <p>{infoMessage}</p>
         {/if}
 
     </div>
@@ -110,6 +136,7 @@
     
 .container{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 80vh;
@@ -139,10 +166,17 @@ h2{
     grid-column-end: 3;
 }
 
-p{
+input[type="submit"]{
+    cursor: pointer;
+}
+
+.changeOption{
     margin-top: 20px;
     text-align: center;
-    margin-inline: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 2px;
+
 
 }
 
