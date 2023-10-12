@@ -9,6 +9,7 @@ class TestCreationUtilisateur(TestCase):
         username = "nouvel_utilisateur"
         raw_password = "motdepasse123"
         email = "email.email@mail.com"
+
         hashed_password = make_password(raw_password)
         user = Login.objects.create(username=username, password=hashed_password, email=email)
 
@@ -17,6 +18,7 @@ class TestCreationUtilisateur(TestCase):
 
         # Vérifie si le mot de passe est correctement haché
         is_password_valid = check_password(raw_password, user_from_db.password)
+
         # Vérifie si l'utilisateur a été créé correctement
         self.assertEqual(username, user_from_db.username)
         self.assertTrue(is_password_valid)
