@@ -1,5 +1,6 @@
 import os, django, subprocess
 from django.contrib.auth.hashers import make_password
+from django.utils.crypto import get_random_string
 
 command = "python manage.py flush"
 user_input = "yes"
@@ -70,12 +71,8 @@ print("Success creating new objects in JobAdvertisements !")
 
 from Login.models import Login
 
-m = make_password("tristan123")
-Login.objects.create(username="tristan", password=m, email="tristan.malo@gmail.com")
-m = make_password("jean123")
-Login.objects.create(username="jean", password=m, email="jean.dupont@gmail.com")
-m = make_password("emma123")
-Login.objects.create(username="emma", password=m, email="emma.and@mail.fr")
-m = make_password("sophie123")
-Login.objects.create(username="sophie", password=m, email="sophie.moreau@toulouse.com")
+Login.objects.create(username="tristan", password=make_password("tristan123"), email="tristan.malo@gmail.com", token=get_random_string(length=50),id_people=Peoples.objects.get(pk=1))
+Login.objects.create(username="jean", password=make_password("jean123"), email="jean.dupont@gmail.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=2))
+Login.objects.create(username="emma", password=make_password("emma123"), email="emma.and@mail.fr", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=10))
+Login.objects.create(username="sophie", password=make_password("sophie123"), email="sophie.moreau@toulouse.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=8))
 print("Success creating new objects in Login !")

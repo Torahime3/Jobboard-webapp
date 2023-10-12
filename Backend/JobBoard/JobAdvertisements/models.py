@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 from Companies.models import Companies
 from Peoples.models import Peoples
 

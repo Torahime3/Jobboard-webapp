@@ -4,6 +4,6 @@ from django.contrib import admin
 from .models import Login
 
 class LoginAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'password', 'email')
+    list_display = ('id', 'username', 'password', 'email', 'token', 'id_people')
 
 admin.site.register(Login,LoginAdmin)
