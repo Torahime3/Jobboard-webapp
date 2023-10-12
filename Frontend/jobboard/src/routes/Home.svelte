@@ -1,17 +1,12 @@
 <script>
+import Advertisements from "../components/JobAdvertisements.svelte";
+import { getJobsAdvertisements } from "../stores/jobAdvertisements";
 
-import Advertisements from "../components/Advertisements.svelte";
-import Header from "../components/Header.svelte"
+let promise = getJobsAdvertisements();
 
-let promise = getJobs();
-    async function getJobs(){
-        const response = await fetch('http://127.0.0.1:8000/jobadvertisements/')
-        return await response.json();
-    }
-
-    function refresh(){
-        promise = getJobs();
-    }
+function refresh(){
+    promise = getJobsAdvertisements();
+}
 
 </script>
 
