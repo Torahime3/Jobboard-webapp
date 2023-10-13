@@ -35,7 +35,7 @@
                     {#if promise}    
                         <p>{promise.description}</p>
                         {#if token}
-                            <button class="postuler" on:click={apply}>Apply</button>
+                            <button class="applying" on:click={apply}>Apply</button>
                         {/if}
                     {:else}
                         <p>Loading</p>
@@ -58,6 +58,19 @@
         background-color: #f7f7f7;
         transition: transform 0.3s, border 0.3s;
         border: 2px solid #f7f7f7;
+    }
+
+    .applying{
+        margin-top: 10px;
+        background-color: rgb(140, 0, 255);
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .applying:hover{
+        cursor: pointer;
+        background-color: rgb(179, 0, 255);
     }
 
     .title{
