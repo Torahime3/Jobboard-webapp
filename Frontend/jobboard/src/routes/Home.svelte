@@ -36,16 +36,20 @@ function refresh(){
 
 <style>
 
-.box{
+    .box{
         padding: 10px;
         margin: 15px;
-        border: 3px solid black;
-        border-radius: 5px;
+        border-radius: 10px;
+        background-color: white;
+        border: 3px solid rgb(236, 236, 236);
     }
 
     button{
-        padding: 5px 15px;
+        padding: 10px 15px;
         margin: 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
     }
 
 

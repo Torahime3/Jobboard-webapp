@@ -20,11 +20,11 @@
         <header class="box">
             <h2>Jobboard</h2>
             <nav>
-                <button><Link to="/">Home</Link></button>
+                <Link to="/"><button>Home</button></Link>
                 {#if token}
-                    <button><Link to="profil">Profil</Link></button>
+                <Link to="profil"><button>Profil</button></Link>
                 {:else}
-                    <button><Link to="login">Login</Link></button>
+                <Link to="login"><button>Login</button></Link>
                 {/if}
             </nav>
         </header>
@@ -48,15 +48,21 @@
     }
 
     .box{
-            padding: 10px;
-            margin: 15px;
-            border: 3px solid black;
-            border-radius: 5px;
+        background-color: rgb(140, 0, 255);
+        padding: 15px;
+        color: white;
         }
 
     button{
-        padding: 5px 15px;
+        padding: 10px 20px;
         margin: 5px;
+        border: none;
+        border-radius: 10px;
+    }
+
+    button:hover{
+        cursor: pointer;
+        background-color: rgb(230, 230, 230);
     }
 
 </style>
