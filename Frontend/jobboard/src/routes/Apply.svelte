@@ -3,6 +3,7 @@
     import Cookies from 'js-cookie';
     import { getJobsAdvertisements } from '../stores/jobadvertisements';
     import { getUserData } from '../stores/getuserdata';
+    import { get } from 'svelte/store';
 
     if(!Cookies.get('userToken')){
         window.location.href = '/';
@@ -15,14 +16,22 @@
         return await getJobsAdvertisements(id);
     }
 
-    let result = getUser();
-    console.log(result);
-    async function getUser(){
-        let promise = await getUserData(Cookies.get('userToken'));
-        return promise;
+    function getUser(){
+        return getUserData(Cookies.get('userToken')).then(result => { return result})
+    }
+
+    let userData = getUser();
+    let userId;
+    userData.then(function(result) {
+       setUserId(result.id);
+    })
+
+    function setUserId(id){
+        this.userId = id;
     }
 
     let apply_infos = {
+        id_advertisement: id,
         first_name: "",
         last_name: "",
         email: "",
@@ -53,7 +62,7 @@
 
                 <div class="input">
                     <label for="email">Email</label><br>
-                    <input type="email" bind:value={apply_infos.email} id="email" placeholder="email">
+                    <input type="email" bind:value={apply_infos.email} id="email" placeholder="Email">
                 </div>
 
                 <div class="input">

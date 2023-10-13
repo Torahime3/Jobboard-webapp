@@ -55,7 +55,7 @@
         padding: 10px;
         margin: 15px;
         border-radius: 10px;
-        background-color: #f7f7f7;
+        background-color: #f1f1f1;
         transition: transform 0.3s, border 0.3s;
         border: 2px solid #f7f7f7;
     }

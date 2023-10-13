@@ -39,7 +39,7 @@ function refresh(){
     .box{
         padding: 10px;
         margin: 15px;
-        border-radius: 10px;
+        border-radius: 15px;
         background-color: white;
         border: 3px solid rgb(236, 236, 236);
     }
