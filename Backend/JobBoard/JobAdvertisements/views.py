@@ -5,7 +5,7 @@ from JobAdvertisements.serializers import DataSerializer
 
 @api_view(['GET'])
 def getAllDatas(request):
-    advertisements = JobAdvertisements.objects.filter()
+    advertisements = JobAdvertisements.objects.filter().values('contract_type','title','id_company','location')
     serializer = DataSerializer(advertisements, many=True)
     return Response(serializer.data)
 
