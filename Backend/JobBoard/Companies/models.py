@@ -8,7 +8,7 @@ class Companies(models.Model):
     url_website = models.CharField(max_length=255)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.pk)
 
     class Meta:
         verbose_name_plural = 'Companies'

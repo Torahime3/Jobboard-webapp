@@ -16,5 +16,5 @@ class JobAdvertisements(models.Model):
     id_company = models.ForeignKey(Companies, on_delete=models.CASCADE)
     id_people = models.ForeignKey(Peoples, on_delete=models.CASCADE)
 
-class Meta:
+    class Meta:
         verbose_name_plural = 'JobAdvertisements'
