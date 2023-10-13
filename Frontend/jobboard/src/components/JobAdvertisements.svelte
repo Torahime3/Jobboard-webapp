@@ -2,6 +2,7 @@
     import { getJobsAdvertisements } from "../stores/jobAdvertisements";
 
     export let job;
+    export let token;
 
     let promise;
 
@@ -22,10 +23,13 @@
             <details on:toggle|once={getJobAdvertisement}>
                 <summary>Plus d'informations</summary>
 
-                <div class="details container">
+                <div class="details">
 
                     {#if promise}    
                         <p>{promise.description}</p>
+                        {#if token}
+                            <button class="postuler">Postuler</button>
+                        {/if}
                     {:else}
                         <p>Loading</p>
                     {/if}
@@ -45,6 +49,11 @@
         margin: 15px;
         border: 3px solid black;
         border-radius: 5px;
+    }
+
+    button{
+        padding: 10px 20px;
+        margin: 5px;
     }
 
 </style>

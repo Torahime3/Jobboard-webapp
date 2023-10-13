@@ -14,6 +14,9 @@ def checkValidity(request):
         passw = data['password']
         try:
             user = Login.objects.get(email=email, password=make_password(passw, salt="jobboard", hasher='default'))
-            return Response({'message': 'success'})
+            return Response({
+                'message': 'success',
+                'token': user.token
+                })
         except:
             return Response({'message': 'error'})

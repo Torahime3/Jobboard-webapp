@@ -1,10 +1,22 @@
 <script>
+    import Cookies from 'js-cookie';
+
+    function disconnect(){
+        Cookies.remove('userToken');
+        window.location.href = '/';
+    }
+
+    if(!Cookies.get('userToken')){
+        window.location.href = '/';
+    }
+
 </script>
 
 <main>
     
     <div class="container_profil box">
-        <h3>My profil</h3>
+        <button class="disconnect" on:click={disconnect}>Déconnexion</button>
+        <h3>My Profil</h3>
         <img src="https://picsum.photos/200" alt="profil picture">
         <p>First name: </p>
         <p>Last name: </p>
@@ -14,20 +26,24 @@
         <p>Domain:</p>
         <p>Company</p>
     </div>
-
+<!-- 
     <div class="container_companyapplications box">
         <h3>Company's job applications</h3>
         <button> Create </button>
-    </div>
+    </div> -->
 
     <div class="container_myapplications box">
         <h3>My job applications</h3>
-        <button> Create </button>
     </div>
 </main>
 
 
 <style>
+
+    .disconnect{
+        padding: 5px;
+        color: red;
+    }
 
     .box{
         padding: 10px;
