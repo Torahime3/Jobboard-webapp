@@ -1,10 +1,12 @@
 <script>
+    import Cookies from 'js-cookie';
     import { Router, Route, Link } from "svelte-routing";
     import Home from "../routes/Home.svelte";
     import Login from "../routes/Login.svelte";
     import Profil from "../routes/Profil.svelte";
 
     export let url = "";
+    const token = Cookies.get('userToken');
 
 </script>
 
@@ -17,7 +19,11 @@
             <h2>Jobboard</h2>
             <nav>
                 <button><Link to="/">Home</Link></button>
-                <button><Link to="login">Login</Link></button>
+                {#if token}
+                    <button><Link to="profil">Profil</Link></button>
+                {:else}
+                    <button><Link to="login">Login</Link></button>
+                {/if}
             </nav>
         </header>
             <div>

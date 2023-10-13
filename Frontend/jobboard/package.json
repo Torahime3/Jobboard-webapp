@@ -14,6 +14,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "js-cookie": "^3.0.5",
     "svelte-routing": "^2.5.0"
   }
 }

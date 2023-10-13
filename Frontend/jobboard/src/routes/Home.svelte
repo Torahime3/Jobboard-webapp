@@ -1,7 +1,11 @@
 <script>
-import Advertisements from "../components/JobAdvertisements.svelte";
-import { getJobsAdvertisements } from "../stores/jobAdvertisements";
 
+import JobAdvertisements from "../components/JobAdvertisements.svelte";
+
+import { getJobsAdvertisements } from "../stores/jobAdvertisements";
+import Cookies from 'js-cookie';
+
+const token = Cookies.get('userToken');
 let promise = getJobsAdvertisements();
 
 function refresh(){
@@ -14,11 +18,12 @@ function refresh(){
 
     <div class="box">
         <h2>Offres d'emploi</h2>
+    
         {#await promise}
             <p>Chargement des offres d'emploi...</p>
         {:then jobs}
             {#each jobs as job}
-                <Advertisements {job} />
+                <JobAdvertisements job={job} token={token} />
             {/each}
         {:catch error}
             <p>Impossible de charger les offres d'emploi</p>

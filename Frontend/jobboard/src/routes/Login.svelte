@@ -1,6 +1,7 @@
 <script>
 
     import { checkValidity } from "../stores/checkValidity";
+    import Cookies from 'js-cookie';
 
     let register = false;
     function inverse(){
@@ -14,8 +15,13 @@
 
     async function submit(){
         promise = await checkValidity(email, password);
-        infoMessage = promise.message === "success" ? "Connexion success" : "Connexion failed";
-    }
+        if(promise.message !== "success"){
+            infoMessage = "Invalid credentials";
+        }else{
+            Cookies.set('userToken', promise.token, { expires: 7 });
+            window.location.href = '/profil';
+            }
+        }
 
 
 </script>
