@@ -1,7 +1,7 @@
 //Méthode : POST
 //Stores permettant de vérifier si l'utilisateur est bien inscrit dans la base de données
 //en fonction de l'email et du mot de passe passé en paramètre
-export async function checkValidity(email, password){
+export async function checkValidity(login){
     event.preventDefault();
 
     const response = await fetch("http://localhost:8000/login/checkValidity", {
@@ -10,8 +10,8 @@ export async function checkValidity(email, password){
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "email": email,
-            "password": password
+            "email": login.email,
+            "password": login.password
         })
     });
 

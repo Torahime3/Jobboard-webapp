@@ -1,5 +1,5 @@
 <script>
-    import { getJobsAdvertisements } from "../stores/jobAdvertisements";
+    import { getJobsAdvertisements } from "../stores/jobadvertisements";
 
     export let job;
     export let token;

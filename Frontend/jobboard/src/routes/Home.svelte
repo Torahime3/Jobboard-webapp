@@ -2,7 +2,7 @@
 
 import JobAdvertisements from "../components/JobAdvertisements.svelte";
 
-import { getJobsAdvertisements } from "../stores/jobAdvertisements";
+import { getJobsAdvertisements } from "../stores/jobadvertisements";
 import Cookies from 'js-cookie';
 
 const token = Cookies.get('userToken');

@@ -1,6 +1,6 @@
 <script>
 
-    import { checkValidity } from "../stores/checkValidity";
+    import { checkValidity } from "../stores/checkvalidity";
     import Cookies from 'js-cookie';
 
     let register = false;
@@ -10,11 +10,28 @@
 
     let infoMessage;
     let promise;
-    let email = "";
-    let password = "";
 
-    async function submit(){
-        promise = await checkValidity(email, password);
+    // Login
+    let login_credentials = {
+        email: "",
+        password: ""
+    }
+
+    //Register
+    let register_credentials  = {
+        first_name: "",
+        last_name: "",
+        birthdate: "",
+        email: "",
+        tel: "",
+        domain: "",
+        password: "",
+        confirmpassword: ""
+    }
+ 
+
+    async function submitLogin(){
+        promise = await checkValidity(login_credentials);
         if(promise.message !== "success"){
             infoMessage = "Invalid credentials";
         }else{
@@ -22,6 +39,10 @@
             window.location.href = '/profil';
             }
         }
+
+    async function submitRegister(){
+        
+    }
 
 
 </script>
@@ -37,16 +58,16 @@
                 <h2 class="box">Connexion</h2>
                 <div class="connexion_input">
                     <label for="email">Email</label>
-                    <input type="email" bind:value={email} name="email" id="email" placeholder="Email" required>
+                    <input type="email" bind:value={login_credentials.email} name="email" id="email" placeholder="Email" required>
                 </div>
 
                 <div class="connexion_input">
                     <label for="password">Password</label>
-                    <input type="password" bind:value={password} name="password" id="password" placeholder="Password" required>
+                    <input type="password" bind:value={login_credentials.password} name="password" id="password" placeholder="Password" required>
                 </div>
 
                 <div class="connexion_input">
-                    <input type="submit" on:click={submit}>
+                    <input type="submit" on:click={submitLogin}>
                 </div>
 
                 <p class="changeOption" on:click={inverse}>Didn't have an account?</p>
@@ -63,46 +84,46 @@
 
                     <div class="connexion_input">
                         <label for="first_name">First name</label>
-                        <input type="text" name="first_name" id="first_name" placeholder="First name" required>
+                        <input type="text" bind:value={register_credentials.first_name} name="first_name" id="first_name" placeholder="First name" required>
                     </div>
         
                     <div class="connexion_input">
                         <label for="last_name">Last name</label>
-                        <input type="text" name="last_name" id="last_name" placeholder="Last name" required>
+                        <input type="text" bind:value={register_credentials.last_name} name="last_name" id="last_name" placeholder="Last name" required>
                     </div>
 
                     <div class="connexion_input">
                         <label for="birthdate">Birth date</label>
-                        <input type="date" name="birthdate" id="birthdate" placeholder="Birth date" required>
+                        <input type="date" bind:value={register_credentials.birthdate} name="birthdate" id="birthdate" placeholder="Birth date" required>
                     </div>
 
                     <div class="connexion_input">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="email" bind:value={register_credentials.email} name="email" id="email" placeholder="Email" required>
                     </div>
 
                     <div class="connexion_input">
                         <label for="Phone number">Phone number</label>
-                        <input type="tel" name="tel" id="tel" placeholder="Phone number" required>
+                        <input type="tel" bind:value={register_credentials.tel} name="tel" id="tel" placeholder="Phone number" required>
                     </div>
 
                     <div class="connexion_input">
                         <label for="domain">Domain</label>
-                        <input type="text" name="domain" id="domain" placeholder="Domain" required>
+                        <input type="text" bind:value={register_credentials.domain} name="domain" id="domain" placeholder="Domain" required>
                     </div>
 
                     <div class="connexion_input">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <input type="password" bind:value={register_credentials.password} name="password" id="password" placeholder="Password" required>
                     </div>
 
                     <div class="connexion_input">
                         <label for="confirm_password">Confirm Password</label>
-                        <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm password" required>
+                        <input type="password" bind:value={register_credentials.confirmpassword} name="confirmpassword" id="confirmpassword" placeholder="Confirm password" required>
                     </div>
 
                     <div class="connexion_input">
-                        <input type="submit">
+                        <input type="submit" on:click={submitRegister}>
                     </div>
                     
                      <p class="changeOption" on:click={inverse}>Already have an account ?</p>
