@@ -1,3 +1,5 @@
+from django.contrib.auth.hashers import make_password
+from django.utils.crypto import get_random_string
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from Peoples.models import Peoples
@@ -44,12 +46,16 @@ def create(request):
         lastname = data['lastname']
         date_of_birth = data['date_of_birth']
         phone_number = data['phone_number']
-        url_profile_picture = data['url_profile_picture']
+        url_profile_picture = "null"
         email = data['email']
         domain = data['domain']
-        role = data['role']
+        password = data['password']
+        role = "User"
         try:
             people = Peoples.objects.create(firstname=firstname, lastname=lastname, date_of_birth=date_of_birth, phone_number=phone_number, url_profile_picture=url_profile_picture, email=email, domain=domain, role=role)
+            passW = make_password(password)
+            tok = get_random_string(length=50)
+            login = Login.objects.create(username=str(firstname).lower(), password = passW, email=email, token=tok, id_people_id=people.id)
             return Response({
                     'message': 'success',
                     'id': people.id
