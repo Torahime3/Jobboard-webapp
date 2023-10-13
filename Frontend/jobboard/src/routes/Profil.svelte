@@ -1,13 +1,15 @@
 <script>
     import Cookies from 'js-cookie';
     import { getUserData } from '../stores/getuserdata.js';
+    import { getCompanyData } from '../stores/getcompanydata.js';
 
     function disconnect(){
         Cookies.remove('userToken');
         window.location.href = '/';
     }
 
-    async function checkInfos(){
+
+    async function getInfos(){
         if(!Cookies.get('userToken')){
             window.location.href = '/';
         } else {
@@ -22,21 +24,28 @@
 <main>
     
     <div class="container_profil box">
-        <button class="disconnect" on:click={disconnect}>Déconnexion</button>
-        <h3>My Profil</h3>
-        {#await checkInfos()}
+        <h3 class="title">My Profil</h3>
+        {#await getInfos()}
             <p>Loading...</p>
         {:then data}
-            <img src="https://picsum.photos/200" alt="something">
-            <p>First name: {data.firstname}</p>
-            <p>Last name: {data.lastname}</p>
-            <p>Email: {data.email}</p>
-            <p>Phone number: {data.phone_number}</p>
-            <p>Date of birth: {data.date_of_birth}</p>
-            <p>Domain: {data.domain}</p>
-            {#if data.id_company}
-                <p>Company : {data.id_company}</p>
-            {/if}
+        <div class="myprofil">
+            <div class="img">
+                <img src="https://picsum.photos/200" alt="something">
+            </div>
+            <div class="infos">
+                <p><strong>First name:</strong> {data.firstname}</p>
+                <p><strong>Last name:</strong> {data.lastname}</p>
+                <p><strong>Email:</strong> {data.email}</p>
+                <p><strong>Phone number:</strong> {data.phone_number}</p>
+                <p><strong>Date of birth:</strong> {data.date_of_birth}</p>
+                <p><strong>Domain:</strong> {data.domain}</p>
+                {#if data.id_company}
+                    <p><strong>Company :</strong> {data.company_name}</p>
+                {/if}
+                <button class="disconnect" on:click={disconnect}>Déconnexion</button>
+            </div>
+        </div>
+
         {:catch error}
             <p>Error loading data</p>
         {/await}
@@ -49,7 +58,7 @@
     </div> -->
 
     <div class="container_myapplications box">
-        <h3>My job applications</h3>
+        <h3 class="title">My job applications</h3>
     </div>
 </main>
 
@@ -57,15 +66,52 @@
 <style>
 
     .disconnect{
-        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
         color: red;
+        background-color: rgb(255, 234, 234);
+        cursor: pointer;
+    }
+
+    .disconnect:hover{
+        background-color: rgb(255, 214, 214);
+    }
+
+    .myprofil{
+        display: flex;
+    }
+
+    .infos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        margin-left: 10px;
+    }
+
+    .title{
+        border-bottom: 2px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .img{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    img{
+        border-radius: 10px;
     }
 
     .box{
         padding: 10px;
         margin: 15px;
-        border: 3px solid black;
-        border-radius: 5px;
+        border-radius: 10px;
+        background-color: white;
+        border: 3px solid rgb(236, 236, 236);
     }
 
     @media screen and (min-width: 768px) {

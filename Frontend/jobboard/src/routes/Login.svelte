@@ -170,35 +170,37 @@ h2{
     flex-direction: column;
 }
 
+
 .connexion_input:last-child{
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-input[type="submit"]{
+input[type="submit"]:hover{
     cursor: pointer;
+    background-color: rgb(244, 223, 254);
 }
+
 
 .changeOption{
     margin-top: 20px;
     text-align: center;
-    border: 1px solid black;
+    border: 2px dashed rgb(146, 146, 146);
     border-radius: 5px;
-    padding-top: 2px;
-
-
+    padding-top: 7px;
 }
 
 p:hover{
     cursor: pointer;
+    color: rgb(146, 146, 146);
 }
 
 .connexion_input input{
-    padding: 5px 10px;
+    padding: 10px 15px;
     margin: 0px 15px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(249, 238, 255);
 }
 
 .connexion_input label{
@@ -209,8 +211,9 @@ p:hover{
 .box{
     padding: 10px;
     margin: 15px;
-    border: 3px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid rgb(236, 236, 236);
 }
 
 </style>

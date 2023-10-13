@@ -21,19 +21,21 @@
 
 
     <div class="container">
+        <div class="title">
         <h3>{job.contract_type} - {job.title} </h3>
-        <span>Entreprise : {job.id_company}</span><br>
+        </div>
+        <span>Company : {job.company_name}</span><br>
         <span>Location : {job.location}</span><br><br>
         <div>
             <details on:toggle|once={getJobAdvertisement}>
-                <summary>Plus d'informations</summary>
+                <summary>More informations</summary>
 
                 <div class="details">
 
                     {#if promise}    
                         <p>{promise.description}</p>
                         {#if token}
-                            <button class="postuler" on:click={apply}>Postuler</button>
+                            <button class="postuler" on:click={apply}>Apply</button>
                         {/if}
                     {:else}
                         <p>Loading</p>
@@ -52,13 +54,31 @@
     .container{
         padding: 10px;
         margin: 15px;
-        border: 3px solid black;
-        border-radius: 5px;
+        border-radius: 10px;
+        background-color: #f7f7f7;
+        transition: transform 0.3s, border 0.3s;
+        border: 2px solid #f7f7f7;
+    }
+
+    .title{
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    summary:hover{
+        cursor: pointer;
+    }
+
+    .container:hover{
+        transform: scale(1.03);
+        border: 2px solid rgb(140, 0, 255);
     }
 
     button{
         padding: 10px 20px;
         margin: 5px;
+
     }
 
 </style>
