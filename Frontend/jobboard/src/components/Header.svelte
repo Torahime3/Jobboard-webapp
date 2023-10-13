@@ -1,9 +1,11 @@
 <script>
     import Cookies from 'js-cookie';
     import { Router, Route, Link } from "svelte-routing";
+
     import Home from "../routes/Home.svelte";
     import Login from "../routes/Login.svelte";
     import Profil from "../routes/Profil.svelte";
+    import Apply from "../routes/Apply.svelte";
 
     export let url = "";
     const token = Cookies.get('userToken');
@@ -30,6 +32,7 @@
                 <Route path="/"> <Home /> </Route>
                 <Route path="login"> <Login /> </Route>
                 <Route path="profil"> <Profil /> </Route>
+                <Route path="apply"> <Apply /> </Route>
             </div>
     </Router>
 

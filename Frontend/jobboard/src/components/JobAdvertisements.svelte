@@ -3,11 +3,16 @@
 
     export let job;
     export let token;
+    console.log(job)
 
     let promise;
 
     async function getJobAdvertisement(){
         promise = await getJobsAdvertisements(job.id);
+    }
+
+    function apply(){
+        console.log('apply', job.id);
     }
 
 </script>
@@ -28,7 +33,7 @@
                     {#if promise}    
                         <p>{promise.description}</p>
                         {#if token}
-                            <button class="postuler">Postuler</button>
+                            <button class="postuler" on:click={apply}>Postuler</button>
                         {/if}
                     {:else}
                         <p>Loading</p>
