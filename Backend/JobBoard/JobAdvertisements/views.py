@@ -1,3 +1,4 @@
+from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from JobAdvertisements.models import JobAdvertisements
@@ -17,7 +18,22 @@ def getAllDatas(request):
 
 @api_view(['GET'])
 def get_JobAdvertisementsById(request, id):
-    person = JobAdvertisements.objects.get(pk=id)
-    serializer = DataSerializer(person, many=False)
-    return Response(serializer.data)
+    job = JobAdvertisements.objects.get(pk=id)
+    serializer = DataSerializer(job, many=False)
+    data = {
+        'id': serializer.data['id'],
+        'title': serializer.data['title'],
+        'job_domain': serializer.data['job_domain'],
+        'description': serializer.data['description'],
+        'date_of_jobadvertisements': serializer.data['date_of_jobadvertisements'],
+        'location': serializer.data['location'],
+        'contract_type': serializer.data['contract_type'],
+        'duration_week': serializer.data['duration_week'],
+        'id_company': serializer.data['id_company'],
+        'id_people': serializer.data['id_people'],
+    }
+    company = Companies.objects.get(pk=serializer.data['id_company'])
+    data['company_name'] = company.name
+    return Response(data)
+
 

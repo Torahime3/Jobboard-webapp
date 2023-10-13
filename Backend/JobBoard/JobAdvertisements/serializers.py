@@ -2,8 +2,6 @@ from rest_framework import serializers
 
 
 class DataSerializer(serializers.Serializer):
-    types = serializers.CharField()
-
     id = serializers.CharField()
     title = serializers.CharField()
     job_domain = serializers.CharField()

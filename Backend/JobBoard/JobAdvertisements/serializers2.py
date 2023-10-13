@@ -7,4 +7,3 @@ class DataSerializerCompact(serializers.Serializer):
     location = serializers.CharField()
     contract_type = serializers.CharField()
     id_company = serializers.CharField()
-
