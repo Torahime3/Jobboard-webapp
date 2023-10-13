@@ -17,7 +17,7 @@ class Peoples(models.Model):
     id_company = models.ForeignKey(Companies, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return str(self.firstname)
+        return str(self.pk)
 
     class Meta:
         verbose_name_plural = 'Peoples'

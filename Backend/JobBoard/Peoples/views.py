@@ -9,7 +9,23 @@ def get_peoples(request):
     serializer = DataSerializer(peoples, many=True)
     return Response(serializer.data)
 @api_view(['GET'])
-def get_people_by_id(request, id):
+def get_people_by_token(request, token):
         people = Peoples.objects.get(pk=id)
+        serializer = DataSerializer(people, many=False)
+        return Response(serializer.data)
+
+@api_view(['POST'])
+def create_people(request):
+    if request.method == 'POST':
+        data = request.data
+        firstname = data['firstname']
+        lastname = data['lastname']
+        date_of_birth = data['date_of_birth']
+        phone_number = data['phone_number']
+        url_profile_picture = data['url_profile_picture']
+        email = data['email']
+        domain = data['domain']
+        role = data['role']
+        people = Peoples.objects.create(firstname=firstname, lastname=lastname, date_of_birth=date_of_birth, phone_number=phone_number, url_profile_picture=url_profile_picture, email=email, domain=domain, role=role)
         serializer = DataSerializer(people, many=False)
         return Response(serializer.data)
