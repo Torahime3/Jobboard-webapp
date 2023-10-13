@@ -8,4 +8,3 @@ class DataSerializerCompact(serializers.Serializer):
     contract_type = serializers.CharField()
     id_company = serializers.CharField()
 
-
