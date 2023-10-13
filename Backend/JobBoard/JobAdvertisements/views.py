@@ -3,9 +3,11 @@ from rest_framework.decorators import api_view
 from JobAdvertisements.models import JobAdvertisements
 from JobAdvertisements.serializers import DataSerializer
 
+
 @api_view(['GET'])
 def getAllDatas(request):
-    advertisements = JobAdvertisements.objects.filter().values('contract_type','title','id_company','location')
+    from .serializers2 import DataSerializer
+    advertisements = JobAdvertisements.objects.filter().values('contract_type', 'title', 'id_company', 'location')
     serializer = DataSerializer(advertisements, many=True)
     return Response(serializer.data)
 
