@@ -1,6 +1,7 @@
 <script>
 
     import { checkValidity } from "../stores/checkvalidity";
+    import { createAccount } from "../stores/createuseraccount";
     import Cookies from 'js-cookie';
 
     let register = false;
@@ -41,7 +42,8 @@
         }
 
     async function submitRegister(){
-        
+        event.preventDefault();
+        promise = await createAccount(register_credentials);
     }
 
 

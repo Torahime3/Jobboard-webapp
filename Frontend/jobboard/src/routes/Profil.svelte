@@ -1,7 +1,6 @@
 <script>
     import Cookies from 'js-cookie';
     import { getUserData } from '../stores/getuserdata.js';
-    import { getCompanyData } from '../stores/getcompanydata.js';
 
     function disconnect(){
         Cookies.remove('userToken');

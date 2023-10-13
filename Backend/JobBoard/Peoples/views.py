@@ -56,7 +56,7 @@ def create(request):
         role = "User"
         try:
             people = Peoples.objects.create(firstname=firstname, lastname=lastname, date_of_birth=date_of_birth, phone_number=phone_number, url_profile_picture=url_profile_picture, email=email, domain=domain, role=role)
-            passW = make_password(password)
+            passW = make_password(password, salt="jobboard", hasher='default')
             tok = get_random_string(length=50)
             login = Login.objects.create(username=str(firstname).lower(), password = passW, email=email, token=tok, id_people_id=people.id)
             return Response({
