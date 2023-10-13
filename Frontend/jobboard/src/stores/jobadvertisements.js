@@ -7,7 +7,6 @@ export async function getJobsAdvertisements(jobId = null){
 
     if(jobId !== null){
         url = url + jobId;
-        console.log(url);
     }
 
     const response = await fetch(url)

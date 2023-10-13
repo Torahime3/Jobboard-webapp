@@ -3,7 +3,6 @@
 
     export let job;
     export let token;
-    console.log(job)
 
     let promise;
 
@@ -13,6 +12,7 @@
 
     function apply(){
         console.log('apply', job.id);
+        window.location.href = '/apply?id=' + job.id;
     }
 
 </script>

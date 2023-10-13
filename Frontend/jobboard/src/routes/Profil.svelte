@@ -7,7 +7,6 @@
         window.location.href = '/';
     }
 
-    // let promise;
     async function checkInfos(){
         if(!Cookies.get('userToken')){
             window.location.href = '/';
@@ -16,8 +15,6 @@
             return promise;
         }
     }
-
-    // checkInfos();
     
 
 </script>
