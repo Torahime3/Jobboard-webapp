@@ -1,9 +1,11 @@
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from JobApplications.models import JobApplications
 from .serializers import DataSerializer
 from JobAdvertisements.models import JobAdvertisements
 from Peoples.models import Peoples
+from Login.models import Login
 
 @api_view(['GET'])
 def get_all_applications(request):
@@ -15,6 +17,13 @@ def get_all_applications(request):
 def get_application_by_id(request, id):
     jobA = JobApplications.objects.get(pk=id)
     serializer = DataSerializer(jobA, many=False)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_application_by_token(request, token):
+    people = Login.objects.get(token=token)
+    jobA = JobApplications.objects.filter(id_people=people.id)
+    serializer = DataSerializer(jobA, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
