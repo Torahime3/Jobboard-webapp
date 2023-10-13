@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     #path('', views.get_peoples, name='all'),
-    # path('<string:token>', views.get_people_by_token, name='token')
+    path('<str:token>', views.get_people_by_token, name='token'),
 ]

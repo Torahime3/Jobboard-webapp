@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from Peoples.models import Peoples
 from Peoples.serializers import DataSerializer
+from Login.models import Login
 
 @api_view(['GET'])
 def get_peoples(request):
@@ -10,7 +11,8 @@ def get_peoples(request):
     return Response(serializer.data)
 @api_view(['GET'])
 def get_people_by_token(request, token):
-        people = Peoples.objects.get(pk=id)
+        login_to_get = Login.objects.get(token=token)
+        people = Peoples.objects.get(pk=login_to_get.id_people.id)
         serializer = DataSerializer(people, many=False)
         return Response(serializer.data)
 
