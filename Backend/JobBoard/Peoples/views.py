@@ -31,8 +31,11 @@ def get_people_by_token(request, token):
             'role': serializer.data['role'],
             'id_company': serializer.data['id_company'],
         }
-        company = Companies.objects.get(pk=serializer.data['id_company'])
-        data['company_name'] = company.name
+        if(serializer.data['id_company'] == None):
+            data['company_name'] = "null"
+        else:
+            company = Companies.objects.get(pk=serializer.data['id_company'])
+            data['company_name'] = company.name
         data['message'] = 'success'
         return Response(data)
     except:
