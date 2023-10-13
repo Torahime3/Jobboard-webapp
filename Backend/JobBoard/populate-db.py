@@ -72,15 +72,15 @@ print(color + "Success creating new objects in JobAdvertisements !")
 
 #New rows for JobApplications :
 from JobApplications.models import JobApplications
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=1), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-11") #id = 1
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=1), id_advertisement=JobAdvertisements.objects.get(pk=2), date_of_application="2023-10-11") #id = 2
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=1), id_advertisement=JobAdvertisements.objects.get(pk=3), date_of_application="2023-10-11") #id = 3
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=2), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-12") #id = 4
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=3), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-13") #id = 5
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=3), id_advertisement=JobAdvertisements.objects.get(pk=2), date_of_application="2023-10-13") #id = 6
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-14") #id = 7
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertisement=JobAdvertisements.objects.get(pk=2), date_of_application="2023-10-14") #id = 8
-JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertisement=JobAdvertisements.objects.get(pk=3), date_of_application="2023-10-14") #id = 9
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=1), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-11", firstname=Peoples.objects.get(pk=1).firstname, lastname=Peoples.objects.get(pk=1).lastname,email=Peoples.objects.get(pk=1).email, phone_number=Peoples.objects.get(pk=1).phone_number) #id = 1
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=1), id_advertisement=JobAdvertisements.objects.get(pk=2), date_of_application="2023-10-11", firstname=Peoples.objects.get(pk=1).firstname, lastname=Peoples.objects.get(pk=1).lastname,email=Peoples.objects.get(pk=1).email, phone_number=Peoples.objects.get(pk=1).phone_number) #id = 2
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=1), id_advertisement=JobAdvertisements.objects.get(pk=3), date_of_application="2023-10-11", firstname=Peoples.objects.get(pk=1).firstname, lastname=Peoples.objects.get(pk=1).lastname,email=Peoples.objects.get(pk=1).email, phone_number=Peoples.objects.get(pk=1).phone_number) #id = 3
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=2), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-12", firstname=Peoples.objects.get(pk=2).firstname, lastname=Peoples.objects.get(pk=2).lastname,email=Peoples.objects.get(pk=2).email, phone_number=Peoples.objects.get(pk=2).phone_number) #id = 4
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=3), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-13", firstname=Peoples.objects.get(pk=3).firstname, lastname=Peoples.objects.get(pk=3).lastname,email=Peoples.objects.get(pk=3).email, phone_number=Peoples.objects.get(pk=3).phone_number) #id = 5
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=3), id_advertisement=JobAdvertisements.objects.get(pk=2), date_of_application="2023-10-13", firstname=Peoples.objects.get(pk=3).firstname, lastname=Peoples.objects.get(pk=3).lastname,email=Peoples.objects.get(pk=3).email, phone_number=Peoples.objects.get(pk=3).phone_number) #id = 6
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertisement=JobAdvertisements.objects.get(pk=1), date_of_application="2023-10-14", firstname=Peoples.objects.get(pk=4).firstname, lastname=Peoples.objects.get(pk=4).lastname,email=Peoples.objects.get(pk=4).email, phone_number=Peoples.objects.get(pk=4).phone_number) #id = 7
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertisement=JobAdvertisements.objects.get(pk=2), date_of_application="2023-10-14", firstname=Peoples.objects.get(pk=4).firstname, lastname=Peoples.objects.get(pk=4).lastname,email=Peoples.objects.get(pk=4).email, phone_number=Peoples.objects.get(pk=4).phone_number) #id = 8
+JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertisement=JobAdvertisements.objects.get(pk=3), date_of_application="2023-10-14", firstname=Peoples.objects.get(pk=4).firstname, lastname=Peoples.objects.get(pk=4).lastname,email=Peoples.objects.get(pk=4).email, phone_number=Peoples.objects.get(pk=4).phone_number) #id = 9
 print(color + "Success creating new objects in JobApplications !")
 
 from Login.models import Login

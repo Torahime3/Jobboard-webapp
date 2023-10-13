@@ -4,8 +4,10 @@ from Peoples.models import Peoples
 
 # Create your models here.
 class JobApplications(models.Model):
-    types = models.TextChoices("Types", "CDD CDI Stage Alternance Saisonnier Été")
-
+    firstname = models.CharField(max_length=50, default="change_me")
+    lastname = models.CharField(max_length=50, default="change_me")
+    email = models.CharField(max_length=255, default="change_me")
+    phone_number = models.CharField(max_length=10, default="000000")
     id_people = models.ForeignKey(Peoples, on_delete=models.CASCADE)
     id_advertisement = models.ForeignKey(JobAdvertisements, on_delete=models.CASCADE)
     date_of_application = models.DateField()
