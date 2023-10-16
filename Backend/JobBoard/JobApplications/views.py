@@ -7,6 +7,7 @@ from .serializers import DataSerializer
 from JobAdvertisements.models import JobAdvertisements
 from Peoples.models import Peoples
 from Login.models import Login
+from django.http import JsonResponse
 
 
 @api_view(["GET"])
@@ -28,6 +29,19 @@ def get_application_by_token(request, token):
     people = Login.objects.get(token=token)
     jobA = JobApplications.objects.filter(id_people=people.id_people)
     serializer = DataSerializer(jobA, many=True)
+    i = 0
+
+    for application in jobA:
+        idjob = jobA[i].id_advertisement_id
+        job_to_add = JobAdvertisements.objects.get(pk=idjob)
+        serializer.data[i]["jobA_title"] = job_to_add.title
+        serializer.data[i]["jobA_domain"] = job_to_add.job_domain
+        serializer.data[i]["jobA_description"] = job_to_add.description
+        serializer.data[i]["jobA_data_of_application"] = job_to_add.date_of_jobadvertisements
+        serializer.data[i]["jobA_location"] = job_to_add.location
+        serializer.data[i]["jobA_contract_type"] = job_to_add.contract_type
+        serializer.data[i]["jobA_duration_week"] = job_to_add.duration_week
+        i += 1
     return Response(serializer.data)
 
 
