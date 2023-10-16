@@ -20,6 +20,13 @@
         return getUserData(Cookies.get('userToken')).then(result => { return result})
     }
 
+    let result;
+    async function submit(){
+        event.preventDefault();
+        result = await createJobApplication(apply_infos);
+        console.log(result.message);
+    }
+
     let userData = getUser();
     userData.then(function(result) {
         apply_infos.id_user = result.id;
@@ -28,13 +35,6 @@
         apply_infos.email = result.email
         apply_infos.phone_number = result.phone_number
     })
-
-    let result;
-    async function submit(){
-        event.preventDefault();
-        result = await createJobApplication(apply_infos);
-    }
-
 
     let apply_infos = {
         id_user: "",
@@ -82,7 +82,11 @@
                 </div>
             </form>
             {#if result}
-            <p class="status">Application has been sent successfully</p>
+                {#if result.message === 'success'}
+                <p class="status good">Application has been sent successfully</p>
+                {:else if result.message === 'exist'}
+                <p class="status error">You have already applied to this!</p>
+                {/if}
             {/if}
             {/await}
         </h2>
@@ -137,12 +141,19 @@
     }
 
     .status{
-        background-color: rgb(39, 199, 39);
         color: white;
         width: fit-content;
         margin-top: 10px;
         padding: 10px;
         border-radius: 10px;
+    }
+
+    .good{
+        background-color: rgb(39, 199, 39);
+    }
+
+    .error{
+        background-color: rgb(207, 71, 71);
     }
 
 </style>
