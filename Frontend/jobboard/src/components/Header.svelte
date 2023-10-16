@@ -1,14 +1,20 @@
 <script>
     import Cookies from 'js-cookie';
     import { Router, Route, Link } from "svelte-routing";
+    import { checkAdmin } from '../stores/checkadmin';
 
     import Home from "../routes/Home.svelte";
     import Login from "../routes/Login.svelte";
     import Profil from "../routes/Profil.svelte";
     import Apply from "../routes/Apply.svelte";
+    import Admin from '../routes/Admin.svelte';
 
     export let url = "";
     const token = Cookies.get('userToken');
+
+    async function adminPerm(){
+        return await checkAdmin(token);
+    }
 
 </script>
 
@@ -20,7 +26,16 @@
         <header class="box">
             <h2>Jobboard</h2>
             <nav>
+                {#await adminPerm()}
+                <p>Loading...</p>
+                {:then data}
+                    {#if data.message === 'success'}
+                        <Link to="admin"><button style="background-color: #c884fa">Admin panel</button></Link>
+                    {/if}
+                {/await}
+
                 <Link to="/"><button>Home</button></Link>
+
                 {#if token}
                 <Link to="profil"><button>Profile</button></Link>
                 {:else}
@@ -33,6 +48,7 @@
                 <Route path="login"> <Login /> </Route>
                 <Route path="profil"> <Profil /> </Route>
                 <Route path="apply"> <Apply /> </Route>
+                <Route path="admin"> <Admin /> </Route>
             </div>
     </Router>
 
