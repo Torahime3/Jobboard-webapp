@@ -2,8 +2,8 @@
 
     import Cookies from 'js-cookie';
     import { getJobsAdvertisements } from '../stores/jobadvertisements';
+    import { createJobApplication } from '../stores/createjobapplications';
     import { getUserData } from '../stores/getuserdata';
-    import { get } from 'svelte/store';
 
     if(!Cookies.get('userToken')){
         window.location.href = '/';
@@ -21,16 +21,19 @@
     }
 
     let userData = getUser();
-    let userId;
     userData.then(function(result) {
-       setUserId(result.id);
+        apply_infos.id_user = result.id;
     })
 
-    function setUserId(id){
-        this.userId = id;
+    async function submit(){
+        event.preventDefault();
+        let result = createJobApplication(apply_infos);
+        console.log(result)
     }
 
+
     let apply_infos = {
+        id_user: "",
         id_advertisement: id,
         first_name: "",
         last_name: "",
@@ -50,7 +53,7 @@
             <h3>Applying {data.contract_type} - {data.title} </h3>
             <span>Entreprise : {data.company_name}</span><br>
 
-            <form method="POST" action='#'>
+            <form method="POST" action="">
                 <div class="input">
                     <label for="first_name">First Name</label><br>
                     <input type="text" bind:value={apply_infos.first_name} id="first_name" placeholder="First Name">
@@ -71,7 +74,7 @@
                 </div>
 
                 <div class="input">
-                    <button>Submit </button>
+                    <button on:click={submit}>Submit </button>
                 </div>
             </form>
             {/await}
