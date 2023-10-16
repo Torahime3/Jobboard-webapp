@@ -4,7 +4,7 @@ from Companies.models import Companies
 
 # Create your models here.
 class Peoples(models.Model):
-    RolesTypes = models.TextChoices("RolesTypes", "User Recruiter")
+    RolesTypes = models.TextChoices("RolesTypes", "User Recruiter Admin")
 
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)

@@ -60,6 +60,7 @@ Peoples.objects.create(firstname="Julie", lastname="Leroy", date_of_birth="1995-
 Peoples.objects.create(firstname="Sophie", lastname="Moreau", date_of_birth="1994-06-05", phone_number="0605145432", url_profile_picture="img/pic_sophie.jpg", email="sophie.moreau@toulouse.com", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=2)) #id = 8
 Peoples.objects.create(firstname="Lucie", lastname="Roux", date_of_birth="1993-07-10", phone_number="0605145432", url_profile_picture="img/pic_lucie.jpg", email="lucie.roux@mail.com", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=3)) #id = 9
 Peoples.objects.create(firstname="Emma", lastname="André", date_of_birth="1992-08-15", phone_number="0605145432", url_profile_picture="img/pic_emma.jpg", email="emma.and@mail.fr", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=4)) #id = 10
+Peoples.objects.create(firstname="Nathan", lastname="Dulac", date_of_birth="2003-09-30", phone_number="0665773552", url_profile_picture="img/pic_nathan.jpg", email="nathan.dulac@epitech.eu", domain="Developer", role="Admin") #id = 11
 print(color + "Success creating new objects in Peoples !")
 
 #New rows for JobAdvertisements :
@@ -94,4 +95,6 @@ Login.objects.create(username="julie", password=make_password("julie123", salt="
 Login.objects.create(username="sophie", password=make_password("sophie123", salt="jobboard", hasher="default"), email="sophie.moreau@orange.fr", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=8))
 Login.objects.create(username="lucie", password=make_password("lucie123", salt="jobboard", hasher="default"), email="lucie.roux@gmail.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=9))
 Login.objects.create(username="emma", password=make_password("emma123", salt="jobboard", hasher="default"), email="emma.and@mail.fr", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=10))
+Login.objects.create(username="nathan", password=make_password("nathan123", salt="jobboard", hasher="default"), email="nathan.dulac@epitech.eu", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=11))
+
 print(color + "Success creating new objects in Login !")

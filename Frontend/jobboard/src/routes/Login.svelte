@@ -10,6 +10,7 @@
     }
 
     let infoMessage;
+    let registerMessage = "";
     let promise;
 
     // Login
@@ -44,6 +45,11 @@
     async function submitRegister(){
         event.preventDefault();
         promise = await createAccount(register_credentials);
+        registerMessage = promise.message;
+
+        if(promise.message === "success"){
+            register = false;
+        }
     }
 
 
@@ -139,6 +145,12 @@
             <p>{infoMessage}</p>
         {/if}
 
+        {#if registerMessage === 'success'}
+            <p class="status good">Successfully created your account</p>
+        {:else if registerMessage === 'exist' && register}
+            <p class="status error">{registerMessage}</p>
+        {/if}
+
     </div>
 
 </main>
@@ -192,7 +204,7 @@ input[type="submit"]:hover{
     padding-top: 7px;
 }
 
-p:hover{
+.changeOption:hover{
     cursor: pointer;
     color: rgb(146, 146, 146);
 }
@@ -216,6 +228,22 @@ p:hover{
     border-radius: 10px;
     background-color: white;
     border: 3px solid rgb(236, 236, 236);
+}
+
+.status{
+        color: white;
+        width: fit-content;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
+}
+
+.good{
+    background-color: rgb(39, 199, 39);
+}
+
+.error{
+    background-color: rgb(207, 71, 71);
 }
 
 </style>
