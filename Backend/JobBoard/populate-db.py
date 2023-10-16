@@ -61,6 +61,7 @@ Peoples.objects.create(firstname="Sophie", lastname="Moreau", date_of_birth="199
 Peoples.objects.create(firstname="Lucie", lastname="Roux", date_of_birth="1993-07-10", phone_number="0605145432", url_profile_picture="img/pic_lucie.jpg", email="lucie.roux@mail.com", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=3)) #id = 9
 Peoples.objects.create(firstname="Emma", lastname="André", date_of_birth="1992-08-15", phone_number="0605145432", url_profile_picture="img/pic_emma.jpg", email="emma.and@mail.fr", domain="RH", role="Recruiter", id_company=Companies.objects.get(pk=4)) #id = 10
 Peoples.objects.create(firstname="Nathan", lastname="Dulac", date_of_birth="2003-09-30", phone_number="0665773552", url_profile_picture="img/pic_nathan.jpg", email="nathan.dulac@epitech.eu", domain="Developer", role="Admin") #id = 11
+Peoples.objects.create(firstname="Ariirau", lastname="FUCKS", date_of_birth="2002-02-07", phone_number="0652369874", url_profile_picture="img/pic_ariirau.jpg", email="ariirau.fucks@epitech.eu", domain="Developer", role="Admin") #id = 11
 print(color + "Success creating new objects in Peoples !")
 
 #New rows for JobAdvertisements :
@@ -85,16 +86,16 @@ JobApplications.objects.create(id_people=Peoples.objects.get(pk=4), id_advertise
 print(color + "Success creating new objects in JobApplications !")
 
 from Login.models import Login
-Login.objects.create(username="tristan", password=make_password("tristan123", salt="jobboard", hasher="default"), email="tristan.malo@gmail.com", token=get_random_string(length=50),id_people=Peoples.objects.get(pk=1))
-Login.objects.create(username="jean", password=make_password("jean123", salt="jobboard", hasher="default"), email="jean.dupont@gmail.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=2))
-Login.objects.create(username="pierre", password=make_password("pierre123", salt="jobboard", hasher="default"), email="pierre.m@gmail.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=3))
-Login.objects.create(username="paul", password=make_password("paul123", salt="jobboard", hasher="default"), email="paul.durand@outlook.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=4))
-Login.objects.create(username="jacqueslef", password=make_password("jacqueslef123", salt="jobboard", hasher="default"), email="jacques.lefebvre@gmail.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=5))
-Login.objects.create(username="marie", password=make_password("marie123", salt="jobboard", hasher="default"), email="marie.dubois@outlook.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=6))
-Login.objects.create(username="julie", password=make_password("julie123", salt="jobboard", hasher="default"), email="julie.leroy@yahoo.fr", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=7))
-Login.objects.create(username="sophie", password=make_password("sophie123", salt="jobboard", hasher="default"), email="sophie.moreau@orange.fr", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=8))
-Login.objects.create(username="lucie", password=make_password("lucie123", salt="jobboard", hasher="default"), email="lucie.roux@gmail.com", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=9))
-Login.objects.create(username="emma", password=make_password("emma123", salt="jobboard", hasher="default"), email="emma.and@mail.fr", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=10))
-Login.objects.create(username="nathan", password=make_password("nathan123", salt="jobboard", hasher="default"), email="nathan.dulac@epitech.eu", token=get_random_string(length=50), id_people=Peoples.objects.get(pk=11))
-
+Login.objects.create(username="tristan", password=make_password("tristan123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=1).email, token=get_random_string(length=50),id_people=Peoples.objects.get(pk=1))
+Login.objects.create(username="jean", password=make_password("jean123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=2).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=2))
+Login.objects.create(username="pierre", password=make_password("pierre123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=3).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=3))
+Login.objects.create(username="paul", password=make_password("paul123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=4).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=4))
+Login.objects.create(username="jacqueslef", password=make_password("jacqueslef123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=5).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=5))
+Login.objects.create(username="marie", password=make_password("marie123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=6).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=6))
+Login.objects.create(username="julie", password=make_password("julie123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=7).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=7))
+Login.objects.create(username="sophie", password=make_password("sophie123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=8).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=8))
+Login.objects.create(username="lucie", password=make_password("lucie123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=9).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=9))
+Login.objects.create(username="emma", password=make_password("emma123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=10).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=10))
+Login.objects.create(username="nathan", password=make_password("nathan123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=11).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=11))
+Login.objects.create(username="ariirau", password=make_password("ariirau123", salt="jobboard", hasher="default"), email=Peoples.objetcs.get(pk=12).email, token=get_random_string(length=50), id_people=Peoples.objects.get(pk=12))
 print(color + "Success creating new objects in Login !")
