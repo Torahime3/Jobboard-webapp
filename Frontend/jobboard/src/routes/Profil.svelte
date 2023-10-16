@@ -100,7 +100,7 @@
     }
 
     .title{
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid rgb(0, 0, 0);
         padding-bottom: 10px;
         margin-bottom: 10px;
     }
@@ -131,6 +131,7 @@
         }
 
         .container_profil{
+            height: fit-content;
             grid-row-start: 1;
             grid-row-end: 3;
         }
