@@ -42,3 +42,16 @@ class TestCreatePeoplePOST(TestCase):
         people_from_db = Peoples.objects.get(firstname="Test")
         self.assertEqual(data['firstname'], people_from_db.firstname)
         self.assertEqual(response.content, resultat.encode())
+
+class TestGetPeopleGET(TestCase):
+    def getPeople(self):
+        # recupere la fonction getPeople du fichier peoples.py
+        nb_people_1 = Peoples.objects.all().count()
+        data = Peoples.objects.create(firstname="Test", lastname="Test", date_of_birth="1995-10-11", phone_number="0606060606", url_profile_picture="img/pic_tristan.jpg", email="test@gmail.com", domain="domain", role="User")
+        nb_people = Peoples.objects.all().count()
+        Peoples.delete(data)
+
+        people_from_db = Peoples.objects.get(firstname="Test")
+
+        self.assertIsNone(people_from_db)
+        self.assertEqual(nb_people, nb_people_1)

@@ -123,3 +123,15 @@ def update(request):
             )
         except:
             return Response({"message": "error"})
+
+@api_view(["POST"])
+def delete(request):
+    if request.method == "POST":
+        data = request.data
+        id = data["id"]
+        try:
+            people = Peoples.objects.get(pk=id)
+            people.delete()
+            return Response({"message": "success"})
+        except:
+            return Response({"message": "error"})
