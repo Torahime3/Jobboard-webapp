@@ -3,21 +3,22 @@
     import Cookies from 'js-cookie';
     import { checkAdmin } from '../stores/checkadmin';
 
-    let token = Cookies.get('token');
+    let token = Cookies.get('userToken');
+    if(token === undefined){
+        window.location.href = '/login';
+    }
+
+    checkAdmin(token).then(data => {
+        if(data.message !== 'success'){
+            window.location.href = '/';
+        }
+    })
 
 </script>
 
 <main>
+
     
-        {#await checkAdmin(token)}
-            <p>Loading...</p>
-        {:then data} 
-            {#if data.message !== 'success'}
-                <p>You are not allowed to go there</p>
-            {:else}
-                <h1>Admin panel</h1>
-            {/if}
-        {/await}
 
 </main>
 

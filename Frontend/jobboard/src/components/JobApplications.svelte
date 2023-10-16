@@ -1,7 +1,7 @@
 <script>
 
     export let app;
-    console.log(typeof(app.id_advertisement))
+    console.log(app)
 
 
 </script>
@@ -10,10 +10,11 @@
     
     <div class="box">
         <div class="title">
-        <h3>{app.contract_type} - {app.title} </h3>
+        <h3>{app.jobA_contract_type} - {app.jobA_title} </h3>
         </div>
-        <span>Company : {app.company_name}</span><br>
-        <span>Location : {app.location}</span><br><br>
+        <span>Company : {app.jobA_company}</span><br>
+        <span>Location : {app.jobA_location}</span><br>
+        <span>Date of Application : {app.jobA_data_of_application}</span><br><br>
     </div>
 
 </main>

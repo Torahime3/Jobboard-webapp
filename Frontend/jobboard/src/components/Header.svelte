@@ -12,10 +12,6 @@
     export let url = "";
     const token = Cookies.get('userToken');
 
-    async function adminPerm(){
-        return await checkAdmin(token);
-    }
-
 </script>
 
 
@@ -26,7 +22,7 @@
         <header class="box">
             <h2>Jobboard</h2>
             <nav>
-                {#await adminPerm()}
+                {#await checkAdmin(token)}
                 <p>Loading...</p>
                 {:then data}
                     {#if data.message === 'success'}
