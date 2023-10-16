@@ -48,38 +48,44 @@ def get_people_by_token(request, token):
 def create(request):
     if request.method == "POST":
         data = request.data
-        firstname = data["firstname"]
-        lastname = data["lastname"]
-        date_of_birth = data["date_of_birth"]
-        phone_number = data["phone_number"]
-        url_profile_picture = "null"
         email = data["email"]
-        domain = data["domain"]
-        password = data["password"]
-        role = "User"
         try:
-            people = Peoples.objects.create(
-                firstname=firstname,
-                lastname=lastname,
-                date_of_birth=date_of_birth,
-                phone_number=phone_number,
-                url_profile_picture=url_profile_picture,
-                email=email,
-                domain=domain,
-                role=role,
-            )
-            passW = make_password(password, salt="jobboard", hasher="default")
-            tok = get_random_string(length=50)
-            login = Login.objects.create(
-                username=str(firstname).lower(),
-                password=passW,
-                email=email,
-                token=tok,
-                id_people_id=people.id,
-            )
-            return Response({"message": "success", "id": people.id})
-        except:
-            return Response({"message": "error"})
+            objet = Peoples.objects.get(email=email)
+            return Response({"message": "exist"})
+        except Peoples.DoesNotExist:
+            data = request.data
+            firstname = data["firstname"]
+            lastname = data["lastname"]
+            date_of_birth = data["date_of_birth"]
+            phone_number = data["phone_number"]
+            url_profile_picture = "null"
+            email = data["email"]
+            domain = data["domain"]
+            password = data["password"]
+            role = "User"
+            try:
+                people = Peoples.objects.create(
+                    firstname=firstname,
+                    lastname=lastname,
+                    date_of_birth=date_of_birth,
+                    phone_number=phone_number,
+                    url_profile_picture=url_profile_picture,
+                    email=email,
+                    domain=domain,
+                    role=role,
+                )
+                passW = make_password(password, salt="jobboard", hasher="default")
+                tok = get_random_string(length=50)
+                login = Login.objects.create(
+                    username=str(firstname).lower(),
+                    password=passW,
+                    email=email,
+                    token=tok,
+                    id_people_id=people.id,
+                )
+                return Response({"message": "success", "id": people.id})
+            except:
+                return Response({"message": "error"})
 
 
 @api_view(["POST"])
@@ -112,6 +118,8 @@ def update(request):
                 people.id_company = cmp
             people.save()
 
-            return Response({"message": "success"})
+            return Response(
+                {"message": "success"}
+            )
         except:
             return Response({"message": "error"})
