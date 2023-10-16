@@ -2,3 +2,4 @@
 /.vscode/
 /Backend/env/
 __pycache__/
+**/migrations/
