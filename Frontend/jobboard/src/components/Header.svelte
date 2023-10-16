@@ -22,7 +22,7 @@
             <nav>
                 <Link to="/"><button>Home</button></Link>
                 {#if token}
-                <Link to="profil"><button>Profil</button></Link>
+                <Link to="profil"><button>Profile</button></Link>
                 {:else}
                 <Link to="login"><button>Login</button></Link>
                 {/if}

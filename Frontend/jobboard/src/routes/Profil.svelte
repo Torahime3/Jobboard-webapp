@@ -1,6 +1,7 @@
 <script>
     import Cookies from 'js-cookie';
     import { getUserData } from '../stores/getuserdata.js';
+    import JobApplications from '../components/JobApplications.svelte';
 
     function disconnect(){
         Cookies.remove('userToken');
@@ -23,7 +24,7 @@
 <main>
     
     <div class="container_profil box">
-        <h3 class="title">My Profil</h3>
+        <h3 class="title">My Profile</h3>
         {#await getInfos()}
             <p>Loading...</p>
         {:then data}
@@ -41,7 +42,7 @@
                 {#if data.id_company}
                     <p><strong>Company :</strong> {data.company_name}</p>
                 {/if}
-                <button class="disconnect" on:click={disconnect}>Déconnexion</button>
+                <button class="disconnect" on:click={disconnect}>Disconnect</button>
             </div>
         </div>
 
@@ -58,6 +59,7 @@
 
     <div class="container_myapplications box">
         <h3 class="title">My job applications</h3>
+        <JobApplications />
     </div>
 </main>
 

@@ -23,12 +23,16 @@
     let userData = getUser();
     userData.then(function(result) {
         apply_infos.id_user = result.id;
+        apply_infos.first_name = result.firstname;
+        apply_infos.last_name = result.lastname;
+        apply_infos.email = result.email
+        apply_infos.phone_number = result.phone_number
     })
 
+    let result;
     async function submit(){
         event.preventDefault();
-        let result = createJobApplication(apply_infos);
-        console.log(result)
+        result = await createJobApplication(apply_infos);
     }
 
 
@@ -77,6 +81,9 @@
                     <button on:click={submit}>Submit </button>
                 </div>
             </form>
+            {#if result}
+            <p class="status">Application has been sent successfully</p>
+            {/if}
             {/await}
         </h2>
     </div>
@@ -125,8 +132,17 @@
         font-size: 20px;
     }
 
-    span, label{
+    span, label, p{
         font-size: 16px;
+    }
+
+    .status{
+        background-color: rgb(39, 199, 39);
+        color: white;
+        width: fit-content;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
     }
 
 </style>
