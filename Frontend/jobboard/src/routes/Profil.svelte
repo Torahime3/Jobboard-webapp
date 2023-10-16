@@ -2,12 +2,12 @@
     import Cookies from 'js-cookie';
     import { getUserData } from '../stores/getuserdata.js';
     import JobApplications from '../components/JobApplications.svelte';
+    import { getJobsApplications } from '../stores/getjobapplications.js';
 
     function disconnect(){
         Cookies.remove('userToken');
         window.location.href = '/';
     }
-
 
     async function getInfos(){
         if(!Cookies.get('userToken')){
@@ -59,7 +59,15 @@
 
     <div class="container_myapplications box">
         <h3 class="title">My job applications</h3>
-        <JobApplications />
+        {#await getJobsApplications(Cookies.get('userToken'))}
+            <p>Loading...</p>
+        {:then applications}
+            {#each applications as app}
+                <JobApplications app={app}/>
+            {/each}
+        {:catch error}
+            <p>Error while loading your job applications</p>
+        {/await}
     </div>
 </main>
 
@@ -105,6 +113,7 @@
 
     img{
         border-radius: 10px;
+        width: clamp(150px, 20vw, 200px);
     }
 
     .box{

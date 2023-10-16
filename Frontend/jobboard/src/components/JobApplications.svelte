@@ -1,9 +1,14 @@
-<script></script>
+<script>
+
+    export let app;
+    console.log(app)
+
+</script>
 
 <main>
     
     <div class="box">
-        <p> salut</p>
+        <p> {app.id_advertisement.title}</p>
     </div>
 
 </main>
