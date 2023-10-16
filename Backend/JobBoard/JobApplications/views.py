@@ -26,7 +26,7 @@ def get_application_by_id(request, id):
 @api_view(["GET"])
 def get_application_by_token(request, token):
     people = Login.objects.get(token=token)
-    jobA = JobApplications.objects.filter(id_people=people.id)
+    jobA = JobApplications.objects.filter(id_people=people.id_people)
     serializer = DataSerializer(jobA, many=True)
     return Response(serializer.data)
 
