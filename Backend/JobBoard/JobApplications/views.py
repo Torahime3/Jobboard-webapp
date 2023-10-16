@@ -37,7 +37,6 @@ def get_application_by_token(request, token):
         serializer.data[i]["jobA_title"] = job_to_add.title
         serializer.data[i]["jobA_domain"] = job_to_add.job_domain
         serializer.data[i]["jobA_description"] = job_to_add.description
-        serializer.data[i]["jobA_data_of_application"] = job_to_add.date_of_application
         serializer.data[i]["jobA_location"] = job_to_add.location
         serializer.data[i]["jobA_contract_type"] = job_to_add.contract_type
         serializer.data[i]["jobA_duration_week"] = job_to_add.duration_week
