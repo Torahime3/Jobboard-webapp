@@ -35,25 +35,37 @@ def get_application_by_token(request, token):
 def create(request):
     if request.method == "POST":
         data = request.data
-        firstname = data["firstname"]
-        lastname = data["lastname"]
-        email = data["email"]
-        phone_number = data["phone_number"]
         id_advertisement = data["id_advertisement"]
         id_people = data["id_people"]
-        date_of_application = datetime.now()
         try:
-            adv = JobAdvertisements.objects.get(pk=id_advertisement)
-            people = Peoples.objects.get(pk=id_people)
-            jobA = JobApplications.objects.create(
-                firstname=firstname,
-                lastname=lastname,
-                email=email,
-                phone_number=phone_number,
-                id_advertisement=adv,
-                id_people=people,
-                date_of_application=date_of_application,
+            objet = JobApplications.objects.get(
+                id_advertisement=id_advertisement, id_people=id_people
             )
-            return Response({"message": "success"})
-        except:
-            return Response({"message": "error"})
+            return Response({"message": "exist"})
+
+        except JobApplications.DoesNotExist:
+            data = request.data
+            firstname = data["firstname"]
+            lastname = data["lastname"]
+            email = data["email"]
+            phone_number = data["phone_number"]
+
+            date_of_application = datetime.now()
+            try:
+                adv = JobAdvertisements.objects.get(pk=id_advertisement)
+                people = Peoples.objects.get(pk=id_people)
+                jobA = JobApplications.objects.create(
+                    firstname=firstname,
+                    lastname=lastname,
+                    email=email,
+                    phone_number=phone_number,
+                    id_advertisement=adv,
+                    id_people=people,
+                    date_of_application=date_of_application,
+                )
+                return Response({"message": "success"})
+            except:
+                return Response({"message": "error"})
+
+        except JobApplications.MultipleObjectsReturned:
+            return Response({"message": "exist"})
