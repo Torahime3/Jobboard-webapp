@@ -21,6 +21,6 @@ export async function createAccount(registerData){
         }),
     });
 
-    return await response.text();
+    return await response.json();
 
 }
