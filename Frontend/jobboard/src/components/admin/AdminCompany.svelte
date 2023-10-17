@@ -1,15 +1,30 @@
 <script>
 
     import { deleteCompany } from "../../stores/admin/companies/deletecompany";
+    import { updateCompany } from "../../stores/admin/companies/updatecompany";
 
     export let company;
     export let token;
+    export let isEditing = false;
 
-    let isEditing = false;
+    let updatedCompany = {
+        "id": company.id,
+        "name": company.name,
+        "description": company.description,
+        "address": company.address,
+        "city": company.city,
+        "zipcode": company.zipcode,
+        "url_website": company.url_website,
+    }
 
-  function toggleEditing() {
-    isEditing = !isEditing;
-  }
+
+    function toggleEditing() {
+        isEditing = !isEditing;
+        if(!isEditing){
+            // console.log(updatedCompany)
+            console.log(updateCompany(token, updatedCompany));
+        }
+    }
 
   function Delete(token, id){
     console.log(deleteCompany(token, id));
@@ -23,17 +38,19 @@
         <div class="row">
             <p>{company.id}</p>
             {#if isEditing}
-                <input type="text" value={company.name} />
-                <input type="text" class="description" value={company.description} />
-                <input type="text" value={company.address} />
-                <input type="text" value={company.city} />
-                <input type="text" value={company.zipcode} />
+                <input type="text" bind:value={updatedCompany.name} />
+                <input type="text" class="description" bind:value={updatedCompany.description} />
+                <input type="text" bind:value={updatedCompany.address} />
+                <input type="text" bind:value={updatedCompany.city} />
+                <input type="text" bind:value={updatedCompany.zipcode} />
+                <input type="text" bind:value={updatedCompany.url_website} />
             {:else}
-                <p>{company.name}</p>
-                <p class="description">{company.description}</p>
-                <p>{company.address}</p>
-                <p>{company.city}</p>
-                <p>{company.zipcode}</p>
+                <p>{updatedCompany.name}</p>
+                <p class="description">{updatedCompany.description}</p>
+                <p>{updatedCompany.address}</p>
+                <p>{updatedCompany.city}</p>
+                <p>{updatedCompany.zipcode}</p>
+                <p>{updatedCompany.url_website}</p>
             {/if}
             <button class="edit" on:click={toggleEditing}><img src="/src/assets/stylo.png" alt="Edit"></button>
             <button class="delete" on:click={Delete(token, company.id)}><img src="/src/assets/corbeille.png" alt="Delete"></button>

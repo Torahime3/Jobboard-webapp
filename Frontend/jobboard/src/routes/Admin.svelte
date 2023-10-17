@@ -3,8 +3,8 @@
     import Cookies from 'js-cookie';
     
     import { checkAdmin } from '../stores/checkadmin';
-    import { getCompanies } from '../stores/admin/getallcompanies.js';
-    import { getPeoples } from '../stores/admin/getallpeoples.js';
+    import { getCompanies } from '../stores/admin/companies/getallcompanies.js';
+    import { getPeoples } from '../stores/admin/peoples/getallpeoples.js';
 
     import AdminCompany from '../components/admin/AdminCompany.svelte';
     import AdminPeople from '../components/admin/AdminPeople.svelte';
@@ -55,12 +55,13 @@
                 <p>ADDRESS</p>
                 <p>CITY</p>
                 <p>ZIPCODE</p>
+                <p>WEBSITE</p>
             </div>
             {#await getCompanies(token)}
                 <p>Loading...</p>
             {:then companies}
                 {#each companies as company}
-                    <AdminCompany company={company} token={token} />
+                    <AdminCompany company={company} token={token} isEditing={false}/>
                 {/each} 
             {/await}
         {/if}
