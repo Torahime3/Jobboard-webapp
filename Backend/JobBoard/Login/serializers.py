@@ -6,3 +6,4 @@ class DataSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
     email = serializers.CharField()
+    token = serializers.CharField()
