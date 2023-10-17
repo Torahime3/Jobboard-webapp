@@ -1,5 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.utils.crypto import get_random_string
+from django.core.files.storage import FileSystemStorage
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from Peoples.models import Peoples
@@ -203,3 +204,20 @@ def delete(request,token):
                     return Response({"message": "error"})
     except:
         return Response({"message": "invalidAccess"})
+
+@api_view(["POST"])
+def download_img(request):
+    if request.method == 'POST' and 'image' in request.FILES:
+        data = request.data
+        id = data["id"]
+        name = Peoples.objects.get(pk=id).firstname
+        image = request.FILES['image']
+        destination = './../../img/'
+        nom_fichier = name+'.jpg'
+        fs = FileSystemStorage(location=destination)
+        fs.save(nom_fichier, image)
+
+        # Répondre avec un message de succès
+        return Response({"message":"success","url":destination})
+
+    return Response({"message":"error"})

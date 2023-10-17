@@ -9,5 +9,6 @@ urlpatterns = [
     path('<str:token>/update', views.update, name='update'),
     path('<str:token>/delete', views.delete, name='delete'),
     path('<str:token>', views.get_people_by_token, name='token'),
+    path('upload_img', views.download_img, name="upload_img")
 ]
 
