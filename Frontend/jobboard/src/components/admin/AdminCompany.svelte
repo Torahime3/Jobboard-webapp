@@ -17,12 +17,11 @@
         "url_website": company.url_website,
     }
 
-
-    function toggleEditing() {
+    async function toggleEditing() {
         isEditing = !isEditing;
         if(!isEditing){
-            // console.log(updatedCompany)
-            console.log(updateCompany(token, updatedCompany));
+            console.log(updatedCompany)
+            console.log(await updateCompany(token, updatedCompany));
         }
     }
 
