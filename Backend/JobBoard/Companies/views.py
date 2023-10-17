@@ -98,11 +98,11 @@ def create(request,token):
                     company = Companies.objects.create(name=name, description=description, address=address, city=city, zipcode=zipcode, url_website=url_website)
                     return Response({"message": "success"})
                 except:
-                    return Response({"message": "error1"})
+                    return Response({"message": "error"})
         else:
             return Response({"message": "invalidAccess"})
     except:
-        return Response({"message": "error2"})
+        return Response({"message": "error"})
 
 # Method "DELETE"
 # Param : 
