@@ -3,9 +3,11 @@
     import Cookies from 'js-cookie';
     
     import { checkAdmin } from '../stores/checkadmin';
-    import { getCompanies } from '../stores/admin/getcompanies';
+    import { getCompanies } from '../stores/admin/getallcompanies.js';
+    import { getPeoples } from '../stores/admin/getallpeoples.js';
 
-    import Company from '../components/admin/Company.svelte';
+    import AdminCompany from '../components/admin/AdminCompany.svelte';
+    import AdminPeople from '../components/admin/AdminPeople.svelte';
 
     let token = Cookies.get('userToken');
     if(token === undefined){
@@ -58,7 +60,7 @@
                 <p>Loading...</p>
             {:then companies}
                 {#each companies as company}
-                    <Company company={company} />
+                    <AdminCompany company={company} />
                 {/each} 
             {/await}
         {/if}
@@ -79,7 +81,28 @@
                 <p>Loading...</p>
             {:then companies}
                 {#each companies as company}
-                    <Company company={company} />
+                    <AdminCompany company={company} />
+                {/each} 
+            {/await}
+        {/if}
+
+        {#if selectData.value === 'peoples'}
+            <div class="peoples_row">
+                <p>ID</p>
+                <p>FIRSTNAME</p>
+                <p>LASTNAME</p>
+                <p>DATE OF BIRTH</p>
+                <p>PHONE NUMBER</p>
+                <p>EMAIL</p>
+                <p>DOMAIN</p>
+                <p>ROLE</p>
+                <p>ID COMPANY</p>
+            </div>
+            {#await getPeoples(token)}
+                <p>Loading...</p>
+            {:then peoples}
+                {#each peoples as people}
+                    <AdminPeople people={people} token={token} />
                 {/each} 
             {/await}
         {/if}
@@ -88,6 +111,13 @@
 </main>
 
 <style>
+
+.peoples_row{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr) repeat(2, 0.3fr);
+    gap: 10px;
+}
 
 .jobadvertisements_row{
     margin: 15px;

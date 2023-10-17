@@ -2,6 +2,12 @@
 
     export let company;
 
+    let isEditing = false;
+
+  function toggleEditing() {
+    isEditing = !isEditing;
+  }
+
 </script>
 
 <main>
@@ -9,14 +15,23 @@
     <div class="container">
         <div class="row">
             <p>{company.id}</p>
-            <p>{company.name}</p>
-            <p class="description">{company.description}</p>
-            <p>{company.address}</p>
-            <p>{company.city}</p>
-            <p>{company.zipcode}</p>
-            <button class="edit"><img src="/src/assets/stylo.png" alt="something"></button>
-            <button class="delete"><img src="/src/assets/corbeille.png" alt="something"></button>
+            {#if isEditing}
+                <input type="text" value={company.name} />
+                <input type="text" class="description" value={company.description} />
+                <input type="text" value={company.address} />
+                <input type="text" value={company.city} />
+                <input type="text" value={company.zipcode} />
+            {:else}
+                <p>{company.name}</p>
+                <p class="description">{company.description}</p>
+                <p>{company.address}</p>
+                <p>{company.city}</p>
+                <p>{company.zipcode}</p>
+            {/if}
+            <button class="edit" on:click={toggleEditing}><img src="/src/assets/stylo.png" alt="Edit"></button>
+            <button class="delete"><img src="/src/assets/corbeille.png" alt="Delete"></button>
          </div>
+    </div>
 
 </main>
 
