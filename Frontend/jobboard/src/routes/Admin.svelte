@@ -1,7 +1,10 @@
 <script>
 
     import Cookies from 'js-cookie';
+    
     import { checkAdmin } from '../stores/checkadmin';
+    import { getCompanies } from '../stores/admin/getcompanies';
+
     import Company from '../components/admin/Company.svelte';
 
     let token = Cookies.get('userToken');
@@ -16,6 +19,8 @@
     })
 
     let selectData = {};
+
+
 
 </script>
 
@@ -39,16 +44,44 @@
     </div>
 
     <div class="box">
+
         {#if selectData.value === 'company'}
             <div class="company_row">
                 <p>ID</p>
                 <p>NAME</p>
-                <p>DESCRIPTION</p>
+                <p class="description">DESCRIPTION</p>
                 <p>ADDRESS</p>
                 <p>CITY</p>
                 <p>ZIPCODE</p>
             </div>
-            <Company/>
+            {#await getCompanies(token)}
+                <p>Loading...</p>
+            {:then companies}
+                {#each companies as company}
+                    <Company company={company} />
+                {/each} 
+            {/await}
+        {/if}
+
+        {#if selectData.value === 'jobadvertisements'}
+            <div class="jobadvertisements_row">
+                <p>ID</p>
+                <p>TITLE</p>
+                <p>JOB DOMAIN</p>
+                <p>DESCRIPTION</p>
+                <p>DATE OF PUBLICATION</p>
+                <p>LOCATION</p>
+                <p>CONTRACT TYPE</p>
+                <p>DURATION WEEK</p>
+                <p>ID COMPANY</p>
+            </div>
+            {#await getCompanies(token)}
+                <p>Loading...</p>
+            {:then companies}
+                {#each companies as company}
+                    <Company company={company} />
+                {/each} 
+            {/await}
         {/if}
     </div>
 
@@ -56,19 +89,31 @@
 
 <style>
 
-    .company_row{
-        margin: 15px;
-        display: grid;
-        grid-template-columns: repeat(9, 1fr);
-        gap: 10px;
-    }
+.jobadvertisements_row{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr) repeat(2, 0.3fr);
+    gap: 10px;
+}
+
+.company_row{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr) repeat(2, 0.3fr);
+    gap: 10px;
+}
+
+.description{
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
 
 .box{
-        margin: 15px;
-        border-radius: 15px;
-        background-color: white;
-        border: 3px solid rgb(236, 236, 236);
-    }
+    margin: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: 3px solid rgb(236, 236, 236);
+}
 
 
 .container{
