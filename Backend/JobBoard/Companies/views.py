@@ -31,3 +31,54 @@ def getCompanyWithToken(request,token):
             return Response({'message': 'invalidAccess'})
     except:
         return Response({'message': 'error'})
+    
+# # Method "POST"
+# # Param : 
+# #         request -> HttpRequest, object request form Django
+# #         token -> Authentication token
+# # Function :
+# #         update -> update a company with an ID and some data
+# # Returns :
+# #         return a response, to know if the request is 'success','error' or 'invalidAccess'
+# @api_view(["POST"])
+# def update(request,token):
+
+# # Method "POST"
+# # Param : 
+# #         request -> HttpRequest, object request form Django
+# #         token -> Authentication token
+# # Function :
+# #         create -> create a new company
+# # Returns :
+# #         return a response, to know if the request is 'success','error' or 'invalidAccess'
+# @api_view(["POST"])
+# def create(request,token):
+    
+
+# Method "DELETE"
+# Param : 
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         delete -> delete a company with an ID
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
+@api_view(["DELETE"])
+def delete(request,token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin'):
+            if request.method == "DELETE":
+                data = request.data
+                id = data["id"]
+                try:
+                    company = Companies.objects.get(pk=id)
+                    company.delete()
+                    return Response({"message": "success"})
+                except:
+                    return Response({"message": "error"})
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "error"})
