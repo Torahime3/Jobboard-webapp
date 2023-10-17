@@ -8,6 +8,27 @@
         Cookies.remove('userToken');
         window.location.href = '/';
     }
+    let imageFile;
+    async function set_profile_picture() {
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append('image', imageFile);
+
+      const response = await fetch('http://localhost:5173/peoples/upload_img', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        console.log('Image téléchargée avec succès.');
+      } else {
+        console.error('Erreur lors du téléchargement de l\'image.');
+        console.log(response)
+      }
+    } else {
+      console.log("Aucun fichier sélectionné.");
+    }
+  }
 
     async function getInfos(){
         if(!Cookies.get('userToken')){
@@ -42,7 +63,11 @@
                 {#if data.id_company}
                     <p><strong>Company :</strong> {data.company_name}</p>
                 {/if}
-                <button class="disconnect" on:click={disconnect}>Disconnect</button>
+                <div>
+                    <input type="file" bind:files={imageFile} accept="image/*" /> 
+                    <button class="set_profile_picture" on:click={set_profile_picture}>Set profile picture</button>
+                    <button class="disconnect" on:click={disconnect}>Disconnect</button>
+                </div>
             </div>
         </div>
 
@@ -82,7 +107,17 @@
         background-color: rgb(255, 234, 234);
         cursor: pointer;
     }
-
+    .set_profile_picture{
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        color: rgb(64, 64, 165);
+        background-color: rgb(255, 234, 234);
+        cursor: pointer;
+    }
+    .set_profile_picture:hover{
+        background-color: rgb(255, 214, 214);
+    }
     .disconnect:hover{
         background-color: rgb(255, 214, 214);
     }
