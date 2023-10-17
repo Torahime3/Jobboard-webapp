@@ -1,6 +1,6 @@
 <script>
 
-    import { deletePeople } from "../../stores/admin/deletepeople.js";
+    import { deletePeople } from "../../stores/admin/peoples/deletepeople.js";
     export let people;
     export let token;
 
@@ -11,8 +11,8 @@
     }
 
     function Delete(token, id){
-        console.log(token + " | " + id);
-        deletePeople(token, id);
+        // console.log(token + " | " + id);
+        console.log(deletePeople(token, id));
     }
 
 </script>
