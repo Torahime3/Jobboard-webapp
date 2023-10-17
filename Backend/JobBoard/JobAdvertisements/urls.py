@@ -8,5 +8,5 @@ urlpatterns = [
       path('<str:token>/all', views.getAll, name='getAll'),
       path('<str:token>/create', views.create, name='create'),
       path('<str:token>/update', views.update, name='update'),
-      # path('<str:token>/delete', views.delete, name='delete'),
+      path('<str:token>/delete', views.delete, name='delete'),
 ]

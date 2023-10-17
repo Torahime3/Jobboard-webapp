@@ -182,3 +182,30 @@ def update(request,token):
             return Response({"message": "invalidAccess"})
     except:
         return Response({"message": "error"})
+    
+
+@api_view(["DELETE"])
+def delete(request,token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin'):
+            if request.method == "DELETE":
+                data = request.data
+                id = data["id"]
+                try:
+                    # delete job
+                    jobA = JobAdvertisements.objects.filter(pk=id)
+                    if(jobA.exists):
+                        jobA.delete()
+                        return Response({"message": "success"})
+                    else:
+                        return Response({"message": "error"})
+                except:
+                    return Response({"message": "error"})
+            else:
+                return Response({"message": "error"})   
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "error"})
