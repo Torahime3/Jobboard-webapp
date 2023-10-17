@@ -60,12 +60,12 @@
                 <p>Loading...</p>
             {:then companies}
                 {#each companies as company}
-                    <AdminCompany company={company} />
+                    <AdminCompany company={company} token={token} />
                 {/each} 
             {/await}
         {/if}
 
-        {#if selectData.value === 'jobadvertisements'}
+        <!-- {#if selectData.value === 'jobadvertisements'}
             <div class="jobadvertisements_row">
                 <p>ID</p>
                 <p>TITLE</p>
@@ -84,7 +84,7 @@
                     <AdminCompany company={company} />
                 {/each} 
             {/await}
-        {/if}
+        {/if} -->
 
         {#if selectData.value === 'peoples'}
             <div class="peoples_row">

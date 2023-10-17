@@ -1,11 +1,18 @@
 <script>
 
+    import { deleteCompany } from "../../stores/admin/companies/deletecompany";
+
     export let company;
+    export let token;
 
     let isEditing = false;
 
   function toggleEditing() {
     isEditing = !isEditing;
+  }
+
+  function Delete(token, id){
+    console.log(deleteCompany(token, id));
   }
 
 </script>
@@ -29,7 +36,7 @@
                 <p>{company.zipcode}</p>
             {/if}
             <button class="edit" on:click={toggleEditing}><img src="/src/assets/stylo.png" alt="Edit"></button>
-            <button class="delete"><img src="/src/assets/corbeille.png" alt="Delete"></button>
+            <button class="delete" on:click={Delete(token, company.id)}><img src="/src/assets/corbeille.png" alt="Delete"></button>
          </div>
     </div>
 
