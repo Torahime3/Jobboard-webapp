@@ -154,6 +154,7 @@ def update(request,token):
                 role = data["role"]
                 company = data["id_company"]
                 try:
+                    l = Login.objects.get(id_people=id)
                     people = Peoples.objects.get(pk=id)
                     people.firstname = firstname
                     people.lastname = lastname
@@ -161,6 +162,7 @@ def update(request,token):
                     people.phone_number = phone_number
                     people.url_profile_picture = url_profile_picture
                     people.email = email
+                    l.email = email
                     people.domain = domain
                     people.role = role
                     if not company == "":
