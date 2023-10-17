@@ -68,3 +68,47 @@ def delete(request,token):
             return Response({"message": "invalidAccess"})
     except:
         return Response({"message": "error"})
+    
+
+# Method "PUT"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         update -> update a people with an ID
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
+@api_view(["PUT"])
+def update(request,token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin'):
+            if request.method == "PUT":
+                data = request.data
+                id = data["id"]
+                username = data["username"]
+                password = data["password"]
+                email = data["email"]
+                id_people = data["id_people"]
+                try:
+                    login = Login.objects.get(pk=id)
+                    login.username = username
+                    login.password = make_password(password, salt="jobboard", hasher='default')
+                    login.email = email
+                    if id_people != "":
+                        people = Peoples.objects.filter(pk=id_people)
+                        if people.exists:
+                            login.id_people_id = id_people
+                        else:
+                            return Response({"message": "error"})
+                    login.save()
+                    return Response({"message": "success"})
+                except:
+                    return Response({"message": "error"})
+            else:
+                return Response({"message": "error"})
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "invalidAccess"})
