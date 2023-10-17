@@ -8,6 +8,8 @@
     import Profil from "../routes/Profil.svelte";
     import Apply from "../routes/Apply.svelte";
     import Admin from '../routes/Admin.svelte';
+    import CreateCompany from '../components/admin/CreateCompany.svelte';
+    import CreatePeople from '../components/admin/CreatePeople.svelte';
 
     export let url = "";
     const token = Cookies.get('userToken');
@@ -45,6 +47,10 @@
                 <Route path="profil"> <Profil /> </Route>
                 <Route path="apply"> <Apply /> </Route>
                 <Route path="admin"> <Admin /> </Route>
+
+                <Route path="admin/create/company"> <CreateCompany/> </Route>
+                <Route path="admin/create/people"> <CreatePeople/> </Route>
+
             </div>
     </Router>
 

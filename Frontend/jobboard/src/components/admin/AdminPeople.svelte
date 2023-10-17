@@ -1,17 +1,32 @@
 <script>
 
     import { deletePeople } from "../../stores/admin/peoples/deletepeople.js";
+    import { updatePeople } from "../../stores/admin/peoples/updatepeople.js";
+
     export let people;
     export let token;
+    export let isEditing = false;
+    
+    let updatedPeople = {
+        "id": people.id,
+        "firstname": people.firstname,
+        "lastname": people.lastname,
+        "date_of_birth": people.date_of_birth,
+        "phone_number": people.phone_number,
+        "email": people.email,
+        "domain": people.domain,
+        "role": people.role,
+        "id_company": people.id_company == null ? "" : people.id_company,
+    }
 
-    let isEditing = false;
-
-    function toggleEditing() {
+    async function toggleEditing() {
         isEditing = !isEditing;
+        if(!isEditing){
+            console.log(await updatePeople(token, updatedPeople));
+        }
     }
 
     function Delete(token, id){
-        // console.log(token + " | " + id);
         console.log(deletePeople(token, id));
     }
 
@@ -23,23 +38,23 @@
         <div class="row">
             <p>{people.id}</p>
             {#if isEditing}
-                <input type="text" value={people.firstname} />
-                <input type="text" value={people.lastname} />
-                <input type="text" value={people.date_of_birth} />
-                <input type="text" value={people.phone_number} />
-                <input type="text" value={people.email} />
-                <input type="text" value={people.domain} />
-                <input type="text" value={people.role} />
-                <input type="text" value={people.id_company} />
+                <input type="text" bind:value={updatedPeople.firstname} />
+                <input type="text" bind:value={updatedPeople.lastname} />
+                <input type="text" bind:value={updatedPeople.date_of_birth} />
+                <input type="text" bind:value={updatedPeople.phone_number} />
+                <input type="text" bind:value={updatedPeople.email} />
+                <input type="text" bind:value={updatedPeople.domain} />
+                <input type="text" bind:value={updatedPeople.role} />
+                <input type="text" bind:value={updatedPeople.id_company} />
             {:else}
-                <p>{people.firstname}</p>
-                <p>{people.lastname}</p>
-                <p>{people.date_of_birth}</p>
-                <p>{people.phone_number}</p>
-                <p>{people.email}</p>
-                <p>{people.domain}</p>
-                <p>{people.role}</p>
-                <p>{people.id_company}</p>
+                <p>{updatedPeople.firstname}</p>
+                <p>{updatedPeople.lastname}</p>
+                <p>{updatedPeople.date_of_birth}</p>
+                <p>{updatedPeople.phone_number}</p>
+                <p>{updatedPeople.email}</p>
+                <p>{updatedPeople.domain}</p>
+                <p>{updatedPeople.role}</p>
+                <p>{updatedPeople.id_company}</p>
             {/if}
 
             <button class="edit" on:click={toggleEditing}><img src="/src/assets/stylo.png" alt="something"></button>

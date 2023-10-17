@@ -22,7 +22,22 @@
 
     let selectData = {};
 
-
+    function create(){
+        switch(selectData.value){
+            case 'company':
+                window.location.href = '/admin/create/company';
+                break;
+            case 'jobadvertisements':
+                console.log("create jobadvertisements");
+                break;
+            case 'login':
+                console.log("create login");
+                break;
+            case 'peoples':
+                window.location.href = '/admin/create/people';
+                break;
+        }
+    }
 
 </script>
 
@@ -35,12 +50,14 @@
                 <select id="tables" name="tables" bind:value={selectData.value}>
                     <option value="company" selected>Company</option>
                     <option value="jobadvertisements">JobAdvertisements</option>
+                    <option value="jobapplications">JobApplications</option>
                     <option value="login">Login</option>
                     <option value="peoples">Peoples</option>
                 </select>
             </div>
+             
+            <button on:click={create}>Create {selectData.value}</button>
 
-            <button>Create new row</button>
         </nav> 
 
     </div>
@@ -103,7 +120,7 @@
                 <p>Loading...</p>
             {:then peoples}
                 {#each peoples as people}
-                    <AdminPeople people={people} token={token} />
+                    <AdminPeople people={people} token={token} isEditing={false} />
                 {/each} 
             {/await}
         {/if}

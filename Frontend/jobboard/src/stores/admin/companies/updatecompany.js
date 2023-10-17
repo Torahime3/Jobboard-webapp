@@ -16,7 +16,7 @@ export async function updateCompany(token, company){
             "description": company.description,
             "address": company.address,
             "city": company.city,
-            "country": company.country,
+            "zipcode": company.zipcode,
             "url_website": company.url_website,
         })
     });

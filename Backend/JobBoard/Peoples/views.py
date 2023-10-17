@@ -148,7 +148,7 @@ def update(request,token):
                 lastname = data["lastname"]
                 date_of_birth = data["date_of_birth"]
                 phone_number = data["phone_number"]
-                url_profile_picture = data["url_profile_picture"]
+                url_profile_picture = "null"
                 email = data["email"]
                 domain = data["domain"]
                 role = data["role"]
