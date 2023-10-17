@@ -37,7 +37,7 @@ def checkValidity(request):
         except:
             return Response({'message': 'error'})
         
-# Method "POST"
+# Method "DELETE"
 # Param : 
 #         request -> HttpRequest, object request form Django
 #         token -> Authentication token
@@ -45,13 +45,13 @@ def checkValidity(request):
 #         delete -> delete a people with an ID
 # Returns :
 #         return a response, to know if the request is 'success','error' or 'invalidAccess'
-@api_view(["POST"])
+@api_view(["DELETE"])
 def delete(request,token):
     try:
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
-            if request.method == "POST":
+            if request.method == "DELETE":
                 data = request.data
                 id = data["id"]
                 try:
@@ -63,8 +63,8 @@ def delete(request,token):
                         login.delete()
                         return Response({"message": "success"})
                 except:
-                    return Response({"message": "error1"})
+                    return Response({"message": "error"})
         else:
             return Response({"message": "invalidAccess"})
     except:
-        return Response({"message": "error2"})
+        return Response({"message": "error"})

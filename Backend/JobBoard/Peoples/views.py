@@ -127,7 +127,7 @@ def create(request,token):
         return Response({'message': 'error'})
 
 
-# Method "POST"
+# Method "PUT"
 # Param : 
 #         request -> HttpRequest, object request form Django
 #         token -> Authentication token
@@ -135,13 +135,13 @@ def create(request,token):
 #         update -> update a row in the table with data in the request
 # Returns :
 #         return a response, to know if the request is 'success','error' or 'invalidAccess'
-@api_view(["POST"])
+@api_view(["PUT"])
 def update(request,token):
     try:
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
-            if request.method == "POST":
+            if request.method == "PUT":
                 data = request.data
                 id = data["id"]
                 firstname = data["firstname"]
@@ -187,13 +187,13 @@ def update(request,token):
 #         delete -> delete a people with an ID
 # Returns :
 #         return a response, to know if the request is 'success','error' or 'invalidAccess'
-@api_view(["POST"])
+@api_view(["DELETE"])
 def delete(request,token):
     try:
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
-            if request.method == "POST":
+            if request.method == "DELETE":
                 data = request.data
                 id = data["id"]
                 try:
