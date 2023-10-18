@@ -7,19 +7,23 @@ from Peoples.models import Peoples
 
 
 @api_view(['GET'])
-def getData(request):
-    companies = Companies.objects.all()
-    serializer = DataSerializer(companies, many=True)
-    return Response(serializer.data)
+def getCompanyById(request, token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin'):
+            data = request.data
+            id = data["id"]
+            company = Companies.objects.get(pk=id)
+            serializer = DataSerializer(company, many=False)
+            return Response(serializer.data)
+        else:
+            return Response({"message":"invalidAccess"})
+    except:
+        return Response({"message":"error"})
 
 @api_view(['GET'])
-def getCompanyById(request, id):
-    company = Companies.objects.get(pk=id)
-    serializer = DataSerializer(company, many=False)
-    return Response(serializer.data) 
-
-@api_view(['GET'])
-def getCompanyWithToken(request,token):
+def getAll(request,token):
     try:
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
