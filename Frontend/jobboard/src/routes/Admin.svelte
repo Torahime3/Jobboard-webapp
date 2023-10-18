@@ -41,7 +41,7 @@
                 <label for="tables">Choose a table:</label>
                 <select id="tables" name="tables" bind:value={selectData.value}>
                     <option value="company" selected>Company</option>
-                    <option value="jobadvertisements">JobAdvertisements</option>
+                    <option value="jobadvertisement">JobAdvertisements</option>
                     <option value="jobapplications">JobApplications</option>
                     <option value="login">Login</option>
                     <option value="people">Peoples</option>
@@ -75,7 +75,7 @@
             {/await}
         {/if}
 
-        {#if selectData.value === 'jobadvertisements'}
+        {#if selectData.value === 'jobadvertisement'}
             <div class="jobadvertisements_row">
                 <p>ID</p>
                 <p>TITLE</p>

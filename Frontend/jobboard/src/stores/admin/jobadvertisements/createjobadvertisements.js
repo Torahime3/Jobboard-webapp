@@ -11,7 +11,14 @@ export async function createJobAdvertisement(token, job){
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            job: job
+            "title": job.title,
+            "job_domain": job.job_domain,
+            "description": job.description, 
+            "location": job.location,
+            "contract_type": job.contract_type,
+            "duration_week": job.duration_week,
+            "id_company": job.id_company,
+            "id_people": job.id_people,
         })
     });
 

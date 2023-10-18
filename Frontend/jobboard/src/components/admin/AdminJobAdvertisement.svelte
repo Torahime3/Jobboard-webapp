@@ -5,6 +5,7 @@
     export let isEditing = false;
 
     import { updateJobAdvertisement } from '../../stores/admin/jobadvertisements/updatejobadvertisements.js';
+    import { deleteJobAdvertisement } from '../../stores/admin/jobadvertisements/deletejobadvertisement.js';
 
     let updatedJobAdvertisements = {
         "id": job.id,
@@ -29,8 +30,7 @@
     }
 
     function Delete(token, id){
-    // console.log(deleteCompany(token, id));
-    console.log("delete")
+    console.log(deleteJobAdvertisement(token, id));
     }
 
 </script>
