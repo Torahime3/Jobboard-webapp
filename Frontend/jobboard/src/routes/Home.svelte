@@ -17,7 +17,7 @@ function refresh(){
 <main>
 
     <div class="box">
-        <h2>Offres d'emploi</h2>
+        <h2>Job Advertisements</h2>
     
         {#await promise}
             <p>Chargement des offres d'emploi...</p>
@@ -29,7 +29,7 @@ function refresh(){
             <p>Impossible de charger les offres d'emploi</p>
         {/await}
 
-        <button on:click={refresh}>Rafraichir</button>
+        <button on:click={refresh}>Refresh</button>
     </div>
 
 </main>
