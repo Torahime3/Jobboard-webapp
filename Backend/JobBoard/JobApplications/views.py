@@ -84,3 +84,37 @@ def create(request):
 
         except JobApplications.MultipleObjectsReturned:
             return Response({"message": "exist"})
+        
+@api_view(["PUT"])
+def update(request, token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin') and request.method == "PUT":
+                data = request.data
+                id = data["id"]
+                firstname = data["firstname"]
+                lastname = data["lastname"]
+                email = data["email"]
+                phone_number = data["phone_number"]
+                date_of_application = data["date_of_application"]
+                id_people = data["id_people"]
+                id_adv = data["id_advertisement"]
+                try:
+                    jobA = JobApplications.objects.get(pk=id)
+                    jobA.firstname = firstname
+                    jobA.lastname = lastname
+                    jobA.email = email
+                    jobA.phone_number = phone_number
+                    jobA.date_of_application = date_of_application
+                    jobA.id_people_id = id_people
+                    jobA.id_advertisement_id = id_adv
+                    jobA.save()
+
+                    return Response({"message": "success"})
+                except:
+                    return Response({"message": "error1"})
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "error2"})
