@@ -143,24 +143,6 @@ def update(request,token):
                 id_cmp = data["id_company"]
                 id_ppl = data["id_people"]
                 try:
-                    # check if id_company exist
-                    if id_cmp != "":
-                        cmp = Companies.objects.filter(pk=id_cmp)
-                        if cmp.exists:
-                            id_company=id_company
-                        else: return Response({"message": "error"})
-                    else:
-                        return Response({"message": "error"})
-                    
-                    # check if id_people exist
-                    if id_ppl != "":
-                        ppl =  Peoples.objects.filter(pk=id_ppl)
-                        if ppl.exists:
-                            id_people=id_people
-                        else: return Response({"message": "error"})
-                    else: 
-                        return Response({"message": "error"})
-                    
                     # update job
                     jobA = JobAdvertisements.objects.filter(pk=id).update(
                     title=title,
@@ -170,8 +152,8 @@ def update(request,token):
                     location=location,
                     contract_type=contract_type,
                     duration_week=duration_week,
-                    id_company=id_company,
-                    id_people=id_people,
+                    id_company=id_cmp,
+                    id_people=id_ppl,
                     )
                     return Response({"message": "success"})
                 except:
