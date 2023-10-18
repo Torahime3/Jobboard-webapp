@@ -4,6 +4,8 @@
     export let token;
     export let isEditing = false;
 
+    import { updateJobAdvertisement } from '../../stores/admin/jobadvertisements/updatejobadvertisements.js';
+
     let updatedJobAdvertisements = {
         "id": job.id,
         "title": job.title,
@@ -18,14 +20,12 @@
 
     }
 
-    console.log(updatedJobAdvertisements)
-
     async function toggleEditing() {
         isEditing = !isEditing;
-        // if(!isEditing){
-        //     console.log(updatedCompany)
-        //     console.log(await updateCompany(token, updatedCompany));
-        // }
+        if(!isEditing){
+            // console.log(updatedJobAdvertisements)
+            console.log(await updateJobAdvertisement(token, updatedJobAdvertisements));
+        }
     }
 
     function Delete(token, id){
@@ -55,7 +55,7 @@
             {:else}
                 <p>{updatedJobAdvertisements.title}</p>
                 <p>{updatedJobAdvertisements.job_domain}</p>
-                <p class="description">{updatedJobAdvertisements.description}</p>
+                <!-- <p class="description">{updatedJobAdvertisements.description}</p> -->
                 <p>{updatedJobAdvertisements.date_of_jobadvertisements}</p>
                 <p>{updatedJobAdvertisements.location}</p>
                 <p>{updatedJobAdvertisements.contract_type}</p>
@@ -86,15 +86,17 @@
     border: 2px solid #f7f7f7;
 }
 
- .description{
-    overflow-y: scroll; 
-    grid-column-start: 4;
-    grid-column-end: 6;
+.container:hover{
+    background-color: #eaeaea;
 }
+
+  /* .description{
+    overflow-y: ;
+    height: 40px; 
+}  */
 
 .row{
     display: grid;
-    grid-template-columns: repeat(11, 1fr) repeat(2, 0.3fr);
     gap: 10px;
     height: 60px;
 }

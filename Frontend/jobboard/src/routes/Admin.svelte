@@ -80,7 +80,7 @@
                 <p>ID</p>
                 <p>TITLE</p>
                 <p>JOB DOMAIN</p>
-                <p>DESCRIPTION</p>
+                <!-- <p>DESCRIPTION</p> -->
                 <p>DATE OF PUBLICATION</p>
                 <p>LOCATION</p>
                 <p>CONTRACT</p>
@@ -133,7 +133,7 @@
 .jobadvertisements_row{
     margin: 15px;
     display: grid;
-    grid-template-columns: repeat(11, 1fr) repeat(2, 0.3fr);
+    grid-template-columns: repeat(11, 0.8fr);
     gap: 10px;
 }
 
