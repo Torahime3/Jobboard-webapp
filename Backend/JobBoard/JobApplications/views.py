@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from JobApplications.models import JobApplications
@@ -8,7 +7,6 @@ from JobAdvertisements.models import JobAdvertisements
 from Peoples.models import Peoples
 from Login.models import Login
 from Companies.models import Companies
-
 
 @api_view(["GET"])
 def get_all_applications(request):
@@ -23,17 +21,34 @@ def get_application_by_id(request, id):
     serializer = DataSerializer(jobA, many=False)
     return Response(serializer.data)
 
+# TO DO
 # @api_view(["GET"])
 # def get_application_by_id_company(request,token):
 #     try:
 #         user = Login.objects.get(token=token)
 #         people = Peoples.objects.get(pk=user.id_people_id)
 #         if(people.role == 'Recruiter' or people.role == 'Admin') and request.method == "GET":
-#             # jobA = JobApplications.objects.filter(id_company=people.id_company_id)
-#             # serializer = DataSerializer(jobA, many=True)
-#             # return(serializer.data)
-#         # else:
-#         #     return Response({"message": "invalidAccess"})
+#             jobAdv = JobAdvertisements.objects.filter(id_company_id=people.id_company_id)
+#             serializer = []
+#             id = 0
+#             for job in jobAdv:
+#                 j = JobApplications.objects.get(id_advertisement_id=job.id)
+#                 data = {
+#                     'id': j.id,
+#                     'firstname': j.firstname,
+#                     'lastname': j.lastname,
+#                     'email': j.email,
+#                     'phone_number': j.phone_number,
+#                     'date_of_application': j.date_of_application,
+#                 }
+#                 serializer.append(data)
+
+#             data1 = {
+#             'objets': serializer
+#             }
+#             return JsonResponse(data1)
+#         else:
+#             return Response({"message": "invalidAccess"})
 #     except:
 #         return Response({"message": "error"})
 
