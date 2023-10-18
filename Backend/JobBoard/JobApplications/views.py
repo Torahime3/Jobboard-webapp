@@ -23,6 +23,19 @@ def get_application_by_id(request, id):
     serializer = DataSerializer(jobA, many=False)
     return Response(serializer.data)
 
+# @api_view(["GET"])
+# def get_application_by_id_company(request,token):
+#     try:
+#         user = Login.objects.get(token=token)
+#         people = Peoples.objects.get(pk=user.id_people_id)
+#         if(people.role == 'Recruiter' or people.role == 'Admin') and request.method == "GET":
+#             # jobA = JobApplications.objects.filter(id_company=people.id_company_id)
+#             # serializer = DataSerializer(jobA, many=True)
+#             # return(serializer.data)
+#         # else:
+#         #     return Response({"message": "invalidAccess"})
+#     except:
+#         return Response({"message": "error"})
 
 @api_view(["GET"])
 def get_application_by_token(request, token):
@@ -119,21 +132,21 @@ def update(request, token):
     except:
         return Response({"message": "error"})
     
-api_view(["DELETE"])
+
+@api_view(["DELETE"])
 def delete(request,token):
     try:
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
-        if(role.role == 'Admin') and request.method == "DELETE":
-            data = request.data
-            id = data["id"]
-            try:
-                jobA = JobApplications.objects.get(pk=id)
-                jobA.delete()
-                return Response({"message": "success"})
-            except:
-                return Response({"message": "error"})
-        else:
-            return Response({"message": "invalidAccess"})
+        if(role.role == 'Admin'):
+            if request.method == "DELETE":
+                data = request.data
+                id = data["id"]
+                try:
+                    jobA = JobApplications.objects.get(pk=id)
+                    jobA.delete()
+                    return Response({"message": "success"})
+                except:
+                    return Response({"message": "error"})
     except:
-        return Response({"message": "error"})
+        return Response({"message": "invalidAccess"})
