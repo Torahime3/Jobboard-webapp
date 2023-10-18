@@ -3,6 +3,19 @@ from Companies.models import Companies
 from Peoples.models import Peoples
 
 # Create your models here.
+# Model JobAdvertisements
+# This model is used for the table JobAdvertisements
+
+# This model contains :
+#       - title : title of the job
+#       - job_domain : domain of the job
+#       - description : description of the job
+#       - date_of_jobadvertisements : date of the job
+#       - location : location of the job
+#       - contract_type : type of the contract, it can be CDD, CDI, Stage, Alternance, Saisonnier, Été
+#       - duration_week : duration of the contract
+#       - id_company : id of the company who publish the job advertisement
+#       - id_people : id of the people who publish the job advertisement
 class JobAdvertisements(models.Model):
     types = models.TextChoices("Types", "CDD CDI Stage Alternance Saisonnier Été")
 

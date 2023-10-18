@@ -8,6 +8,13 @@ from Companies.models import Companies
 from Login.models import Login
 from Peoples.models import Peoples
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+# Function :
+#         getAllDatas -> get all jobs
+# Returns :
+#         return a response in json containing all the rows of the tabl | This function is used for the front
 @api_view(['GET'])
 def getAllDatas(request):
     advertisements = JobAdvertisements.objects.filter().values('contract_type', 'title', 'id_company', 'location', 'id')
@@ -17,6 +24,14 @@ def getAllDatas(request):
         serializer.data[i]['company_name'] = company.name
     return Response(serializer.data)
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         getAll -> get all jobs
+# Returns :
+#         return a response in json containing all the rows of the table
 @api_view(['GET'])
 def getAll(request,token):
     try:
@@ -31,6 +46,14 @@ def getAll(request,token):
     except:
         return Response({"message": "error"})
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         id -> id of the job
+# Function :
+#         get_JobAdvertisementsById -> get a job with an ID
+# Returns :
+#         return a response in json containing the row of the table
 @api_view(['GET'])
 def get_JobAdvertisementsById(request, id):
     job = JobAdvertisements.objects.get(pk=id)
