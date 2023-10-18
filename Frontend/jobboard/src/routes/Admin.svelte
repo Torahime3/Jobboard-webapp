@@ -118,7 +118,7 @@
                 <p>Loading...</p>
             {:then peoples}
                 {#each peoples as people}
-                    <!-- <AdminPeople people={people} token={token} isEditing={false} /> -->
+                    <AdminPeople people={people} token={token} isEditing={false} />
                 {/each} 
             {/await}
         {/if}
