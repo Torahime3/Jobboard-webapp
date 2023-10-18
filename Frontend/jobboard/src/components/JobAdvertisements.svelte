@@ -28,7 +28,7 @@
         <span>Location : {job.location}</span><br><br>
         <div>
             <details on:toggle|once={getJobAdvertisement}>
-                <summary>More informations</summary>
+                <summary>Learn more</summary>
 
                 <div class="details">
 
