@@ -7,12 +7,13 @@
     import { getCompanies } from '../stores/admin/companies/getallcompanies.js';
     import { getPeoples } from '../stores/admin/peoples/getallpeoples.js';
     import { getAllJobAdvertisements } from '../stores/admin/jobadvertisements/getalljobadvertisements';
+    import { getAllJobApplications } from '../stores/admin/jobapplications/getalljobapplications';
 
     //Components
     import AdminCompany from '../components/admin/AdminCompany.svelte';
     import AdminPeople from '../components/admin/AdminPeople.svelte';
-    import AdminJobAdvertisement from '../components/admin/AdminJobAdvertisement.svelte';
     import JobAdvertisements from '../components/admin/AdminJobAdvertisement.svelte';
+    import JobApplications from '../components/admin/AdminJobApplications.svelte';
 
     let token = Cookies.get('userToken');
     if(token === undefined){
@@ -42,7 +43,7 @@
                 <select id="tables" name="tables" bind:value={selectData.value}>
                     <option value="company" selected>Company</option>
                     <option value="jobadvertisement">JobAdvertisements</option>
-                    <option value="jobapplications">JobApplications</option>
+                    <option value="jobapplication">JobApplications</option>
                     <option value="login">Login</option>
                     <option value="people">Peoples</option>
                 </select>
@@ -117,11 +118,38 @@
                 {/each} 
             {/await}
         {/if}
+
+        {#if selectData.value === 'jobapplication'}
+            <div class="jobapplication_row">
+                <p>ID</p>
+                <p>FIRSTNAME</p>
+                <p>LASTNAME</p>
+                <p>EMAIL</p>
+                <p>PHONE NUMBER</p>
+                <p>ID ADVERTISEMENT</p>
+                <p>ID PEOPLE</p>
+                <p>DATE OF APPLICATION </p>
+            </div>
+            {#await getAllJobApplications()}
+                <p>Loading...</p>
+            {:then apps}
+                {#each apps as app}
+                    <JobApplications app={app} token={token} isEditing={false} />
+                {/each} 
+            {/await}
+        {/if}
     </div>
 
 </main>
 
 <style>
+
+.jobapplication_row{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr) repeat(2, 0.3fr);
+    gap: 10px;
+}
 
 .peoples_row{
     margin: 15px;
