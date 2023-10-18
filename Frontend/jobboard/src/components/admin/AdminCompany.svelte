@@ -74,6 +74,10 @@
     border: 2px solid #f7f7f7;
 }
 
+.container:hover{
+    background-color: #eaeaea;
+}
+
 .description{
     overflow-y: scroll;
     grid-column-start: 3;
@@ -86,6 +90,8 @@
     gap: 10px;
     height: 60px;
 }
+
+
 
 img{
     width: 20px;
