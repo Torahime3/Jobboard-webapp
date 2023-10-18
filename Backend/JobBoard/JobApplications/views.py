@@ -113,8 +113,27 @@ def update(request, token):
 
                     return Response({"message": "success"})
                 except:
-                    return Response({"message": "error1"})
+                    return Response({"message": "error"})
         else:
             return Response({"message": "invalidAccess"})
     except:
-        return Response({"message": "error2"})
+        return Response({"message": "error"})
+    
+api_view(["DELETE"])
+def delete(request,token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin') and request.method == "DELETE":
+            data = request.data
+            id = data["id"]
+            try:
+                jobA = JobApplications.objects.get(pk=id)
+                jobA.delete()
+                return Response({"message": "success"})
+            except:
+                return Response({"message": "error"})
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "error"})
