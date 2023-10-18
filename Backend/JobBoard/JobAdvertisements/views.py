@@ -184,6 +184,14 @@ def update(request,token):
         return Response({"message": "error"})
     
 
+# Method "DELETE"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         delete -> delete a job with an ID
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
 @api_view(["DELETE"])
 def delete(request,token):
     try:
