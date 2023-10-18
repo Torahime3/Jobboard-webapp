@@ -1,3 +1,4 @@
+from datetime import datetime
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from JobAdvertisements.models import JobAdvertisements
@@ -70,7 +71,7 @@ def create(request,token):
                     title = data["title"]
                     job_domain = data["job_domain"]
                     description = data["description"]
-                    date_of_jobadvertisements = data["date_of_jobadvertisements"]
+                    date_of_jobadvertisements = datetime.now()
                     location = data["location"]
                     contract_type = data["contract_type"]
                     duration_week = data["duration_week"]
