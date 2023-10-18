@@ -3,7 +3,7 @@
 //Ne retourne un résultat que si un token admin est passé en paramètre
 export async function getAllJobApplications(){
 
-    let url = "http://localhost:8000/jobapplications";
+    let url = "http://localhost:8000/jobapplications/";
 
     const response = await fetch(url, {
         method: 'GET',

@@ -4,7 +4,7 @@
     export let token;
     export let isEditing = false;
 
-    import { updateJobAdvertisement } from '../../stores/admin/jobadvertisements/updatejobadvertisements.js';
+    import { updateJobAdvertisement } from '../../stores/admin/jobadvertisements/updatejobadvertisement.js';
     import { deleteJobAdvertisement } from '../../stores/admin/jobadvertisements/deletejobadvertisement.js';
 
     let updatedJobAdvertisements = {
@@ -45,7 +45,7 @@
                 <input type="text" bind:value={updatedJobAdvertisements.title} />
                 <input type="text" bind:value={updatedJobAdvertisements.job_domain} />
                 <input type="text" bind:value={updatedJobAdvertisements.description} />
-                <input type="text" bind:value={updatedJobAdvertisements.date_of_jobadvertisements} />
+                <input type="date" bind:value={updatedJobAdvertisements.date_of_jobadvertisements} />
                 <input type="text" bind:value={updatedJobAdvertisements.location} />
                 <input type="text" bind:value={updatedJobAdvertisements.contract_type} />
                 <input type="text" bind:value={updatedJobAdvertisements.duration_week} />

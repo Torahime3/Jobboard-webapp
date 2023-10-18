@@ -4,8 +4,8 @@
     export let token;
     export let isEditing = false;
 
-    import { updateJobAdvertisement } from '../../stores/admin/jobadvertisements/updatejobadvertisements.js';
-    import { deleteJobAdvertisement } from '../../stores/admin/jobadvertisements/deletejobadvertisement.js';
+    import { updateJobApplications } from "../../stores/admin/jobapplications/updatejobapplication";
+    import { deleteJobApplication } from "../../stores/admin/jobapplications/deletejobapplication";
 
     let updatedJobApplications = {
         "id": app.id,
@@ -13,21 +13,23 @@
         "lastname": app.lastname,
         "email": app.email,
         "phone_number": app.phone_number,
-        "id_avertisement": app.id_advertisement,
+        "id_advertisement": app.id_advertisement,
         "id_people": app.id_people,
         "date_of_application": app.date_of_application,
     }
 
     async function toggleEditing() {
         isEditing = !isEditing;
-        // if(!isEditing){
-        //     // console.log(updatedJobAdvertisements)
-        //     console.log(await updateJobAdvertisement(token, updatedJobAdvertisements));
-        // }
+        if(!isEditing){
+            console.log(updatedJobApplications)
+            console.log(await updateJobApplications(token, updatedJobApplications));
+        }
     }
 
     function Delete(token, id){
-    console.log(deleteJobAdvertisement(token, id));
+    
+        console.log(deleteJobApplication(token, id));
+
     }
 
 </script>
@@ -37,28 +39,26 @@
     <div class="container">
         <div class="row">
             <p>{app.id}</p>
-            <!-- {#if isEditing}
+            {#if isEditing}
 
-                <input type="text" bind:value={app.title} />
-                <input type="text" bind:value={app.job_domain} />
-                <input type="text" bind:value={app.description} />
-                <input type="text" bind:value={app.date_of_jobadvertisements} />
-                <input type="text" bind:value={app.location} />
-                <input type="text" bind:value={app.contract_type} />
-                <input type="text" bind:value={app.duration_week} />
-                <input type="text" bind:value={app.id_company} />
-                <input type="text" bind:value={app.id_people} />
+                <input type="text" bind:value={updatedJobApplications.firstname} />
+                <input type="text" bind:value={updatedJobApplications.lastname} />
+                <input type="text" bind:value={updatedJobApplications.email} />
+                <input type="text" bind:value={updatedJobApplications.phone_number} />
+                <input type="text" bind:value={updatedJobApplications.id_advertisement} />
+                <input type="text" bind:value={updatedJobApplications.id_people} />
+                <input type="date" bind:value={updatedJobApplications.date_of_application} />
 
-            {:else} -->
-                <p>{app.firstname}</p>
-                <p>{app.lastname}</p>
-                <p>{app.email}</p>
-                <p>{app.phone_number}</p>
-                <p>{app.id_advertisement}</p>
-                <p>{app.id_people}</p>
-                <p>{app.date_of_application}</p>
+            {:else}
+                <p>{updatedJobApplications.firstname}</p>
+                <p>{updatedJobApplications.lastname}</p>
+                <p>{updatedJobApplications.email}</p>
+                <p>{updatedJobApplications.phone_number}</p>
+                <p>{updatedJobApplications.id_advertisement}</p>
+                <p>{updatedJobApplications.id_people}</p>
+                <p>{updatedJobApplications.date_of_application}</p>
 
-            <!-- {/if} -->
+            {/if}
             <button class="edit" on:click={toggleEditing}><img src="/src/assets/stylo.png" alt="Edit"></button>
             <button class="delete" on:click={Delete(token, app.id)}><img src="/src/assets/corbeille.png" alt="Delete"></button>
          </div>
