@@ -8,12 +8,14 @@
     import { getPeoples } from '../stores/admin/peoples/getallpeoples.js';
     import { getAllJobAdvertisements } from '../stores/admin/jobadvertisements/getalljobadvertisements';
     import { getAllJobApplications } from '../stores/admin/jobapplications/getalljobapplications';
+    import { getAllLogins } from '../stores/admin/login/getalllogins';
 
     //Components
     import AdminCompany from '../components/admin/AdminCompany.svelte';
     import AdminPeople from '../components/admin/AdminPeople.svelte';
-    import JobAdvertisements from '../components/admin/AdminJobAdvertisement.svelte';
-    import JobApplications from '../components/admin/AdminJobApplications.svelte';
+    import AdminJobAdvertisements from '../components/admin/AdminJobAdvertisement.svelte';
+    import AdminJobApplications from '../components/admin/AdminJobApplications.svelte';
+    import AdminLogin from '../components/admin/AdminLogin.svelte';
 
     let token = Cookies.get('userToken');
     if(token === undefined){
@@ -49,7 +51,9 @@
                 </select>
             </div>
              
-            <button on:click={create}>Create {selectData.value}</button>
+            {#if selectData.value !== 'login'}
+                <button on:click={create}>Create {selectData.value}</button>
+            {/if}
 
         </nav> 
 
@@ -93,7 +97,7 @@
                 <p>Loading...</p>
             {:then jobs}
                 {#each jobs as job}
-                    <JobAdvertisements job={job} token={token}/>
+                    <AdminJobAdvertisements job={job} token={token}/>
                 {/each} 
             {/await}
         {/if}
@@ -114,7 +118,7 @@
                 <p>Loading...</p>
             {:then peoples}
                 {#each peoples as people}
-                    <AdminPeople people={people} token={token} isEditing={false} />
+                    <!-- <AdminPeople people={people} token={token} isEditing={false} /> -->
                 {/each} 
             {/await}
         {/if}
@@ -134,7 +138,24 @@
                 <p>Loading...</p>
             {:then apps}
                 {#each apps as app}
-                    <JobApplications app={app} token={token} isEditing={false} />
+                    <AdminJobApplications app={app} token={token} isEditing={false} />
+                {/each} 
+            {/await}
+        {/if}
+
+        {#if selectData.value === 'login'}
+            <div class="login_row">
+                <p>ID</p>
+                <p>USERNAME</p>
+                <p class="password">PASSWORD</p>
+                <p>EMAIL</p>
+                <p>ID PEOPLE</p>
+            </div>
+            {#await getAllLogins(token)}
+                <p>Loading...</p>
+            {:then logins}
+                {#each logins as login}
+                    <AdminLogin login={login} token={token} isEditing={false} />
                 {/each} 
             {/await}
         {/if}
@@ -143,6 +164,13 @@
 </main>
 
 <style>
+
+.login_row{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(8, 0.5fr) repeat(2, 0.3fr);
+    gap: 10px;
+}
 
 .jobapplication_row{
     margin: 15px;
@@ -175,6 +203,11 @@
 .description{
     grid-column-start: 3;
     grid-column-end: 5;
+}
+
+.password{
+    grid-column-start: 3;
+    grid-column-end: 7;
 }
 
 .box{

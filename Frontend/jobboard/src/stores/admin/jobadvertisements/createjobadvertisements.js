@@ -5,18 +5,6 @@ export async function createJobAdvertisement(token, job){
 
     let url = "http://localhost:8000/jobadvertisements/"+token+"/create";
 
-
-    console.log({
-        "title": job.title,
-        "job_domain": job.job_domain,
-        "description": job.description, 
-        "location": job.location,
-        "contract_type": job.contract_type,
-        "duration_week": job.duration_week,
-        "id_company": job.id_company,
-        "id_people": job.id_people,
-    })
-
     let response = await fetch(url, {
         method: 'POST',
         headers: {
