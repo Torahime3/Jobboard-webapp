@@ -36,7 +36,33 @@ def checkValidity(request):
                 })
         except:
             return Response({'message': 'error'})
-        
+
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         getAll -> get all logins
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
+@api_view(['GET'])
+def getAll(request, token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Admin'):
+            if request.method == "GET":
+                login = Login.objects.all()
+                serializer = DataSerializer(login, many=True)
+                return Response(serializer.data)
+            else:
+                return Response({"message": "error"})
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "error"})   
+
+
 # Method "DELETE"
 # Param : 
 #         request -> HttpRequest, object request form Django
