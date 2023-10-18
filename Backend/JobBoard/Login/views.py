@@ -120,7 +120,10 @@ def update(request,token):
                 try:
                     login = Login.objects.get(pk=id)
                     login.username = username
-                    login.password = make_password(password, salt="jobboard", hasher='default')
+                    if password != login.password:
+                        login.password = make_password(password, salt="jobboard", hasher='default')
+                    else:
+                        login.password = password
                     login.email = email
                     if id_people != "":
                         people = Peoples.objects.filter(pk=id_people)
