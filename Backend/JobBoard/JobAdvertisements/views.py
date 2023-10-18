@@ -46,6 +46,19 @@ def getAll(request,token):
     except:
         return Response({"message": "error"})
 
+@api_view(['GET'])
+def get_JobAdvertisementsByIdCompany(request, token):
+    try:
+        user = Login.objects.get(token=token)
+        role = Peoples.objects.get(pk=user.id_people_id)
+        if(role.role == 'Recruiter'):
+            advertisements = JobAdvertisements.objects.filter(id_company=role.id_company_id)
+            serializer = DataSerializer(advertisements, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({"message": "invalidAccess"})
+    except:
+        return Response({"message": "error"})
 # Method "GET"
 # Param :
 #         request -> HttpRequest, object request form Django
