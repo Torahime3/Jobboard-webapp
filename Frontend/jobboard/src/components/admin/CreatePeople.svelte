@@ -3,6 +3,14 @@
     import Cookies from 'js-cookie';
     import { createPeople } from '../../stores/admin/peoples/createpeople';
 
+    import { checkAdmin } from '../../stores/checkadmin';
+    let token = Cookies.get('userToken');
+    checkAdmin(token).then(data => {
+        if(data.message !== 'success'){
+            window.location.href = '/';
+        }
+    })
+
     let people = {
         firstname: "",
         lastname: "",

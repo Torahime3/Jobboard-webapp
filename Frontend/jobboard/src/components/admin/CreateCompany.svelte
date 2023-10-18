@@ -3,6 +3,14 @@
     import Cookies from 'js-cookie';
     import { createCompany } from '../../stores/admin/companies/createcompany'
 
+    import { checkAdmin } from '../../stores/checkadmin';
+    let token = Cookies.get('userToken');
+    checkAdmin(token).then(data => {
+        if(data.message !== 'success'){
+            window.location.href = '/';
+        }
+    })
+
     let company = {
         name: "",
         description: "",

@@ -3,6 +3,13 @@
     import Cookies from 'js-cookie';
     import { createJobApplication } from '../../stores/createjobapplications';
 
+    import { checkAdmin } from '../../stores/checkadmin';
+    let token = Cookies.get('userToken');
+    checkAdmin(token).then(data => {
+        if(data.message !== 'success'){
+            window.location.href = '/';
+        }
+    })
 
     let jobapplication = {
         first_name: "",

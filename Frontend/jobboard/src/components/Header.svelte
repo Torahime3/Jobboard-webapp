@@ -1,7 +1,7 @@
 <script>
     import Cookies from 'js-cookie';
     import { Router, Route, Link } from "svelte-routing";
-    import { checkAdmin } from '../stores/checkadmin';
+    import { getUserData } from '../stores/getuserdata';
 
     import Home from "../routes/Home.svelte";
     import Login from "../routes/Login.svelte";
@@ -27,11 +27,13 @@
         <header class="box">
             <h2>Jobboard</h2>    
             <nav>
-                {#await checkAdmin(token)}
+                {#await getUserData(token)}
                 <p>Loading...</p>
                 {:then data}
-                    {#if data.message === 'success'}
+                    {#if data.role === 'Admin'}
                         <Link to="admin"><button style="background-color: #c884fa">Admin panel</button></Link>
+                    {:else if data.role === 'Recruiter'}
+                        <Link to="admin/create/jobadvertisement"><button style="background-color: #c884fa">Recruiter Panel</button></Link>
                     {/if}
                 {/await}
 

@@ -2,6 +2,7 @@
 
     import Cookies from 'js-cookie';
     import { createJobAdvertisement } from '../../stores/admin/jobadvertisements/createjobadvertisements';
+    import { getUserData } from '../../stores/getuserdata';
 
     let jobadvertisement = {
         title: "",
@@ -13,6 +14,18 @@
         id_company: "",
         id_people: "",
     }
+    
+    let recruiter;
+    let token = Cookies.get('userToken');
+    getUserData(token).then(data => {
+        if(data.role === 'Recruiter'){
+            recruiter = true;
+            jobadvertisement.id_people = data.id;
+            jobadvertisement.id_company = data.id_company;
+        }
+    })
+
+    console.log(jobadvertisement);
 
 let result;
 async function submit(){
@@ -20,7 +33,11 @@ async function submit(){
     result = await createJobAdvertisement(Cookies.get('userToken'), jobadvertisement);
     console.log(result);
     if(result.message === "success"){
-        window.location.href = '/admin';
+        if(recruiter){
+            window.location.href = '/profil';
+        } else {
+            window.location.href = '/admin';
+        }
     }
 }
 
@@ -41,11 +58,6 @@ async function submit(){
                     <label for="job_domain">Job Domain</label><br>
                     <input type="text" bind:value={jobadvertisement.job_domain} id="job_domain" placeholder="job_domain">
                 </div>
-<!-- 
-                <div class="input">
-                    <label for="date_of_jobadvertisements">Date of job advertisements</label><br>
-                    <input type="date" bind:value={jobadvertisement.date_of_jobadvertisements} id="date_of_jobadvertisements" placeholder="date_of_jobadvertisements">
-                </div> -->
 
                 <div class="input">
                     <label for="description">Description</label><br>
@@ -67,6 +79,8 @@ async function submit(){
                     <input type="text" bind:value={jobadvertisement.duration_week} id="duration_week" placeholder="duration_week">
                 </div>
 
+
+                {#if !recruiter}
                 <div class="input">
                     <label for="id_company">ID Company</label><br>
                     <input type="text" bind:value={jobadvertisement.id_company} id="id_company" placeholder="id_company">
@@ -76,6 +90,7 @@ async function submit(){
                     <label for="id_people">ID People</label><br>
                     <input type="text" bind:value={jobadvertisement.id_people} id="id_people" placeholder="id_people">
                 </div>
+                {/if}
 
 
                 <div class="input">
@@ -83,11 +98,11 @@ async function submit(){
                 </div>
             </form> 
 
-             <!-- {#if result}
+             {#if result}
                 {#if result.message === 'error'}
                 <p class="status error">An error occured!</p>
                 {/if}
-            {/if} -->
+            {/if}
 
         </h2>
     </div>
