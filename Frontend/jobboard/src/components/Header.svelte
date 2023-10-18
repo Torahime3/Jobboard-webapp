@@ -12,6 +12,7 @@
     import CreateCompany from '../components/admin/CreateCompany.svelte';
     import CreatePeople from '../components/admin/CreatePeople.svelte';
     import CreateJobAdvertisements from '../components/admin/CreateJobAdvertisements.svelte'
+    import CreateJobApplication from './admin/CreateJobApplication.svelte';
 
     export let url = "";
     const token = Cookies.get('userToken');
@@ -53,6 +54,8 @@
                 <Route path="admin/create/company"> <CreateCompany/> </Route>
                 <Route path="admin/create/people"> <CreatePeople/> </Route>
                 <Route path="admin/create/jobadvertisement"> <CreateJobAdvertisements/> </Route>
+                <Route path="admin/create/jobapplication"> <CreateJobApplication/> </Route>
+
 
             </div>
     </Router>
