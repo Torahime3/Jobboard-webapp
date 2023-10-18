@@ -1,6 +1,4 @@
 from rest_framework import serializers
-from JobAdvertisements.models import JobAdvertisements
-from Peoples.models import Peoples
 
 class DataSerializer(serializers.Serializer):
     id = serializers.IntegerField()
