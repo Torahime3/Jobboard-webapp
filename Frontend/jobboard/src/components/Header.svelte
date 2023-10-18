@@ -22,7 +22,7 @@
     
     <Router url="{url}">
         <header class="box">
-            <h2>Jobboard</h2>
+            <h2>Jobboard</h2>    
             <nav>
                 {#await checkAdmin(token)}
                 <p>Loading...</p>

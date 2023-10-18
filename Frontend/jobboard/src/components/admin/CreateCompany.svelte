@@ -1,7 +1,7 @@
 <script>
 
     import Cookies from 'js-cookie';
-    import { createCompany } from '../../stores/admin/companies/createcompany';
+    import { createCompany } from '../../stores/admin/companies/createcompany'
 
     let company = {
         name: "",

@@ -2,12 +2,17 @@
 
     import Cookies from 'js-cookie';
     
+    //Stores
     import { checkAdmin } from '../stores/checkadmin';
     import { getCompanies } from '../stores/admin/companies/getallcompanies.js';
     import { getPeoples } from '../stores/admin/peoples/getallpeoples.js';
+    import { getAllJobAdvertisements } from '../stores/admin/jobadvertisements/getalljobadvertisements';
 
+    //Components
     import AdminCompany from '../components/admin/AdminCompany.svelte';
     import AdminPeople from '../components/admin/AdminPeople.svelte';
+    import AdminJobAdvertisement from '../components/admin/AdminJobAdvertisement.svelte';
+    import JobAdvertisements from '../components/admin/AdminJobAdvertisement.svelte';
 
     let token = Cookies.get('userToken');
     if(token === undefined){
@@ -23,20 +28,7 @@
     let selectData = {};
 
     function create(){
-        switch(selectData.value){
-            case 'company':
-                window.location.href = '/admin/create/company';
-                break;
-            case 'jobadvertisements':
-                console.log("create jobadvertisements");
-                break;
-            case 'login':
-                console.log("create login");
-                break;
-            case 'peoples':
-                window.location.href = '/admin/create/people';
-                break;
-        }
+        window.location.href = '/admin/create/'+selectData.value;
     }
 
 </script>
@@ -52,7 +44,7 @@
                     <option value="jobadvertisements">JobAdvertisements</option>
                     <option value="jobapplications">JobApplications</option>
                     <option value="login">Login</option>
-                    <option value="peoples">Peoples</option>
+                    <option value="people">Peoples</option>
                 </select>
             </div>
              
@@ -83,7 +75,7 @@
             {/await}
         {/if}
 
-        <!-- {#if selectData.value === 'jobadvertisements'}
+        {#if selectData.value === 'jobadvertisements'}
             <div class="jobadvertisements_row">
                 <p>ID</p>
                 <p>TITLE</p>
@@ -91,20 +83,21 @@
                 <p>DESCRIPTION</p>
                 <p>DATE OF PUBLICATION</p>
                 <p>LOCATION</p>
-                <p>CONTRACT TYPE</p>
+                <p>CONTRACT</p>
                 <p>DURATION WEEK</p>
                 <p>ID COMPANY</p>
+                <p>ID PEOPLE</p>
             </div>
-            {#await getCompanies(token)}
+            {#await getAllJobAdvertisements(token)}
                 <p>Loading...</p>
-            {:then companies}
-                {#each companies as company}
-                    <AdminCompany company={company} />
+            {:then jobs}
+                {#each jobs as job}
+                    <JobAdvertisements job={job} token={token}/>
                 {/each} 
             {/await}
-        {/if} -->
+        {/if}
 
-        {#if selectData.value === 'peoples'}
+        {#if selectData.value === 'people'}
             <div class="peoples_row">
                 <p>ID</p>
                 <p>FIRSTNAME</p>
