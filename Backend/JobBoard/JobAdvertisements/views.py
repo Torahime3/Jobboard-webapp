@@ -88,7 +88,7 @@ def create(request,token):
         try:
             user = Login.objects.get(token=token)
             role = Peoples.objects.get(pk=user.id_people_id)
-            if(role.role == 'Admin'):
+            if(role.role == 'Admin' or role.role == 'Recruiter'):
                 if request.method == "POST":
                     data = request.data
                     title = data["title"]
