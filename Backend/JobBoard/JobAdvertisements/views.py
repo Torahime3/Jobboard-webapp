@@ -46,6 +46,14 @@ def getAll(request,token):
     except:
         return Response({"message": "error"})
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         get_JobAdvertisementsByIdCompany -> get all jobs advertisements of a company
+# Returns :
+#         return a response in json containing all the rows of the table
 @api_view(['GET'])
 def get_JobAdvertisementsByIdCompany(request, token):
     try:
@@ -59,6 +67,7 @@ def get_JobAdvertisementsByIdCompany(request, token):
             return Response({"message": "invalidAccess"})
     except:
         return Response({"message": "error"})
+
 # Method "GET"
 # Param :
 #         request -> HttpRequest, object request form Django
