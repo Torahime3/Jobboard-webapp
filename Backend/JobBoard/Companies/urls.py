@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 
-
+# Urls for the Companies app
+# localhost:8000/companies/
 urlpatterns = [
       path('<int:id>', views.getCompanyById, name='company'),
       path('<str:token>', views.getAll, name='companywithToken'),

@@ -5,10 +5,18 @@ from Companies.serializers import DataSerializer
 from Login.models import Login
 from Peoples.models import Peoples
 
-
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         getCompanyById -> get a company by id
+# Returns :
+#         return a company with the ID given in argument
 @api_view(['GET'])
 def getCompanyById(request, token):
     try:
+        # check if the user sending the request is an admin
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
@@ -22,9 +30,18 @@ def getCompanyById(request, token):
     except:
         return Response({"message":"error"})
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         getAll -> get all companies
+# Returns :
+#         return all companies
 @api_view(['GET'])
 def getAll(request,token):
     try:
+        # check if the user sending the request is an admin
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
@@ -47,6 +64,7 @@ def getAll(request,token):
 @api_view(["PUT"])
 def update(request,token):
     try:
+        # check if the user sending the request is an admin
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
@@ -87,6 +105,7 @@ def update(request,token):
 @api_view(["POST"])
 def create(request,token):
     try:
+        # check if the user sending the request is an admin
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
@@ -119,6 +138,7 @@ def create(request,token):
 @api_view(["DELETE"])
 def delete(request,token):
     try:
+        # check if the user sending the request is an admin
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
         if(role.role == 'Admin'):
