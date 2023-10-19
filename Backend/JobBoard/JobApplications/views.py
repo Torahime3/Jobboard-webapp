@@ -101,6 +101,7 @@ def get_application_by_token(request, token):
         i += 1
     return Response(serializer.data)
 
+
 # Method "POST"
 # Param :
 #         request -> HttpRequest, object request form Django
@@ -114,36 +115,55 @@ def create(request):
         data = request.data
         id_advertisement = data["id_advertisement"]
         id_people = data["id_people"]
-        try:
-            objet = JobApplications.objects.get(id_advertisement=id_advertisement, id_people=id_people)
-            return Response({"message": "exist"})
-
-        except JobApplications.DoesNotExist:
-            data = request.data
-            firstname = data["firstname"]
-            lastname = data["lastname"]
-            email = data["email"]
-            phone_number = data["phone_number"]
-
-            date_of_application = datetime.now()
+        data = request.data
+        firstname = data["firstname"]
+        lastname = data["lastname"]
+        email = data["email"]
+        phone_number = data["phone_number"]
+        date_of_application = datetime.now()
+        if id_people == "":
+            adv = JobAdvertisements.objects.get(pk=id_advertisement)
+            ppl = Peoples.objects.get(pk=0)
+            jobA = JobApplications.objects.create(
+            firstname=firstname,
+            lastname=lastname,
+            email=email,
+            phone_number=phone_number,
+            id_advertisement=adv,
+            id_people=ppl,
+            date_of_application=date_of_application,
+            )
+            return Response({"message": "success"})
+        else:
             try:
-                adv = JobAdvertisements.objects.get(pk=id_advertisement)
-                people = Peoples.objects.get(pk=id_people)
-                jobA = JobApplications.objects.create(
-                    firstname=firstname,
-                    lastname=lastname,
-                    email=email,
-                    phone_number=phone_number,
-                    id_advertisement=adv,
-                    id_people=people,
-                    date_of_application=date_of_application,
-                )
-                return Response({"message": "success"})
-            except:
-                return Response({"message": "error"})
+                objet = JobApplications.objects.get(id_advertisement=id_advertisement, id_people=id_people)
+                return Response({"message": "exist"})
 
-        except JobApplications.MultipleObjectsReturned:
-            return Response({"message": "exist"})
+            except JobApplications.DoesNotExist:
+                data = request.data
+                firstname = data["firstname"]
+                lastname = data["lastname"]
+                email = data["email"]
+                phone_number = data["phone_number"]
+                date_of_application = datetime.now()
+                try:
+                    adv = JobAdvertisements.objects.get(pk=id_advertisement)
+                    people = Peoples.objects.get(pk=id_people)
+                    jobA = JobApplications.objects.create(
+                        firstname=firstname,
+                        lastname=lastname,
+                        email=email,
+                        phone_number=phone_number,
+                        id_advertisement=adv,
+                        id_people=people,
+                        date_of_application=date_of_application,
+                    )
+                    return Response({"message": "success"})
+                except:
+                    return Response({"message": "error"})
+
+            except JobApplications.MultipleObjectsReturned:
+                return Response({"message": "exist"})
     
 # Method "PUT"
 # Param :
