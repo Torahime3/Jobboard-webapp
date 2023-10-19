@@ -121,25 +121,25 @@ def create(request):
         email = data["email"]
         phone_number = data["phone_number"]
         date_of_application = datetime.now()
-        if id_people == "":
-            adv = JobAdvertisements.objects.get(pk=id_advertisement)
-            ppl = Peoples.objects.get(pk=0)
-            jobA = JobApplications.objects.create(
-            firstname=firstname,
-            lastname=lastname,
-            email=email,
-            phone_number=phone_number,
-            id_advertisement=adv,
-            id_people=ppl,
-            date_of_application=date_of_application,
-            )
-            return Response({"message": "success"})
-        else:
-            try:
-                objet = JobApplications.objects.get(id_advertisement=id_advertisement, id_people=id_people)
-                return Response({"message": "exist"})
+        try:
+            objet = JobApplications.objects.get(id_advertisement=id_advertisement, email=email)
+            return Response({"message": "exist"})
 
-            except JobApplications.DoesNotExist:
+        except JobApplications.DoesNotExist:
+            if id_people == "":
+                adv = JobAdvertisements.objects.get(pk=id_advertisement)
+                ppl = Peoples.objects.get(pk=0)
+                jobA = JobApplications.objects.create(
+                firstname=firstname,
+                lastname=lastname,
+                email=email,
+                phone_number=phone_number,
+                id_advertisement=adv,
+                id_people=ppl,
+                date_of_application=date_of_application,
+                )
+                return Response({"message": "success"})
+            else:
                 data = request.data
                 firstname = data["firstname"]
                 lastname = data["lastname"]
@@ -161,9 +161,8 @@ def create(request):
                     return Response({"message": "success"})
                 except:
                     return Response({"message": "error"})
-
-            except JobApplications.MultipleObjectsReturned:
-                return Response({"message": "exist"})
+        except JobApplications.MultipleObjectsReturned:
+            return Response({"message": "exist"})
     
 # Method "PUT"
 # Param :
