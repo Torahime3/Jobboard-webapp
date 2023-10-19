@@ -29,7 +29,8 @@
     }
 
     function Delete(token, id){
-    deleteJobAdvertisement(token, id);
+        deleteJobAdvertisement(token, id);
+        window.location.reload();
     }
 
 </script>
