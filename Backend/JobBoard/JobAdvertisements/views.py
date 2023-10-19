@@ -62,6 +62,12 @@ def get_JobAdvertisementsByIdCompany(request, token):
         if(role.role == 'Recruiter'):
             advertisements = JobAdvertisements.objects.filter(id_company=role.id_company_id)
             serializer = DataSerializer(advertisements, many=True)
+            i = 0
+            for adv in advertisements:
+                ppl = Peoples.objects.get(pk=adv.id_people_id)
+                serializer.data[i]['firstname'] = ppl.firstname
+                serializer.data[i]['lastname'] = ppl.lastname
+                i += 1
             return Response(serializer.data)
         else:
             return Response({"message": "invalidAccess"})
