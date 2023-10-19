@@ -32,6 +32,7 @@ to_complete
 **- Nathan DULAC** <br>
 - [Github](https://github.com/Torahime3)
 - [Linkedin](https://www.linkedin.com/in/nathan-dulac-2aa654257/)<br>
+
 **- Ariirau FUCKS** <br>
 - [Github](https://github.com/AriirauF)
 - [Linkedin](https://www.linkedin.com/in/ariirau-fucks-9234a226b/) 
