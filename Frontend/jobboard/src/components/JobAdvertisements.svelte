@@ -31,6 +31,8 @@
             <span>Company : {job.company_name}</span><br>
         {:else}
             <span>Date of publication : {job.date_of_jobadvertisements}</span><br>
+            <span>Published by : {job.firstname} {job.lastname}</span><br>
+
         {/if}
         <span>Location : {job.location}</span><br><br>
         <div>
@@ -41,7 +43,7 @@
 
                     {#if promise}    
                         <p>{promise.description}</p>
-                        {#if token}
+                        {#if token && !rhView}
                             <button class="applying" on:click={apply}>Apply</button>
                         {/if}
                     {:else}

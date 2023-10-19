@@ -88,7 +88,7 @@
 
     {#if recruiter}
     <div class="container_companyapplications box">
-        <h3 class="title">Company's job applications</h3>
+        <h3 class="title">Company's job advertisements</h3>
         {#await getJobsAvertisementsByCompany(Cookies.get('userToken'))}
             <p>Loading...</p>
         {:then jobs}
@@ -102,10 +102,13 @@
     {/if}
 
     <div class="container_myapplications box">
-        <h3 class="title">My job applications</h3>
+        <h3 class="title">I applied for</h3>
         {#await getJobsApplications(Cookies.get('userToken'))}
             <p>Loading...</p>
         {:then applications}
+            {#if applications.length === 0}
+                <p>You didn't apply for any job</p>
+            {/if}
             {#each applications as app}
                 <JobApplications app={app}/>
             {/each}

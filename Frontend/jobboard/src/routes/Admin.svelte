@@ -7,6 +7,7 @@
     import { getCompanies } from '../stores/admin/companies/getallcompanies.js';
     import { getPeoples } from '../stores/admin/peoples/getallpeoples.js';
     import { getAllJobAdvertisements } from '../stores/admin/jobadvertisements/getalljobadvertisements';
+    import { getAllJobAdvertisementsByCompany } from '../stores/admin/jobadvertisements/getalljobadvertisements';
     import { getAllJobApplications } from '../stores/admin/jobapplications/getalljobapplications';
     import { getAllLogins } from '../stores/admin/login/getalllogins';
     import { getUserData } from '../stores/getuserdata';
@@ -32,10 +33,9 @@
     let recruiter;
     getUserData(token).then(data => {
         if(data.role === 'Recruiter'){
-            recruiter = true;
+            recruiter = true;        
         }
     });
-
 
     let selectData = {};
 
@@ -54,18 +54,18 @@
                 <label for="tables">Choose a table:</label>
                 <select id="tables" name="tables" bind:value={selectData.value}>
                     <option value="company">Company</option>
-                    <option value="jobadvertisement">JobAdvertisements</option>
+                    <option value="jobadvertisement" selected>JobAdvertisements</option>
                     <option value="jobapplication">JobApplications</option>
                     <option value="login">Login</option>
                     <option value="people">Peoples</option>
                 </select>
             </div>
-            {:else}
+            <!-- {:else}
             <div>
                 <select id="tables" name="tables" bind:value={selectData.value}>
                     <option value="jobadvertisement">JobAdvertisements</option>
                 </select>
-            </div>
+            </div> -->
             {/if}
 
              
@@ -111,13 +111,23 @@
                 <p>ID COMPANY</p>
                 <p>ID PEOPLE</p>
             </div>
-            {#await getAllJobAdvertisements(token)}
-                <p>Loading...</p>
-            {:then jobs}
-                {#each jobs as job}
-                    <AdminJobAdvertisements job={job} token={token}/>
-                {/each} 
-            {/await}
+            {#if !recruiter}
+                {#await getAllJobAdvertisements(token)}
+                    <p>Loading...</p>
+                {:then jobs}
+                    {#each jobs as job}
+                        <AdminJobAdvertisements job={job} token={token}/>
+                    {/each} 
+                {/await}
+            {:else}
+            {#await getAllJobAdvertisementsByCompany(token)}
+                    <p>Loading...</p>
+                {:then jobs}
+                    {#each jobs as job}
+                        <AdminJobAdvertisements job={job} token={token}/>
+                    {/each} 
+                {/await}
+            {/if}
         {/if}
 
         {#if selectData.value === 'people'}
