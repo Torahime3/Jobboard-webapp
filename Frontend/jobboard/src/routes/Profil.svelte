@@ -6,8 +6,9 @@
 
     function disconnect(){
         Cookies.remove('userToken');
-        window.location.href = '/';
+        window.location.href = '/login';
     }
+
     let imageFile;
     async function set_profile_picture() {
     if (imageFile) {
@@ -38,7 +39,13 @@
             return promise;
         }
     }
-    
+
+    let recruiter;
+    getUserData(Cookies.get('userToken')).then(data => {
+        if(data.role === 'Recruiter'){
+            recruiter = true;
+        }
+    });
 
 </script>
 
@@ -76,11 +83,12 @@
         {/await}
         
     </div>
-<!-- 
+
+    {#if recruiter}
     <div class="container_companyapplications box">
         <h3>Company's job applications</h3>
-        <button> Create </button>
-    </div> -->
+    </div>
+    {/if}
 
     <div class="container_myapplications box">
         <h3 class="title">My job applications</h3>
