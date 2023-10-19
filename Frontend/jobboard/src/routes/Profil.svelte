@@ -3,6 +3,8 @@
     import { getUserData } from '../stores/getuserdata.js';
     import JobApplications from '../components/JobApplications.svelte';
     import { getJobsApplications } from '../stores/getjobapplications.js';
+    import { getJobsAvertisementsByCompany } from '../stores/jobadvertisements.js';
+    import JobAdvertisements from '../components/JobAdvertisements.svelte';
 
     function disconnect(){
         Cookies.remove('userToken');
@@ -86,7 +88,16 @@
 
     {#if recruiter}
     <div class="container_companyapplications box">
-        <h3>Company's job applications</h3>
+        <h3 class="title">Company's job applications</h3>
+        {#await getJobsAvertisementsByCompany(Cookies.get('userToken'))}
+            <p>Loading...</p>
+        {:then jobs}
+            {#each jobs as job}
+                <JobAdvertisements job={job} token={Cookies.get('userToken')} rhView={true}/>
+            {/each}
+        {:catch error}
+            <p>Error while loading your job applications</p>
+        {/await}
     </div>
     {/if}
 

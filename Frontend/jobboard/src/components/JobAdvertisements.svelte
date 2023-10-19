@@ -3,8 +3,11 @@
 
     export let job;
     export let token;
+    export let rhView = false;
 
     let promise;
+
+    console.log(job)
 
     async function getJobAdvertisement(){
         promise = await getJobsAdvertisements(job.id);
@@ -24,7 +27,11 @@
         <div class="title">
         <h3>{job.contract_type} - {job.title} </h3>
         </div>
-        <span>Company : {job.company_name}</span><br>
+        {#if !rhView}
+            <span>Company : {job.company_name}</span><br>
+        {:else}
+            <span>Date of publication : {job.date_of_jobadvertisements}</span><br>
+        {/if}
         <span>Location : {job.location}</span><br><br>
         <div>
             <details on:toggle|once={getJobAdvertisement}>

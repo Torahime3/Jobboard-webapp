@@ -9,6 +9,7 @@
     import { getAllJobAdvertisements } from '../stores/admin/jobadvertisements/getalljobadvertisements';
     import { getAllJobApplications } from '../stores/admin/jobapplications/getalljobapplications';
     import { getAllLogins } from '../stores/admin/login/getalllogins';
+    import { getUserData } from '../stores/getuserdata';
 
     //Components
     import AdminCompany from '../components/admin/AdminCompany.svelte';
@@ -22,11 +23,19 @@
         window.location.href = '/login';
     }
 
-    checkAdmin(token).then(data => {
-        if(data.message !== 'success'){
-            window.location.href = '/';
+    // checkAdmin(token).then(data => {
+    //     if(data.message !== 'success'){
+    //         window.location.href = '/';
+    //     }
+    // })
+
+    let recruiter;
+    getUserData(token).then(data => {
+        if(data.role === 'Recruiter'){
+            recruiter = true;
         }
-    })
+    });
+
 
     let selectData = {};
 
@@ -40,16 +49,25 @@
 
     <div class="box">
         <nav class="container">
+            {#if !recruiter}
             <div>
                 <label for="tables">Choose a table:</label>
                 <select id="tables" name="tables" bind:value={selectData.value}>
-                    <option value="company" selected>Company</option>
+                    <option value="company">Company</option>
                     <option value="jobadvertisement">JobAdvertisements</option>
                     <option value="jobapplication">JobApplications</option>
                     <option value="login">Login</option>
                     <option value="people">Peoples</option>
                 </select>
             </div>
+            {:else}
+            <div>
+                <select id="tables" name="tables" bind:value={selectData.value}>
+                    <option value="jobadvertisement">JobAdvertisements</option>
+                </select>
+            </div>
+            {/if}
+
              
             {#if selectData.value !== 'login'}
                 <button on:click={create}>Create {selectData.value}</button>
