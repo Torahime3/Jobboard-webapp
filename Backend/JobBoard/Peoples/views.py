@@ -80,6 +80,7 @@ def create(request,token):
     try:
         user = Login.objects.get(token=token)
         role = Peoples.objects.get(pk=user.id_people_id)
+        # check if the user is an admin
         if(role.role == 'Admin'):
             if request.method == "POST":
                 data = request.data
@@ -87,6 +88,7 @@ def create(request,token):
                 try:
                     objet = Peoples.objects.get(email=email)
                     return Response({"message": "exist"})
+                # Create a People and a Login
                 except Peoples.DoesNotExist:
                     data = request.data
                     firstname = data["firstname"]
@@ -207,6 +209,13 @@ def delete(request,token):
     except:
         return Response({"message": "invalidAccess"})
 
+# Method "POST"
+# Param :
+#         request -> HttpRequest, object request form Django
+# Function :
+#         download_img -> download an image
+# Returns :
+#         return a response, to know if the request is 'success','error'
 @api_view(["POST"])
 def download_img(request):
     if request.method == 'POST' and 'image' in request.FILES:
@@ -221,5 +230,4 @@ def download_img(request):
 
         # Répondre avec un message de succès
         return Response({"message":"success","url":destination})
-
     return Response({"message":"error"})
