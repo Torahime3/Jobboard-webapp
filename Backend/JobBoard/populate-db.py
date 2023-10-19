@@ -50,6 +50,7 @@ print(color + "Success creating new objects in Companies !")
 #Insert new rows in the table Peoples
 from Peoples.models import Peoples
 # New rows :
+Peoples.objects.create(id=0,firstname="Compte", lastname="invité",date_of_birth="1000-01-01", phone_number="0000000000", url_profile_picture="guest.jpg", email="compte.invite@localhost", domain="Invite", role="User")
 Peoples.objects.create(firstname="Tristan", lastname="Malo", date_of_birth="1995-10-11", phone_number="0606060606", url_profile_picture="img/pic_tristan.jpg", email="tristan.malo@gmail.com", domain="Informaticien", role="User") #id = 1
 Peoples.objects.create(firstname="Jean", lastname="Dupont", date_of_birth="1999-12-01", phone_number="0605658547", url_profile_picture="img/pic_jean.jpg", email="jean.dupont@gmail.com", domain="Informaticien", role="User") #id = 2
 Peoples.objects.create(firstname="Pierre", lastname="Martin", date_of_birth="2000-01-12", phone_number="0605651247", url_profile_picture="img/pic_pierre.jpg", email="pierre.martin@yahoo.fr", domain="Informaticien", role="User") #id = 3
