@@ -1,7 +1,8 @@
 from django.urls import path
-
 from . import views
 
+# All urls for JobApplications
+# localhost:8000/jobapplications/
 urlpatterns = [
     path("create", views.create, name="create"),
     path("", views.get_all_applications, name="all"),

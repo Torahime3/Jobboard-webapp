@@ -9,19 +9,41 @@ from Login.models import Login
 from Companies.models import Companies
 from JobAdvertisements.serializers2 import DataSerializerCompact
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+# Function :
+#         get_all_applications -> get all JobApplications
+# Returns :
+#         return all JobApplications
 @api_view(["GET"])
 def get_all_applications(request):
     applications = JobApplications.objects.all()
     serializer = DataSerializer(applications, many=True)
     return Response(serializer.data)
 
-
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         id -> id of JobApplication
+# Function :
+#         get_application_by_id -> get a JobApplication by id
+# Returns :
+#         return a JobApplication with the ID given in argument
 @api_view(["GET"])
 def get_application_by_id(request, id):
     jobA = JobApplications.objects.get(pk=id)
     serializer = DataSerializer(jobA, many=False)
     return Response(serializer.data)
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         get_application_by_id_company -> get a JobApplications by id_company
+# Returns :
+#         return a JobApplication with the ID of the company given in argument 
 @api_view(["GET"])
 def get_application_by_id_company(request,token):
     try:
@@ -50,6 +72,14 @@ def get_application_by_id_company(request,token):
     except:
         return Response({"message": "error"})
 
+# Method "GET"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         get_application_by_token -> get a JobApplications by token
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
 @api_view(["GET"])
 def get_application_by_token(request, token):
     login = Login.objects.get(token=token)
@@ -71,7 +101,13 @@ def get_application_by_token(request, token):
         i += 1
     return Response(serializer.data)
 
-
+# Method "POST"
+# Param :
+#         request -> HttpRequest, object request form Django
+# Function :
+#         create -> create a JobApplications
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'exist'
 @api_view(["POST"])
 def create(request):
     if request.method == "POST":
@@ -79,9 +115,7 @@ def create(request):
         id_advertisement = data["id_advertisement"]
         id_people = data["id_people"]
         try:
-            objet = JobApplications.objects.get(
-                id_advertisement=id_advertisement, id_people=id_people
-            )
+            objet = JobApplications.objects.get(id_advertisement=id_advertisement, id_people=id_people)
             return Response({"message": "exist"})
 
         except JobApplications.DoesNotExist:
@@ -110,7 +144,15 @@ def create(request):
 
         except JobApplications.MultipleObjectsReturned:
             return Response({"message": "exist"})
-        
+    
+# Method "PUT"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         update -> update a JobApplications
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
 @api_view(["PUT"])
 def update(request, token):
     try:
@@ -145,7 +187,14 @@ def update(request, token):
     except:
         return Response({"message": "error"})
     
-
+# Method "DELETE"
+# Param :
+#         request -> HttpRequest, object request form Django
+#         token -> Authentication token
+# Function :
+#         delete -> delete a JobApplications
+# Returns :
+#         return a response, to know if the request is 'success','error' or 'invalidAccess'
 @api_view(["DELETE"])
 def delete(request,token):
     try:
