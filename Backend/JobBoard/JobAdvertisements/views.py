@@ -190,7 +190,7 @@ def update(request,token):
                 description = data["description"]
                 date_of_jobadvertisements = data["date_of_jobadvertisements"]
                 location = data["location"]
-                contract_type = data["contract_type"]
+                contract_type = data["contract_type"].upper()
                 duration_week = data["duration_week"]
                 id_cmp = data["id_company"]
                 id_ppl = data["id_people"]
