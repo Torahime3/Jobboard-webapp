@@ -21,7 +21,17 @@ The technologies used on our project are :
 - Database : **PostgreSQL / [PgAdmin](https://www.pgadmin.org/)**
 
 ## Steps to intall 📝
-
+- Step 1 :<br>
+to_complete
+- Step 2 :<br>
+to_complete
+- Step 3 : <br>
+to_complete
+- Step 4 : <br>
 ## Contributors 💪 
 **- Nathan DULAC** <br>
-**- Ariirau FUCKS**
+- [Github](https://github.com/Torahime3)
+- [Linkedin](https://www.linkedin.com/in/nathan-dulac-2aa654257/)
+**- Ariirau FUCKS** <br>
+- [Github](https://github.com/AriirauF)
+- [Linkedin](https://www.linkedin.com/in/ariirau-fucks-9234a226b/) 
