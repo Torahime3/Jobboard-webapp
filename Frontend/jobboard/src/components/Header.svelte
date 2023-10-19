@@ -33,7 +33,7 @@
                     {#if data.role === 'Admin'}
                         <Link to="admin"><button style="background-color: #c884fa">Admin panel</button></Link>
                     {:else if data.role === 'Recruiter'}
-                        <Link to="admin/create/jobadvertisement"><button style="background-color: #c884fa">Recruiter Panel</button></Link>
+                        <Link to="admin"><button style="background-color: #c884fa">Recruiter Panel</button></Link>
                     {/if}
                 {/await}
 
