@@ -24,13 +24,12 @@
     async function toggleEditing() {
         isEditing = !isEditing;
         if(!isEditing){
-            // console.log(updatedJobAdvertisements)
-            console.log(await updateJobAdvertisement(token, updatedJobAdvertisements));
+            await updateJobAdvertisement(token, updatedJobAdvertisements);
         }
     }
 
     function Delete(token, id){
-    console.log(deleteJobAdvertisement(token, id));
+    deleteJobAdvertisement(token, id);
     }
 
 </script>

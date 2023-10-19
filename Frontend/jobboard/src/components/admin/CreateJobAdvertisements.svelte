@@ -25,13 +25,10 @@
         }
     })
 
-    console.log(jobadvertisement);
-
 let result;
 async function submit(){
     event.preventDefault();
     result = await createJobAdvertisement(Cookies.get('userToken'), jobadvertisement);
-    console.log(result);
     if(result.message === "success"){
         if(recruiter){
             window.location.href = '/profil';
