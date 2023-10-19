@@ -1,10 +1,12 @@
 <script>
     import Cookies from 'js-cookie';
     import { getUserData } from '../stores/getuserdata.js';
-    import JobApplications from '../components/JobApplications.svelte';
     import { getJobsApplications } from '../stores/getjobapplications.js';
+    import { getJobsApplicationsByCompany } from '../stores/getjobapplications.js';
     import { getJobsAvertisementsByCompany } from '../stores/jobadvertisements.js';
     import JobAdvertisements from '../components/JobAdvertisements.svelte';
+    import JobApplications from '../components/JobApplications.svelte';
+
 
     function disconnect(){
         Cookies.remove('userToken');
@@ -48,6 +50,10 @@
             recruiter = true;
         }
     });
+    
+    getJobsApplicationsByCompany(Cookies.get('userToken')).then(data => {
+        console.log(data);
+    });
 
 </script>
 
@@ -75,7 +81,6 @@
                 <div>
                     <input type="file" bind:files={imageFile} accept="image/*" /> 
                     <button class="set_profile_picture" on:click={set_profile_picture}>Set profile picture</button>
-                    <button class="disconnect" on:click={disconnect}>Disconnect</button>
                 </div>
             </div>
         </div>
@@ -83,23 +88,10 @@
         {:catch error}
             <p>Error loading data</p>
         {/await}
+        <button class="disconnect" on:click={disconnect}>Disconnect</button>
+
         
     </div>
-
-    {#if recruiter}
-    <div class="container_companyapplications box">
-        <h3 class="title">Company's job advertisements</h3>
-        {#await getJobsAvertisementsByCompany(Cookies.get('userToken'))}
-            <p>Loading...</p>
-        {:then jobs}
-            {#each jobs as job}
-                <JobAdvertisements job={job} token={Cookies.get('userToken')} rhView={true}/>
-            {/each}
-        {:catch error}
-            <p>Error while loading your job applications</p>
-        {/await}
-    </div>
-    {/if}
 
     <div class="container_myapplications box">
         <h3 class="title">I applied for</h3>
@@ -116,6 +108,38 @@
             <p>Error while loading your job applications</p>
         {/await}
     </div>
+
+    {#if recruiter}
+    <div class="container_companyapplications box">
+        <h3 class="title">Company's job advertisements</h3>
+        {#await getJobsAvertisementsByCompany(Cookies.get('userToken'))}
+            <p>Loading...</p>
+        {:then jobs}
+            {#each jobs as job}
+                <JobAdvertisements job={job} token={Cookies.get('userToken')} rhView={true}/>
+            {/each}
+        {:catch error}
+            <p>Error while loading your job applications</p>
+        {/await}
+    </div>
+
+    <div class="container_companyapplications box">
+        <h3 class="title">Company's job applications</h3>
+        {#await getJobsApplicationsByCompany(Cookies.get('userToken'))}
+            <p>Loading...</p>
+        {:then jobs}
+            {#each jobs as job}
+                {#if job.peoples.length !== 0}
+                    <JobApplications app={job} rhView={true}/>
+                {/if}
+            {/each}
+        {:catch error}
+            <p>Error while loading your job applications</p>
+        {/await}
+    </div>
+
+    {/if}
+
 </main>
 
 
@@ -156,6 +180,11 @@
         margin-left: 10px;
     }
 
+    .container_myapplications, .container_companyapplications{
+        height: 40vh;
+        overflow-y: scroll;
+    }
+
     .title{
         border-bottom: 2px solid rgb(0, 0, 0);
         padding-bottom: 10px;
@@ -187,11 +216,6 @@
             grid-template-columns: 1fr 1fr;
         }
 
-        .container_profil{
-            height: fit-content;
-            grid-row-start: 1;
-            grid-row-end: 3;
-        }
     }
 
 </style>

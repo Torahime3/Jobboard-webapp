@@ -43,7 +43,7 @@
 
                     {#if promise}    
                         <p>{promise.description}</p>
-                        {#if token && !rhView}
+                        {#if !rhView}
                             <button class="applying" on:click={apply}>Apply</button>
                         {/if}
                     {:else}

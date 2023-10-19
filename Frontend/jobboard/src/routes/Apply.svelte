@@ -5,10 +5,6 @@
     import { createJobApplication } from '../stores/createjobapplications';
     import { getUserData } from '../stores/getuserdata';
 
-    if(!Cookies.get('userToken')){
-        window.location.href = '/';
-    }
-
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
