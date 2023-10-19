@@ -49,10 +49,12 @@ def get_application_by_id_company(request,token):
     try:
         user = Login.objects.get(token=token)
         people = Peoples.objects.get(pk=user.id_people_id)
+        # check if the user sending the request is an admin or a recruiter
         if(people.role == 'Recruiter' or people.role == 'Admin') and request.method == "GET":
             jobAdv = JobAdvertisements.objects.filter(id_company_id=people.id_company_id)
             serializer = DataSerializerCompact(jobAdv, many=True)
             i = 0
+            # loop to get all applications for each job
             for job in jobAdv:
                 jobA = JobApplications.objects.filter(id_advertisement_id=job.id)
                 peoples = []
