@@ -11,26 +11,31 @@
     async function getJobAdvertisement(){
         return await getJobsAdvertisements(id);
     }
+    
 
     function getUser(){
-        return getUserData(Cookies.get('userToken')).then(result => { return result})
+        if(Cookies.get('userToken')){
+            return getUserData(Cookies.get('userToken')).then(result => { return result})
+         }
     }
 
     let result;
+
     async function submit(){
         event.preventDefault();
         result = await createJobApplication(apply_infos);
-        console.log(result.message);
     }
 
-    let userData = getUser();
-    userData.then(function(result) {
-        apply_infos.id_user = result.id;
-        apply_infos.first_name = result.firstname;
-        apply_infos.last_name = result.lastname;
-        apply_infos.email = result.email
-        apply_infos.phone_number = result.phone_number
-    })
+    if(Cookies.get('userToken')){
+        let userData = getUser();
+        userData.then(function(result) {
+            apply_infos.id_user = result.id;
+            apply_infos.first_name = result.firstname;
+            apply_infos.last_name = result.lastname;
+            apply_infos.email = result.email
+            apply_infos.phone_number = result.phone_number
+        })
+    }
 
     let apply_infos = {
         id_user: "",

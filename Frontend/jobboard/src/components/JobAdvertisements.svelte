@@ -7,8 +7,6 @@
 
     let promise;
 
-    console.log(job)
-
     async function getJobAdvertisement(){
         promise = await getJobsAdvertisements(job.id);
     }
