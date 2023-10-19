@@ -1,8 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Login
 
+# Settings for Django admin panel
 class LoginAdmin(admin.ModelAdmin):
     list_display = ('id', 'username', 'password', 'email', 'token', 'id_people')
 

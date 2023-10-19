@@ -1,4 +1,3 @@
-from http.client import HTTPResponse
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -7,6 +6,13 @@ from Peoples.models import Peoples
 from django.contrib.auth.hashers import make_password
 from Login.serializers import DataSerializer
 
+# Method "POST"
+# Param :
+#         request -> HttpRequest, object request form Django
+# Function :
+#         checkAdmin -> check if the user is an admin
+# Returns :
+#         return a response, to know if the request is 'success' or 'error'
 @api_view(['POST'])
 def checkAdmin(request):
     if request.method == 'POST':
@@ -22,6 +28,13 @@ def checkAdmin(request):
         except:
             return Response({'message': 'error'})
 
+# Method "POST"
+# Param :
+#         request -> HttpRequest, object request form Django
+# Function :
+#         checkValidity -> check if the login given exist in the database
+# Returns :
+#         return a response, to know if the request is 'success' or 'error'
 @api_view(['POST'])
 def checkValidity(request):
     if request.method == 'POST':
