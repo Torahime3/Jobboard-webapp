@@ -120,5 +120,5 @@ Open your browser with the url : `http://localhost:5173`.<br><br><br>
 - [Github](https://github.com/AriirauF)
 - [Linkedin](https://www.linkedin.com/in/ariirau-fucks-9234a226b/)<br>
 
-## Trello<br>
+## Trello 💼
 **[Trello JobBoard](https://trello.com/b/ntRaxyAX/jobboard)**
