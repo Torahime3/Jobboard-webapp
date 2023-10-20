@@ -21,11 +21,12 @@ The technologies used on our project are :
 - Database : **PostgreSQL / [PgAdmin](https://www.pgadmin.org/)**
 
 ## Steps to intall 📝
-[!WARNING]
-Make sure you have a version of python[¹] >= 3.9.2, you can check it with : `python3 -v`.<br>
-You will need also a virtual environnement with python[²], you can check it with : `python3 -m venv -h`.<br>
-[¹] If you want to install python 3.9.x, `sudo apt-get install python3.9`.<br>
-[²] If you want to install virtual env with python, `sudo apt-get install python3-venv`.<br>
+⚠️ **Dependencies** ⚠️<br>
+Make sure you have a version of python(¹) >= 3.9.2, you can check it with : `python3 -v`.<br>
+You will need also a virtual environnement with python(²), you can check it with : `python3 -m venv -h`.<br>
+
+(¹) If you want to install python 3.9.x, `sudo apt-get install python3.9`.<br>
+(²) If you want to install virtual env with python, `sudo apt-get install python3-venv`.<br>
 
 👍🏼 Once you check you have `python3.9` and `python3-venv`, you can follow the steps below : 👍🏼<br>
 
@@ -35,10 +36,30 @@ A new folder must be appear, named `env`. <br><br>
 
 - **Step 2 :**<br>
 Now, you will enter in the virtual environnement by running : `source env/bin/activate`. <br>
-Once you run the command above, your terminal prompt should be `(env) username@my_debian: ~/T-WEB501-TLS_6-main$` <br>
-- **Step 3 :**<br>
+Once you run the command above, your terminal prompt should be `(env) username@my_debian: ~/T-WEB501-TLS_6-main$` <br><br>
 
-- **Step 4 : **<br>
+- **Step 3:**<br>
+Once you are in the virtual env, you can run a script to install all dependencies for you. You can run the script name _install_dependencies.sh_.<br>
+`bash install_dependencies.py`<br>
+
+Now, you need to exit the virtual environnement with : `deactivate`.<br>
+Update the environnement of your terminal to get all the new dependencies installed before. Run : `exec bash`.<br>
+You can run again : `source env/bin/activate`, to re-enter in your virtual environnement.<br><br>
+
+- **Step 4 :**<br>
+Here, you will need to install _NVM_ for _Svelte_, you can run the following commands :<br>
+```
+cd Frontend/jobboard
+nvm install 19.0.0
+npm install
+```
+<br><br>
+
+- **Step 5 :**<br>
+Once you realised all the previous steps, you can run the script to launch all the servers : ***Django*** & ***Svelte***.
+A script was realase for this, just run : `python3 launch-servers.py`.<br><br>
+
+ℹ️Make sure to always be in the virtual environnement.ℹ️<br>
 ## Contributors 💪 
 **- Nathan DULAC** <br>
 - [Github](https://github.com/Torahime3)
