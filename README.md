@@ -61,7 +61,7 @@ Once you run the command above, your terminal prompt should be :
 <br><br>
 
 - **Step 3:**<br>
-Once you are in the virtual env, you can run a script to install all dependencies for you. You can run the script name _install_dependencies.sh_.
+Once you are in the virtual env, you can run a script to install all dependencies for you. You can run the script name _install_dependencies.sh_.<br>
 ➡️➡️➡️<font color="red"> _Make sure to read the script before execute it !_ </font> ⬅️⬅️⬅️
 
 ```bash
@@ -108,7 +108,7 @@ python3 launch-servers.py
 ```
 <br><br>
 - **Step 6:**<br>
-Open your browser with the url : `http://localhost:5173`.<br><br>
+Open your browser with the url : `http://localhost:5173`.<br><br><br>
 ➡️ Make sure to always be in the virtual environnement ⬅️<br>
 
 ## Contributors 💪 
