@@ -22,10 +22,10 @@ The technologies used on our project are :
 
 ## Steps to intall 📝
 [!WARNING]
-Make sure you have a version of python[¹] >= 3.9.2, you can check it with : `python3 -v`.
-You will need also a virtual environnement with python[²], you can check it with : `python3 -m venv -h`.
-[¹] If you want to install python 3.9.x, `sudo apt-get install python3.9`.
-[²] If you want to install virtual env with python, `sudo apt-get install python3-venv`.
+Make sure you have a version of python[^1] >= 3.9.2, you can check it with : `python3 -v`.<br>
+You will need also a virtual environnement with python[^2], you can check it with : `python3 -m venv -h`.<br>
+[^1] If you want to install python 3.9.x, `sudo apt-get install python3.9`.
+[^2] If you want to install virtual env with python, `sudo apt-get install python3-venv`.
 
 👍🏼 Once you check you have `python3.9` and `python3-venv`, you can follow the steps below : 👍🏼
 
