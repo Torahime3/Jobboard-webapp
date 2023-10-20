@@ -11,7 +11,7 @@ The main task is to make all the previous tasks communicate together.
 
 ![Screenshot of our Home on Joboard](screenshot_home_jobboard.png)
 
-<br>You can see above the display of our main page 'Home' (the connected account is an administrator) <br>
+<br>You can see above the display of our main page 'Home' (the connected account is an administrator).<br>
 
 ## Technologies 💯
 
@@ -22,22 +22,23 @@ The technologies used on our project are :
 
 ## Steps to intall 📝
 [!WARNING]
-Make sure you have a version of python[^1] >= 3.9.2, you can check it with : `python3 -v`.<br>
-You will need also a virtual environnement with python[^2], you can check it with : `python3 -m venv -h`.<br>
-[^1] If you want to install python 3.9.x, `sudo apt-get install python3.9`.
-[^2] If you want to install virtual env with python, `sudo apt-get install python3-venv`.
+Make sure you have a version of python[¹] >= 3.9.2, you can check it with : `python3 -v`.<br>
+You will need also a virtual environnement with python[²], you can check it with : `python3 -m venv -h`.<br>
+[¹] If you want to install python 3.9.x, `sudo apt-get install python3.9`.<br>
+[²] If you want to install virtual env with python, `sudo apt-get install python3-venv`.<br>
 
-👍🏼 Once you check you have `python3.9` and `python3-venv`, you can follow the steps below : 👍🏼
+👍🏼 Once you check you have `python3.9` and `python3-venv`, you can follow the steps below : 👍🏼<br>
 
-- Step 1 :<br>
+- **Step 1 :**<br>
 Once you have clone the repositorie and you're in the root folder, enter the following command to create a virtual environnement : `python3 -m venv env`.
 A new folder must be appear, named `env`. <br><br>
 
-- Step 2 :<br>
-Now, you will enter in the virtual environnement by running : `source env/bin/activate`.
-- Step 3 : <br>
-to_complete
-- Step 4 : <br>
+- **Step 2 :**<br>
+Now, you will enter in the virtual environnement by running : `source env/bin/activate`. <br>
+Once you run the command above, your terminal prompt should be `(env) username@my_debian: ~/T-WEB501-TLS_6-main$` <br>
+- **Step 3 :**<br>
+
+- **Step 4 : **<br>
 ## Contributors 💪 
 **- Nathan DULAC** <br>
 - [Github](https://github.com/Torahime3)
