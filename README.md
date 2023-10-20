@@ -20,7 +20,7 @@ The technologies used on our project are :
 - Back-end : **[Django](https://www.django-rest-framework.org/)**
 - Database : **PostgreSQL / [PgAdmin](https://www.pgadmin.org/)**
 
-## Steps to intall 📝
+## Steps to install 📝
 ⚠️ **Dependencies** ⚠️<br>
 Make sure you have a version of python(¹) >= 3.9.2, you can check it with : 
 ```bash
@@ -30,7 +30,7 @@ python3 -v
 You will need also a virtual environnement with python(²), you can check it with <br>
 
 ```bash
-source env/bin/activate
+python3 -m venv -h
 ```
 
 
