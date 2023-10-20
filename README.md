@@ -21,10 +21,20 @@ The technologies used on our project are :
 - Database : **PostgreSQL / [PgAdmin](https://www.pgadmin.org/)**
 
 ## Steps to intall 📝
+[!WARNING]
+Make sure you have a version of python[¹] >= 3.9.2, you can check it with : `python3 -v`.
+You will need also a virtual environnement with python[²], you can check it with : `python3 -m venv -h`.
+[¹] If you want to install python 3.9.x, `sudo apt-get install python3.9`.
+[²] If you want to install virtual env with python, `sudo apt-get install python3-venv`.
+
+👍🏼 Once you check you have `python3.9` and `python3-venv`, you can follow the steps below : 👍🏼
+
 - Step 1 :<br>
-to_complete
+Once you have clone the repositorie and you're in the root folder, enter the following command to create a virtual environnement : `python3 -m venv env`.
+A new folder must be appear, named `env`. <br><br>
+
 - Step 2 :<br>
-to_complete
+Now, you will enter in the virtual environnement by running : `source env/bin/activate`.
 - Step 3 : <br>
 to_complete
 - Step 4 : <br>
