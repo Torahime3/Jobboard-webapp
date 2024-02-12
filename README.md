@@ -9,7 +9,9 @@ To make this possible, we needed to realise the following steps :
 
 The main task is to make all the previous tasks communicate together.
 
-![Screenshot of our Home on Joboard](screenshot_home_jobboard.png)
+![Screenshot of our Home on Jobboard](screenshot_home_jobboard.png)
+
+![Screenshot of a job advertisement on Jobboard](screenshot_job_advertisement.png)
 
 <br>You can see above the display of our main page 'Home' (the connected account is an administrator).<br>
 
