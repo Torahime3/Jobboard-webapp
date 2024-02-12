@@ -13,7 +13,11 @@ The main task is to make all the previous tasks communicate together.
 
 ![Screenshot of a job advertisement on Jobboard](screenshot_job_advertisement.png)
 
-<br>You can see above the display of our main page 'Home' (the connected account is an administrator).<br>
+![Screenshot of a recruiter profile on Jobboard](screenshot_recruiter_profile.png)
+
+![Screenshot of the admin panel (CRUD)](screenshot_admin_crud_panel.png)
+
+<br>You can see above the display of our main page 'Home', 'Recruiter Profile', 'Admin Panel', 'Job advertisement'.<br>
 
 ## Technologies 💯
 
